@@ -1,0 +1,445 @@
+---
+title: "第四章（三）：分组汇总、宽表与长表"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-05"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第四章（三） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+os.makedirs("data", exist_ok=True)
+
+survey_csv = """name,gender,age,city,major,study_hours,python_score,attendance_rate
+Alice, Female ,25,Beijing,Statistics,12,88,95%
+Bob,male,30,Shanghai,Applied Statistics,8,76,88%
+Charlie, MALE ,17,Guangzhou,Statistics,6,64,72%
+Diana, female,22,Beijing,Applied Statistics,15,92,98%
+Eve,FEMALE,16,Chengdu,Statistics,5,58,65%
+Frank,male,59,Shanghai,Applied Statistics,4,70,80%
+Grace, female ,60,Beijing,Statistics,10,84,90%
+Henry,male,unknown,Wuhan,Applied Statistics,9,,82%
+Irene,Female,45,Guangzhou,Statistics,11,86,91%
+Jack,Male,68,Chengdu,Applied Statistics,3,66,70%
+Karen,female,17,Shanghai,Statistics,7,73,78%
+Leo, male ,5,Beijing,Applied Statistics,2,55,60%
+Maria,FEMALE,33,Wuhan,Statistics,14,90,96%
+Nate,male,40,Guangzhou,Applied Statistics,10,81,89%
+Olivia, female,70,Beijing,Statistics,6,75,83%
+Paul,MALE,42,Shanghai,Applied Statistics,9,79,85%
+Quinn, female ,29,Chengdu,Statistics,13,87,92%
+Rachel,female,8,Wuhan,Applied Statistics,4,61,68%
+Steve,male,55,Guangzhou,Statistics,8,77,84%
+Tina,FEMALE,,Beijing,Applied Statistics,12,91,97%
+Uma,female,23,Shanghai,Statistics,11,85,90%
+"""
+
+with open("./data/survey_extended.csv", "w", encoding="utf-8") as f:
+    f.write(survey_csv)
+```
+
+## 本节概览
+
+* 理解分组汇总在统计分析中的作用
+* 掌握 `groupby()` 与常见聚合方法
+* 能够使用 `crosstab()` 与 `pivot_table()` 生成汇总表
+* 理解宽表与长表，并会使用 `melt()`
+
+# 从整体统计到分层统计
+
+## 为什么要分组
+
+* 整体均值只能回答“全部记录大概怎样”。
+* 统计分析中更常见的问题是：不同组之间是否有差异。
+* 例如：不同性别、不同年龄组、不同专业的平均成绩是否不同。
+
+::: {.callout-note}
+### 从手工掩码到分组汇总
+第三章中，如果要比较不同组的均值，通常要先写掩码，再分别取子数组计算。Pandas 的 `groupby()` 把这个常见流程整理成一种更直接的表格操作。
+
+| 第三章 NumPy 思路 | 第四章 Pandas 思路 |
+|---|---|
+| `scores[gender_codes == 0].mean()` | `df.groupby("gender_clean")["python_score"].mean()` |
+| 手工为每个组写一次筛选 | 按分组变量自动拆分并汇总 |
+:::
+
+```{pyodide}
+#| echo: true
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("./data/survey_extended.csv")
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+df["study_hours"] = pd.to_numeric(df["study_hours"], errors="coerce")
+df["age_group"] = pd.cut(
+    df["age"],
+    bins=[0, 18, 60, 120],
+    labels=["minor", "adult", "senior"],
+    right=False
+)
+
+print(df[["name", "gender_clean", "age_group", "python_score"]].head())
+```
+
+## 分组前先清洗
+
+* 分组前要保证分类变量口径统一。
+* 数值变量要先转成真正的数值。
+* 缺失值要在解释结果时被注意到。
+
+# `groupby()` 基础
+
+## 按一列分组
+
+* `groupby("列名")` 可以按某个变量分组。
+* 后面接聚合函数，得到每组的统计结果。
+
+```{pyodide}
+#| echo: true
+gender_mean = df.groupby("gender_clean")["python_score"].mean()
+print(gender_mean)
+```
+
+## 常见聚合函数
+
+* `mean()`：均值
+* `count()`：非缺失数量
+* `sum()`：总和
+* `median()`：中位数
+* `std()`：标准差
+
+::: {.callout-note}
+### 样本量口径
+分组汇总时要区分“这一组有多少行”和“某个变量有多少个有效值”。例如 `name` 的 `count` 更接近行数，`python_score` 的 `count` 表示成绩非缺失的样本量。
+:::
+
+```{pyodide}
+#| echo: true
+gender_summary = df.groupby("gender_clean")["python_score"].agg(["count", "mean", "median", "std"])
+print(gender_summary)
+```
+
+## 按多列分组
+
+* 分组变量可以不止一个。
+* 例如同时按性别和年龄组分组。
+
+```{pyodide}
+#| echo: true
+group_summary = df.groupby(["gender_clean", "age_group"], observed=True)["python_score"].mean()
+print(group_summary)
+```
+
+## 小结任务 1
+
+按 `major` 分组，计算每个专业的平均学习时长和平均 Python 成绩。
+
+```{pyodide}
+#| echo: true
+practice_df = pd.read_csv("./data/survey_extended.csv")
+practice_df["study_hours"] = pd.to_numeric(practice_df["study_hours"], errors="coerce")
+practice_df["python_score"] = pd.to_numeric(practice_df["python_score"], errors="coerce")
+
+# result = # 在这里补全
+# print(result)
+```
+
+# 多指标聚合
+
+## `agg()` 的作用
+
+* `agg()` 可以一次给出多个统计量。
+* 它适合把分组结果整理成一张比较完整的汇总表。
+
+```{pyodide}
+#| echo: true
+summary = df.groupby("gender_clean").agg(
+    n_rows=("name", "count"),
+    n_valid_score=("python_score", "count"),
+    mean_score=("python_score", "mean"),
+    mean_hours=("study_hours", "mean"),
+    score_sd=("python_score", "std")
+)
+
+print(summary)
+```
+
+## 让汇总表回到普通列
+
+* 分组后的结果常常把分组变量放到索引里。
+* `reset_index()` 可以把索引转回普通列。
+
+```{pyodide}
+#| echo: true
+summary = summary.reset_index()
+print(summary)
+```
+
+# 频数与交叉表
+
+## `value_counts()`
+
+* `value_counts()` 用于统计某一列中不同取值出现的次数。
+* 它非常适合做分类变量的初步检查。
+
+```{pyodide}
+#| echo: true
+print(df["gender_clean"].value_counts())
+print(df["age_group"].value_counts(dropna=False))
+```
+
+## `pd.crosstab()`
+
+* 交叉表用于观察两个分类变量的组合分布。
+* 例如：不同性别在不同年龄组中的人数。
+
+```{pyodide}
+#| echo: true
+age_gender_table = pd.crosstab(df["age_group"], df["gender_clean"])
+print(age_gender_table)
+```
+
+## 小结任务 2
+
+生成 `major` 与 `gender_clean` 的交叉表。
+
+```{pyodide}
+#| echo: true
+practice_df = pd.read_csv("./data/survey_extended.csv")
+practice_df["gender_clean"] = practice_df["gender"].str.strip().str.lower()
+
+# table = # 在这里补全
+# print(table)
+```
+
+# `pivot_table()`
+
+## 透视表的直观理解
+
+* 透视表可以把一个明细表整理成按行列分类的汇总表。
+* 行和列通常是分类变量。
+* 单元格里放聚合后的统计量。
+
+```{pyodide}
+#| echo: true
+pivot_score = pd.pivot_table(
+    df,
+    values="python_score",
+    index="age_group",
+    columns="gender_clean",
+    aggfunc="mean",
+    observed=True
+)
+
+print(pivot_score)
+```
+
+## 透视表不只算均值
+
+* `aggfunc` 可以换成其他聚合函数。
+* 例如统计每个组合里的样本量。
+
+```{pyodide}
+#| echo: true
+pivot_count = pd.pivot_table(
+    df,
+    values="name",
+    index="age_group",
+    columns="gender_clean",
+    aggfunc="count",
+    observed=True
+)
+
+print(pivot_count)
+```
+
+## 小结任务 3
+
+用透视表查看不同 `major` 和 `gender_clean` 组合下的平均 `study_hours`。
+
+```{pyodide}
+#| echo: true
+practice_df = pd.read_csv("./data/survey_extended.csv")
+practice_df["gender_clean"] = practice_df["gender"].str.strip().str.lower()
+practice_df["study_hours"] = pd.to_numeric(practice_df["study_hours"], errors="coerce")
+
+# pivot = # 在这里补全
+# print(pivot)
+```
+
+# 宽表与长表
+
+## 两种常见表形
+
+* 宽表：多个测量变量放在多列中。
+* 长表：把“变量名称”和“变量取值”分别放成两列。
+* 统计建模和可视化中，长表经常更方便。
+
+```{pyodide}
+#| echo: true
+score_df = df[["name", "gender_clean", "python_score", "study_hours"]].head(6)
+print(score_df)
+```
+
+## `melt()`：宽表转长表
+
+* `melt()` 可以把多列数值整理成两列：变量名和值。
+* 这就是常说的 unpivot。
+
+```{pyodide}
+#| echo: true
+long_df = score_df.melt(
+    id_vars=["name", "gender_clean"],
+    value_vars=["python_score", "study_hours"],
+    var_name="measure",
+    value_name="value"
+)
+
+print(long_df)
+```
+
+## 宽表和长表各有用途
+
+* 宽表适合人工查看多个变量。
+* 长表适合按变量类型继续分组、汇总或作图。
+* 当前先掌握最基本的宽表、长表识别与转换。
+
+## 小结任务 4
+
+把 `name`、`major`、`python_score`、`study_hours` 整理成长表。
+
+```{pyodide}
+#| echo: true
+practice_df = pd.read_csv("./data/survey_extended.csv")
+
+# wide = # 在这里补全
+# long = # 在这里补全
+# print(long.head())
+```
+
+# 综合案例：从明细表到汇总表
+
+## 任务描述
+
+完成一个常见的统计整理流程：
+
+* 清理性别
+* 生成年龄组
+* 按性别和年龄组汇总平均成绩、平均学习时长
+* 生成透视表
+* 把部分结果整理成长表
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+df["study_hours"] = pd.to_numeric(df["study_hours"], errors="coerce")
+df["age_group"] = pd.cut(
+    df["age"],
+    bins=[0, 18, 60, 120],
+    labels=["minor", "adult", "senior"],
+    right=False
+)
+
+summary = df.groupby(["gender_clean", "age_group"], observed=True).agg(
+    n_rows=("name", "count"),
+    n_valid_score=("python_score", "count"),
+    mean_score=("python_score", "mean"),
+    mean_hours=("study_hours", "mean")
+).reset_index()
+
+print(summary)
+
+pivot = pd.pivot_table(
+    df,
+    values="python_score",
+    index="age_group",
+    columns="gender_clean",
+    aggfunc="mean",
+    observed=True
+)
+
+print(pivot)
+
+long_summary = summary.melt(
+    id_vars=["gender_clean", "age_group"],
+    value_vars=["mean_score", "mean_hours"],
+    var_name="measure",
+    value_name="value"
+)
+
+print(long_summary.head())
+```
+
+# 课堂练习
+
+## 练习 1：分组汇总
+
+按 `major` 和 `gender_clean` 分组，计算行数、有效成绩样本量、平均学习时长和平均成绩。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里完成清洗和分组汇总
+```
+
+## 练习 2：交叉表与透视表
+
+生成：
+
+* `city` 与 `gender_clean` 的交叉表
+* `city` 与 `major` 组合下的平均 Python 成绩透视表
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里补全
+```
+
+## 练习 3：宽表转长表
+
+选择 `name`、`python_score`、`study_hours` 三列，把后两列整理成长表。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里补全
+```
+
+# 本节小结
+
+* `groupby()` 可以从整体统计走向分层统计。
+* `agg()` 适合一次生成多个汇总指标。
+* `value_counts()` 和 `crosstab()` 适合观察分类变量分布。
+* `pivot_table()` 用于生成按行列分类的汇总表。
+* `melt()` 用于把宽表整理成长表，为后续可视化和建模准备数据。
+
+## 下一节
+
+下一节将处理多张表之间的纵向拼接、按键合并和结果导出。

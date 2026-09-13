@@ -1,0 +1,1602 @@
+[
+  {
+    "student_id": "S001",
+    "alias": "Jackson",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.0,
+    "reported_attendance_rate": 71.7
+  },
+  {
+    "student_id": "S002",
+    "alias": "Anne",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.5,
+    "reported_attendance_rate": 75.9
+  },
+  {
+    "student_id": "S003",
+    "alias": "Warren",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 94.8
+  },
+  {
+    "student_id": "S004",
+    "alias": "Autumn",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": 69.0
+  },
+  {
+    "student_id": "S005",
+    "alias": "Weston",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.7,
+    "reported_attendance_rate": 88.9
+  },
+  {
+    "student_id": "S006",
+    "alias": "Angel",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": 89.5
+  },
+  {
+    "student_id": "S007",
+    "alias": "Shelby",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.9,
+    "reported_attendance_rate": 91.8
+  },
+  {
+    "student_id": "S008",
+    "alias": "Vivian",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 78.3
+  },
+  {
+    "student_id": "S009",
+    "alias": "Maya",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 89.5
+  },
+  {
+    "student_id": "S010",
+    "alias": "Ellie",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 86.8
+  },
+  {
+    "student_id": "S011",
+    "alias": "Nevaeh",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 4.9,
+    "reported_attendance_rate": 92.5
+  },
+  {
+    "student_id": "S012",
+    "alias": "Kimberly",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.7,
+    "reported_attendance_rate": 100.0
+  },
+  {
+    "student_id": "S013",
+    "alias": "Sadie",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.1,
+    "reported_attendance_rate": 82.1
+  },
+  {
+    "student_id": "S014",
+    "alias": "Mary",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.6,
+    "reported_attendance_rate": 92.4
+  },
+  {
+    "student_id": "S015",
+    "alias": "Darrell",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 5.5,
+    "reported_attendance_rate": 80.1
+  },
+  {
+    "student_id": "S016",
+    "alias": "Dominique",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 12.8,
+    "reported_attendance_rate": 92.6
+  },
+  {
+    "student_id": "S017",
+    "alias": "Sarah",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": 84.4
+  },
+  {
+    "student_id": "S018",
+    "alias": "Sophie",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.0,
+    "reported_attendance_rate": 81.2
+  },
+  {
+    "student_id": "S019",
+    "alias": "Lainey",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.5,
+    "reported_attendance_rate": 78.6
+  },
+  {
+    "student_id": "S020",
+    "alias": "Adeline",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 4.3,
+    "reported_attendance_rate": 79.8
+  },
+  {
+    "student_id": "S021",
+    "alias": "Hope",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 7.6,
+    "reported_attendance_rate": 81.6
+  },
+  {
+    "student_id": "S022",
+    "alias": "Asher",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.0,
+    "reported_attendance_rate": 90.2
+  },
+  {
+    "student_id": "S023",
+    "alias": "Floyd",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.5,
+    "reported_attendance_rate": 85.0
+  },
+  {
+    "student_id": "S024",
+    "alias": "Kinsley",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.4,
+    "reported_attendance_rate": 82.6
+  },
+  {
+    "student_id": "S025",
+    "alias": "Doris",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 10.4,
+    "reported_attendance_rate": 86.0
+  },
+  {
+    "student_id": "S026",
+    "alias": "Penelope",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 5.6,
+    "reported_attendance_rate": 88.0
+  },
+  {
+    "student_id": "S027",
+    "alias": "Noah",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.2,
+    "reported_attendance_rate": 77.6
+  },
+  {
+    "student_id": "S028",
+    "alias": "Carlos",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.9,
+    "reported_attendance_rate": 90.8
+  },
+  {
+    "student_id": "S029",
+    "alias": "Diane",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.2,
+    "reported_attendance_rate": 87.9
+  },
+  {
+    "student_id": "S030",
+    "alias": "Alyssa",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 6.1,
+    "reported_attendance_rate": 86.1
+  },
+  {
+    "student_id": "S031",
+    "alias": "Tyler",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 2.1,
+    "reported_attendance_rate": null
+  },
+  {
+    "student_id": "S032",
+    "alias": "Nova",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.3,
+    "reported_attendance_rate": 86.9
+  },
+  {
+    "student_id": "S033",
+    "alias": "Frank",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.1,
+    "reported_attendance_rate": 79.4
+  },
+  {
+    "student_id": "S034",
+    "alias": "Bethany",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.2,
+    "reported_attendance_rate": 91.0
+  },
+  {
+    "student_id": "S035",
+    "alias": "Derek",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.5,
+    "reported_attendance_rate": 75.1
+  },
+  {
+    "student_id": "S036",
+    "alias": "Hayden",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.8,
+    "reported_attendance_rate": 83.9
+  },
+  {
+    "student_id": "S037",
+    "alias": "Elizabeth",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 81.2
+  },
+  {
+    "student_id": "S038",
+    "alias": "Raymond",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.1,
+    "reported_attendance_rate": 99.2
+  },
+  {
+    "student_id": "S039",
+    "alias": "Daisy",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.9,
+    "reported_attendance_rate": 86.2
+  },
+  {
+    "student_id": "S040",
+    "alias": "Elliot",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 5.1,
+    "reported_attendance_rate": null
+  },
+  {
+    "student_id": "S041",
+    "alias": "Veronica",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 5.1,
+    "reported_attendance_rate": 66.2
+  },
+  {
+    "student_id": "S042",
+    "alias": "Bradley",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.3,
+    "reported_attendance_rate": 87.5
+  },
+  {
+    "student_id": "S043",
+    "alias": "Aurora",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 5.0,
+    "reported_attendance_rate": 84.1
+  },
+  {
+    "student_id": "S044",
+    "alias": "Wyatt",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 10.1,
+    "reported_attendance_rate": 82.6
+  },
+  {
+    "student_id": "S045",
+    "alias": "Maggie",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.1,
+    "reported_attendance_rate": 85.8
+  },
+  {
+    "student_id": "S046",
+    "alias": "Chelsea",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 4.7,
+    "reported_attendance_rate": 86.0
+  },
+  {
+    "student_id": "S047",
+    "alias": "Dale",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.2,
+    "reported_attendance_rate": 85.1
+  },
+  {
+    "student_id": "S048",
+    "alias": "Brian",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.0,
+    "reported_attendance_rate": 90.3
+  },
+  {
+    "student_id": "S049",
+    "alias": "Arthur",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.0,
+    "reported_attendance_rate": 78.4
+  },
+  {
+    "student_id": "S050",
+    "alias": "Erica",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.1,
+    "reported_attendance_rate": 95.3
+  },
+  {
+    "student_id": "S051",
+    "alias": "Scott",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.4,
+    "reported_attendance_rate": 91.4
+  },
+  {
+    "student_id": "S052",
+    "alias": "Joyce",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.5,
+    "reported_attendance_rate": 76.5
+  },
+  {
+    "student_id": "S053",
+    "alias": "Amelia",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 8.2,
+    "reported_attendance_rate": 86.0
+  },
+  {
+    "student_id": "S054",
+    "alias": "Wade",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 5.9,
+    "reported_attendance_rate": 86.2
+  },
+  {
+    "student_id": "S055",
+    "alias": "Silas",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.7,
+    "reported_attendance_rate": null
+  },
+  {
+    "student_id": "S056",
+    "alias": "Julie",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.3,
+    "reported_attendance_rate": 94.1
+  },
+  {
+    "student_id": "S057",
+    "alias": "Ezra",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.3,
+    "reported_attendance_rate": 79.5
+  },
+  {
+    "student_id": "S058",
+    "alias": "Valentina",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.7,
+    "reported_attendance_rate": 88.1
+  },
+  {
+    "student_id": "S059",
+    "alias": "Ruby",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.3,
+    "reported_attendance_rate": 93.3
+  },
+  {
+    "student_id": "S060",
+    "alias": "Jacqueline",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 3.6,
+    "reported_attendance_rate": 77.4
+  },
+  {
+    "student_id": "S061",
+    "alias": "Selena",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 9.7,
+    "reported_attendance_rate": 84.9
+  },
+  {
+    "student_id": "S062",
+    "alias": "Cole",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.1,
+    "reported_attendance_rate": 87.7
+  },
+  {
+    "student_id": "S063",
+    "alias": "Lawrence",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.0,
+    "reported_attendance_rate": 76.5
+  },
+  {
+    "student_id": "S064",
+    "alias": "Alexander",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.3,
+    "reported_attendance_rate": 88.5
+  },
+  {
+    "student_id": "S065",
+    "alias": "Thiago",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 3.2,
+    "reported_attendance_rate": 97.7
+  },
+  {
+    "student_id": "S066",
+    "alias": "Mark",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 6.3,
+    "reported_attendance_rate": 73.3
+  },
+  {
+    "student_id": "S067",
+    "alias": "Jaime",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.9,
+    "reported_attendance_rate": 85.7
+  },
+  {
+    "student_id": "S068",
+    "alias": "Aaliyah",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.5,
+    "reported_attendance_rate": 92.9
+  },
+  {
+    "student_id": "S069",
+    "alias": "Adam",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 73.9
+  },
+  {
+    "student_id": "S070",
+    "alias": "Peter",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.5,
+    "reported_attendance_rate": 87.6
+  },
+  {
+    "student_id": "S071",
+    "alias": "Maria",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.1,
+    "reported_attendance_rate": 87.4
+  },
+  {
+    "student_id": "S072",
+    "alias": "Levi",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 3.4,
+    "reported_attendance_rate": 81.2
+  },
+  {
+    "student_id": "S073",
+    "alias": "Avery",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.3,
+    "reported_attendance_rate": 95.0
+  },
+  {
+    "student_id": "S074",
+    "alias": "Santiago",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.8,
+    "reported_attendance_rate": 76.8
+  },
+  {
+    "student_id": "S075",
+    "alias": "Roman",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.6,
+    "reported_attendance_rate": 77.8
+  },
+  {
+    "student_id": "S076",
+    "alias": "Karen",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.7,
+    "reported_attendance_rate": 77.2
+  },
+  {
+    "student_id": "S077",
+    "alias": "Janice",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 5.8,
+    "reported_attendance_rate": 72.8
+  },
+  {
+    "student_id": "S078",
+    "alias": "Leo",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.0,
+    "reported_attendance_rate": 93.8
+  },
+  {
+    "student_id": "S079",
+    "alias": "Samuel",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.6,
+    "reported_attendance_rate": 75.4
+  },
+  {
+    "student_id": "S080",
+    "alias": "Christopher",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.2,
+    "reported_attendance_rate": 90.3
+  },
+  {
+    "student_id": "S081",
+    "alias": "Jake",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 12.2,
+    "reported_attendance_rate": 84.5
+  },
+  {
+    "student_id": "S082",
+    "alias": "Norah",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 93.0
+  },
+  {
+    "student_id": "S083",
+    "alias": "Cory",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 11.8,
+    "reported_attendance_rate": 82.2
+  },
+  {
+    "student_id": "S084",
+    "alias": "Naomi",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.2,
+    "reported_attendance_rate": 100.0
+  },
+  {
+    "student_id": "S085",
+    "alias": "Christian",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.0,
+    "reported_attendance_rate": 77.5
+  },
+  {
+    "student_id": "S086",
+    "alias": "Luca",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 4.4,
+    "reported_attendance_rate": 82.7
+  },
+  {
+    "student_id": "S087",
+    "alias": "Isaac",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.1,
+    "reported_attendance_rate": 68.4
+  },
+  {
+    "student_id": "S088",
+    "alias": "Vincent",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 7.7,
+    "reported_attendance_rate": 89.7
+  },
+  {
+    "student_id": "S089",
+    "alias": "Gabrielle",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.3,
+    "reported_attendance_rate": 94.4
+  },
+  {
+    "student_id": "S090",
+    "alias": "Hunter",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.0,
+    "reported_attendance_rate": 83.9
+  },
+  {
+    "student_id": "S091",
+    "alias": "Annabelle",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 5.3,
+    "reported_attendance_rate": 89.5
+  },
+  {
+    "student_id": "S092",
+    "alias": "Everett",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 7.4,
+    "reported_attendance_rate": 76.4
+  },
+  {
+    "student_id": "S093",
+    "alias": "Camille",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 4.8,
+    "reported_attendance_rate": 94.9
+  },
+  {
+    "student_id": "S094",
+    "alias": "Brennan",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 11.1,
+    "reported_attendance_rate": 87.0
+  },
+  {
+    "student_id": "S095",
+    "alias": "Jack",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.2,
+    "reported_attendance_rate": 91.3
+  },
+  {
+    "student_id": "S096",
+    "alias": "Darren",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.1,
+    "reported_attendance_rate": 89.2
+  },
+  {
+    "student_id": "S097",
+    "alias": "Aubrey",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.4,
+    "reported_attendance_rate": 83.2
+  },
+  {
+    "student_id": "S098",
+    "alias": "Evelyn",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.5,
+    "reported_attendance_rate": 75.1
+  },
+  {
+    "student_id": "S099",
+    "alias": "Brandon",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.2,
+    "reported_attendance_rate": 80.4
+  },
+  {
+    "student_id": "S100",
+    "alias": "Adrianna",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 74.1
+  },
+  {
+    "student_id": "S101",
+    "alias": "Nora",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.5,
+    "reported_attendance_rate": 88.6
+  },
+  {
+    "student_id": "S102",
+    "alias": "Ezekiel",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.3,
+    "reported_attendance_rate": 100.0
+  },
+  {
+    "student_id": "S103",
+    "alias": "Ricardo",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 11.7,
+    "reported_attendance_rate": 89.1
+  },
+  {
+    "student_id": "S104",
+    "alias": "Megan",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.6,
+    "reported_attendance_rate": 78.7
+  },
+  {
+    "student_id": "S105",
+    "alias": "Cora",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.2,
+    "reported_attendance_rate": 82.2
+  },
+  {
+    "student_id": "S106",
+    "alias": "Charles",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.2,
+    "reported_attendance_rate": 90.7
+  },
+  {
+    "student_id": "S107",
+    "alias": "Gavin",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.6,
+    "reported_attendance_rate": 92.1
+  },
+  {
+    "student_id": "S108",
+    "alias": "Sophia",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 69.7
+  },
+  {
+    "student_id": "S109",
+    "alias": "Douglas",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 10.4,
+    "reported_attendance_rate": 84.5
+  },
+  {
+    "student_id": "S110",
+    "alias": "James",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.5,
+    "reported_attendance_rate": 81.5
+  },
+  {
+    "student_id": "S111",
+    "alias": "John",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.6,
+    "reported_attendance_rate": 83.0
+  },
+  {
+    "student_id": "S112",
+    "alias": "Natalie",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 100.0
+  },
+  {
+    "student_id": "S113",
+    "alias": "Melissa",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.0,
+    "reported_attendance_rate": 78.2
+  },
+  {
+    "student_id": "S114",
+    "alias": "Ashley",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 3.7,
+    "reported_attendance_rate": 74.7
+  },
+  {
+    "student_id": "S115",
+    "alias": "Jade",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.9,
+    "reported_attendance_rate": 76.3
+  },
+  {
+    "student_id": "S116",
+    "alias": "Wayne",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.2,
+    "reported_attendance_rate": 88.7
+  },
+  {
+    "student_id": "S117",
+    "alias": "Sebastian",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 7.0,
+    "reported_attendance_rate": 88.2
+  },
+  {
+    "student_id": "S118",
+    "alias": "Jayden",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.5,
+    "reported_attendance_rate": 74.9
+  },
+  {
+    "student_id": "S119",
+    "alias": "Angelina",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.9,
+    "reported_attendance_rate": 82.8
+  },
+  {
+    "student_id": "S120",
+    "alias": "Isla",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 5.4,
+    "reported_attendance_rate": 84.1
+  },
+  {
+    "student_id": "S121",
+    "alias": "Leonard",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 4.5,
+    "reported_attendance_rate": 88.9
+  },
+  {
+    "student_id": "S122",
+    "alias": "Jada",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.4,
+    "reported_attendance_rate": 73.5
+  },
+  {
+    "student_id": "S123",
+    "alias": "Gage",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": null
+  },
+  {
+    "student_id": "S124",
+    "alias": "Jason",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.0,
+    "reported_attendance_rate": 86.2
+  },
+  {
+    "student_id": "S125",
+    "alias": "Judith",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.2,
+    "reported_attendance_rate": 80.9
+  },
+  {
+    "student_id": "S126",
+    "alias": "Danny",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.4,
+    "reported_attendance_rate": 85.3
+  },
+  {
+    "student_id": "S127",
+    "alias": "Blake",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.1,
+    "reported_attendance_rate": 100.0
+  },
+  {
+    "student_id": "S128",
+    "alias": "Jacob",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 9.2,
+    "reported_attendance_rate": 90.3
+  },
+  {
+    "student_id": "S129",
+    "alias": "Troy",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 10.5,
+    "reported_attendance_rate": 83.6
+  },
+  {
+    "student_id": "S130",
+    "alias": "Ava",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 94.6
+  },
+  {
+    "student_id": "S131",
+    "alias": "Madison",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 9.6,
+    "reported_attendance_rate": 84.2
+  },
+  {
+    "student_id": "S132",
+    "alias": "Max",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.5,
+    "reported_attendance_rate": 98.0
+  },
+  {
+    "student_id": "S133",
+    "alias": "Rachel",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.5,
+    "reported_attendance_rate": 89.9
+  },
+  {
+    "student_id": "S134",
+    "alias": "Jesus",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.1,
+    "reported_attendance_rate": 97.9
+  },
+  {
+    "student_id": "S135",
+    "alias": "Brooklyn",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 7.6,
+    "reported_attendance_rate": 83.3
+  },
+  {
+    "student_id": "S136",
+    "alias": "Micah",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.9,
+    "reported_attendance_rate": 80.0
+  },
+  {
+    "student_id": "S137",
+    "alias": "Hailey",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": 92.4
+  },
+  {
+    "student_id": "S138",
+    "alias": "Xavier",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.5,
+    "reported_attendance_rate": 80.9
+  },
+  {
+    "student_id": "S139",
+    "alias": "Bryan",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 7.7,
+    "reported_attendance_rate": 83.3
+  },
+  {
+    "student_id": "S140",
+    "alias": "Luna",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 11.1,
+    "reported_attendance_rate": 75.7
+  },
+  {
+    "student_id": "S141",
+    "alias": "Emily",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 7.9,
+    "reported_attendance_rate": 84.7
+  },
+  {
+    "student_id": "S142",
+    "alias": "Evan",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.3,
+    "reported_attendance_rate": 82.5
+  },
+  {
+    "student_id": "S143",
+    "alias": "Amanda",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 81.9
+  },
+  {
+    "student_id": "S144",
+    "alias": "Isabella",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.1,
+    "reported_attendance_rate": 80.0
+  },
+  {
+    "student_id": "S145",
+    "alias": "Matthew",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.7,
+    "reported_attendance_rate": 73.6
+  },
+  {
+    "student_id": "S146",
+    "alias": "Dorothy",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.7,
+    "reported_attendance_rate": 86.8
+  },
+  {
+    "student_id": "S147",
+    "alias": "Addison",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 6.1,
+    "reported_attendance_rate": 82.0
+  },
+  {
+    "student_id": "S148",
+    "alias": "Mia",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 4.4,
+    "reported_attendance_rate": 95.5
+  },
+  {
+    "student_id": "S149",
+    "alias": "Maverick",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 9.5,
+    "reported_attendance_rate": 80.1
+  },
+  {
+    "student_id": "S150",
+    "alias": "Harper",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": null,
+    "reported_attendance_rate": 69.3
+  },
+  {
+    "student_id": "S151",
+    "alias": "Alexa",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 2.8,
+    "reported_attendance_rate": 77.2
+  },
+  {
+    "student_id": "S152",
+    "alias": "Luke",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.7,
+    "reported_attendance_rate": 76.7
+  },
+  {
+    "student_id": "S153",
+    "alias": "Howard",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.1,
+    "reported_attendance_rate": 93.2
+  },
+  {
+    "student_id": "S154",
+    "alias": "Charlotte",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.7,
+    "reported_attendance_rate": 76.1
+  },
+  {
+    "student_id": "S155",
+    "alias": "Nolan",
+    "gender": "male",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.7,
+    "reported_attendance_rate": 85.4
+  },
+  {
+    "student_id": "S156",
+    "alias": "Lindsay",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 11.0,
+    "reported_attendance_rate": 86.6
+  },
+  {
+    "student_id": "S157",
+    "alias": "Adaline",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.4,
+    "reported_attendance_rate": 84.3
+  },
+  {
+    "student_id": "S158",
+    "alias": "Catherine",
+    "gender": "female",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 12.2,
+    "reported_attendance_rate": 76.1
+  },
+  {
+    "student_id": "S159",
+    "alias": "Spencer",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "regular",
+    "reported_study_hours": 7.6,
+    "reported_attendance_rate": 84.6
+  },
+  {
+    "student_id": "S160",
+    "alias": "Oliver",
+    "gender": "male",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 8.8,
+    "reported_attendance_rate": 83.5
+  }
+]

@@ -1,0 +1,465 @@
+---
+title: "第二章（三）：函数与异常处理"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.3.0
+author: "王润祖"
+date: "2026-07"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第二章（三） - 王润祖"
+---
+
+## 本节概览
+
+* 理解函数的作用，学会封装重复任务
+* 认识参数与返回值的基本写法
+* 理解函数能帮助我们按功能组织程序
+* 了解异常处理的基本思路
+
+# 把重复步骤写成函数
+
+* 到了第二章后，代码会越来越长。
+* 如果一段任务会重复出现，就应该考虑把它封装成函数。
+* 函数的核心价值是：复用、清晰、便于修改。
+
+## 多次计算平均年龄
+
+* 如果需要多次计算平均年龄，反复复制代码很容易出错。
+* 更好的办法是把“计算平均年龄”写成一个函数。
+* 你可以把函数理解成“把一段常用任务单独封装起来，随时调用”。
+
+# 自定义函数
+
+## 最基本的函数写法
+
+* 函数可以理解为“打包好的一段任务”。
+* 调用时给它输入，它就按规则完成计算并返回结果。
+
+```python
+def 函数名(参数):
+    函数体
+    return 返回值
+```
+
+## 例子：计算两个数的平均值
+
+* 这里先从最小例子开始，观察函数的结构。
+* 先有参数，再有计算过程，最后返回结果。
+
+```{pyodide}
+#| echo: true
+def mean_of_two_numbers(a, b):
+    result = (a + b) / 2
+    return result
+
+print(mean_of_two_numbers(80, 90))
+```
+
+## 参数与返回值
+
+* 参数：把外部数据传给函数。
+* 返回值：把函数计算结果交回去。
+
+```{pyodide}
+#| echo: true
+def calculate_bmi(weight, height):
+    bmi = weight / (height ** 2)
+    return bmi
+
+student_bmi = calculate_bmi(68.5, 1.75)
+print(f"BMI 为：{student_bmi:.2f}")
+```
+
+## 没有 `return` 会怎样
+
+* 有些函数只负责输出，有些函数要把结果交回来。
+* 如果没有 `return`，默认返回的是 `None`。
+* 这也是很多初学者第一次分清 `print()` 和 `return` 的地方。
+
+```{pyodide}
+#| echo: true
+def say_hello(name):
+    print(f"你好，{name}")
+
+result = say_hello("统计学同学")
+print("函数返回值是：", result)
+```
+
+## 函数能带来什么
+
+* 代码更短
+* 逻辑更清楚
+* 后续调试更方便
+
+## 小结任务：课堂任务 1
+
+补全下面的函数，使它返回两位受访者年龄的总和与平均值。
+
+```{pyodide}
+#| echo: true
+def total_and_mean(age1, age2):
+    total = age1 + age2
+    # 在这里补全平均值和返回语句
+    pass
+
+print(total_and_mean(18, 21))
+```
+
+# 用函数处理一组数据
+
+## 例子：计算受访者年龄列表平均值
+
+* 前面我们处理的是单个数。
+* 现在开始让函数处理“一组数据”。
+
+```{pyodide}
+#| echo: true
+def calculate_mean(ages):
+    total_age = sum(ages)
+    mean_age = total_age / len(ages)
+    return mean_age
+
+ages = [18, 21, 19, 22, 20]
+print(f"平均年龄为：{calculate_mean(ages):.2f}")
+```
+
+## 函数名要有意义
+
+* `f1()` 不利于阅读
+* `calculate_mean()` 一看就知道功能
+
+## 函数不是魔法盒子
+
+::: {.callout-warning}
+### 不要把函数当成“魔法盒子”
+写函数时仍然要清楚输入是什么、输出是什么、内部做了什么。
+:::
+
+## 把任务拆成几个函数
+
+* 当一个程序里有多个任务时，可以拆成多个函数分别完成。
+* 这样每个函数都更短，也更容易检查。
+* 对数据分析来说，这一步很重要，因为“读取、计算、判断”本来就是不同任务。
+
+```{pyodide}
+#| echo: true
+def calculate_mean(ages):
+    return sum(ages) / len(ages)
+
+def count_adults(ages):
+    adult_count = 0
+    for age in ages:
+        if age >= 18:
+            adult_count = adult_count + 1
+    return adult_count
+
+ages = [16, 18, 21, 17, 24]
+print(f"平均年龄：{calculate_mean(ages):.2f}")
+print(f"成年人数量：{count_adults(ages)}")
+```
+
+## 参数传递的直观理解
+
+* 参数的作用，就是把外部数据交给函数处理。
+* 调用时传什么值，函数就拿到什么值。
+
+```{pyodide}
+#| echo: true
+def add_years(age, years):
+    return age + years
+
+next_year_age = add_years(20, 1)
+print("明年的年龄:", next_year_age)
+```
+
+## 小结任务：课堂任务 2
+
+补全下面的函数：统计一组受访者中成年人的人数。写完后再运行，观察它和前面的完整写法有什么对应关系。
+
+```{pyodide}
+#| echo: true
+def count_adults(ages):
+    adult_count = 0
+    for age in ages:
+        # 在这里补全逻辑
+        pass
+    return adult_count
+
+ages = [16, 18, 21, 17, 24]
+print(count_adults(ages))
+```
+
+# 常用内置函数
+
+## 常见内置函数示例
+
+* 内置函数是 Python 已经准备好的基础工具。
+* 学会使用它们，可以减少很多重复代码。
+
+| 函数 | 作用 | 简单例子 |
+| :-- | :-- | :-- |
+| `len()` | 计算长度 | `len([1, 2, 3])` |
+| `sum()` | 求和 | `sum([1, 2, 3])` |
+| `max()` | 最大值 | `max([1, 2, 3])` |
+| `min()` | 最小值 | `min([1, 2, 3])` |
+| `sorted()` | 排序 | `sorted([3, 1, 2])` |
+
+## 演示
+
+* 这些函数本身并不复杂。
+* 关键是知道什么时候该直接调用它们，而不是自己重写一遍。
+
+```{pyodide}
+#| echo: true
+ages = [18, 21, 19, 22, 20]
+print("样本量:", len(ages))
+print("年龄总和:", sum(ages))
+print("最大年龄:", max(ages))
+print("最小年龄:", min(ages))
+print("排序后:", sorted(ages))
+```
+
+## 小结任务：课堂任务 3
+
+给定一组受访者年龄数据，补全下面的代码：输出样本量、年龄总和和排序后的结果。
+
+```{pyodide}
+#| echo: true
+ages = [19, 22, 18, 21, 20]
+print("样本量:", # 在这里补全)
+print("年龄总和:", # 在这里补全)
+print("排序后:", # 在这里补全)
+```
+
+# 异常处理：程序为什么会报错
+
+## 报错并不可怕
+
+* 入门阶段最重要的不是“永不报错”。
+* 而是学会识别错误、定位错误、处理错误。
+
+## 转换时报错
+
+* 报错并不意味着程序“坏掉了”。
+* 它只是说明：当前输入不符合这段代码的要求。
+* 在真实数据里，这种情况非常常见——比如年龄一栏里填的不是 `25`，而是 `二十五` 或 `25岁`。
+
+```{pyodide}
+#| echo: true
+value = "3.14"
+print(int(value))
+```
+
+## `try-except` 基本结构
+
+```python
+try:
+    可能出错的代码
+except ValueError:
+    数值转换失败后的处理方式
+```
+
+## 用 `try-except` 处理转换错误
+
+* `try` 里放可能出错的代码。
+* `except` 里放出错后的处理方式。
+
+```{pyodide}
+#| echo: true
+value = "3.14"
+
+try:
+    number = int(value)
+    print(number)
+except ValueError:
+    print("转换失败：这个字符串不能直接转成整数。")
+```
+
+## 更合理的写法
+
+* 有时候不是数据完全错了，而是转换方式选错了。
+* 这时就要重新判断，问题到底出在输入还是写法。
+* 记住：报错不是终点，而是帮我们定位问题的线索。
+
+```{pyodide}
+#| echo: true
+value = "3.14"
+
+try:
+    number = float(value)
+    print("转换成功：", number)
+except ValueError:
+    print("输入数据格式不正确。")
+```
+
+## 异常处理不是忽略问题
+
+::: {.callout-warning}
+### 不要滥用 `except`
+异常处理的目标是帮助定位问题，而不是把问题直接“糊过去”。能够判断错误类型时，应捕获具体异常；例如数值转换失败通常捕获 `ValueError`。
+:::
+
+## 小结任务：课堂任务 4
+
+补全下面的代码：尝试把问卷中的年龄字符串 `"unknown"` 转成整数；如果失败，就输出一条提示信息。
+
+```{pyodide}
+#| echo: true
+age_text = "unknown"
+
+try:
+    # 在这里补全转换
+    pass
+except ValueError:
+    # 在这里补全提示信息
+    pass
+```
+
+# 综合案例：把几个函数接起来
+
+* 一个完整程序往往不是只靠一个函数完成。
+* 更常见的写法是：不同函数分别负责不同任务。
+
+```{pyodide}
+#| echo: true
+def calculate_mean_age(ages):
+    return sum(ages) / len(ages)
+
+def has_minor(ages):
+    for age in ages:
+        if age < 18:
+            return True
+    return False
+
+def main():
+    ages = [16, 18, 21, 17, 24]
+    mean_age = calculate_mean_age(ages)
+    minor_flag = has_minor(ages)
+
+    print(f"平均年龄为：{mean_age:.2f}")
+    print(f"是否有未成年人：{minor_flag}")
+
+main()
+```
+
+## 程序结构
+
+* 一个函数负责一种任务
+* `main()` 负责把流程串起来
+* 这样写更清楚，也更容易检查和修改
+* 这种“分工明确”的写法，会在下节课的文本清洗任务里继续用到。
+
+## 小结任务：课堂任务 5
+
+下面是一段“计算平均年龄并判断是否存在未成年人”的小程序。请补全其中缺失的平均年龄函数。
+
+```{pyodide}
+#| echo: true
+def calculate_mean_age(ages):
+    # 在这里补全平均年龄函数
+    pass
+
+def has_minor(ages):
+    for age in ages:
+        if age < 18:
+            return True
+    return False
+
+def main():
+    ages = [16, 18, 21, 17, 24]
+    print("平均年龄:", calculate_mean_age(ages))
+    print("是否有未成年人:", has_minor(ages))
+
+main()
+```
+
+# 课堂练习
+
+## 练习 1
+
+编写函数 `total_and_mean_of_three(age1, age2, age3)`，返回三位受访者年龄的总和与平均值。
+
+```{pyodide}
+#| echo: true
+def total_and_mean_of_three(age1, age2, age3):
+    # 在这里补全函数
+    pass
+
+print(total_and_mean_of_three(18, 21, 19))
+```
+
+## 练习 2
+
+先编写函数 `is_adult(age)`，判断一个人是否成年；再用它统计列表中的成年人数量。
+
+```{pyodide}
+#| echo: true
+def is_adult(age):
+    # 在这里补全函数
+    pass
+
+ages = [16, 18, 21, 17, 24]
+adult_count = 0
+
+for age in ages:
+    if is_adult(age):
+        adult_count = adult_count + 1
+
+print("成年人数量:", adult_count)
+```
+
+## 练习 3
+
+尝试用 `try-except` 处理问卷年龄字符串 `"unknown"` 转为整数时的错误。
+
+```{pyodide}
+#| echo: true
+age_text = "unknown"
+
+try:
+    # 在这里补全年龄转换
+    pass
+except ValueError:
+    # 在这里补全提示信息
+    pass
+```
+
+## 练习 4
+
+将一段“先求平均年龄，再判断是否存在未成年人”的重复代码改写成函数。
+
+```{pyodide}
+#| echo: true
+ages = [16, 18, 21, 17, 24]
+# 提示：可以分别写“求平均年龄”和“是否有小于 18 的值”两个函数
+```
+
+# 程序要写得清楚
+
+* 函数封装不是形式主义，而是为了让分析过程更清晰、可检查、可复用
+* 程序结构越清楚，后续修改越容易
+* 异常处理不是掩盖问题，而是帮助发现问题
+
+# 本节小结
+
+* 函数用于封装重复任务
+* 参数负责输入，返回值负责输出
+* 内置函数可以提高基础数据处理效率
+* `try-except` 能让程序对常见错误有基本应对能力
+
+## 下一节
+
+下一节将介绍文件读取与字符串处理，让程序真正接触文本数据与外部文件。

@@ -1,0 +1,323 @@
+---
+title: "第二章（一）：基础数据结构"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.3.0
+author: "王润祖"
+date: "2026-07"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第二章（一） - 王润祖"
+---
+
+## 本节概览
+
+* 理解列表与字典在统计数据中的基本作用
+* 掌握列表的索引、切片和常见操作
+* 能够使用字典表示一条结构化记录
+* 能够使用列表与字典的嵌套结构组织多条记录
+
+# 从一个值到一组值
+
+* 第一章解决“能运行代码”。
+* 第二章开始解决“如何让代码处理一批数据”。
+* 对统计学习而言，程序控制和数据结构是后续 NumPy、Pandas 的基础。
+
+## 5 个成绩和 500 个成绩
+
+* 如果有 5 个学生成绩，我们可以一个个计算。
+* 如果有 500 个学生成绩，就需要更合适的数据结构和更高效的处理方式。
+
+# 列表：存放一组数据
+
+## 列表的基本概念
+
+* 列表（`list`）适合表示一组有顺序的数据。
+* 在统计场景中，它常常可以表示一个样本序列、一组观测值或若干类别标签。
+* 你也可以把它理解成“某个指标的一列观测值”，例如一组成绩、一组年龄或一组身高。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+print(scores)
+print(type(scores))
+```
+
+## 索引与取值
+
+* Python 使用从 `0` 开始的索引。
+* 第一个元素是 `scores[0]`，最后一个元素也可以写成 `scores[-1]`。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+print("第一个成绩:", scores[0])
+print("最后一个成绩:", scores[-1])
+```
+
+## 列表切片
+
+* 切片可以帮助我们一次取出一部分数据。
+* 在数据处理中，这种操作非常常见。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+print("前3个成绩:", scores[:3])
+print("后2个成绩:", scores[3:])
+```
+
+## 常见操作
+
+* 列表不仅能存数据，还能直接配合一些基础函数做简单统计。
+* 例如 `len()`、`max()`、`min()`、`sum()`。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91]
+scores.append(88)
+scores.append(79)
+print(scores)
+print("样本量:", len(scores))
+print("最高分:", max(scores))
+print("最低分:", min(scores))
+print("总分:", sum(scores))
+```
+
+## 索引越界
+
+::: {.callout-warning}
+### 新手提醒
+列表索引从 `0` 开始，不是从 `1` 开始。
+如果列表长度是 5，那么最后一个合法位置是 `4`，不是 `5`。
+:::
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+print(scores[5])
+```
+
+## 统计语境中的列表
+
+* 一个列表可以看成一列原始观测值。
+* 但列表本身不会自动进行统计分析，我们仍然需要写逻辑来处理它。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+mean_score = sum(scores) / len(scores)
+print(f"平均分为：{mean_score:.2f}")
+```
+
+## 小结任务：课堂任务 1
+
+给定 5 位受访者的年龄列表，补全下面的代码：输出第一个年龄、后 3 个年龄和样本量。
+
+```{pyodide}
+#| echo: true
+ages = [18, 21, 19, 22, 20]
+# print(...)
+# print(...)
+# print(...)
+```
+
+# 字典：用名字对应信息
+
+## 字典的基本概念
+
+* 字典（`dict`）适合表示“键-值对应关系”。
+* 在统计与调查数据中，它适合保存结构化信息。
+* 如果说列表更像“一列数据”，那么字典更像“一条观测记录的完整画像”。
+
+```{pyodide}
+#| echo: true
+student = {
+    "name": "张三",
+    "gender": "女",
+    "score": 89,
+    "major": "统计学"
+}
+
+print(student)
+print(type(student))
+```
+
+## 按键取值
+
+* 字典中的每个键都对应一类信息。
+* 通过键名取值，代码会比按位置取值更清楚。
+
+```{pyodide}
+#| echo: true
+student = {
+    "name": "张三",
+    "gender": "女",
+    "score": 89,
+    "major": "统计学"
+}
+
+print("姓名:", student["name"])
+print("成绩:", student["score"])
+```
+
+## 修改字典内容
+
+* 字典里的值不是固定不变的。
+* 在数据处理过程中，我们经常需要补充或更新字段。
+
+```{pyodide}
+#| echo: true
+student = {"name": "张三", "score": 89}
+student["score"] = 92
+student["major"] = "统计学"
+
+print(student)
+```
+
+## 列表和字典
+
+* 列表更像“一组值”。
+* 字典更像“一条记录”。
+* 后面学习 `DataFrame` 时，可以把它理解成“许多记录排在一起”。
+
+## 一条记录
+
+```{pyodide}
+#| echo: true
+survey = {
+    "age": 19,
+    "city": "上海",
+    "height": 168.5
+}
+
+print(f"年龄：{survey['age']}")
+print(f"城市：{survey['city']}")
+```
+
+## 嵌套结构：更接近真实数据
+
+* 真实数据往往不是“只有一层”的。
+* 例如：多个学生记录，可以表示为“列表里放多个字典”。
+
+```{pyodide}
+#| echo: true
+students = [
+    {"name": "张三", "score": 85},
+    {"name": "李四", "score": 92},
+    {"name": "王五", "score": 78}
+]
+
+print(students[0]["name"])
+print(students[1]["score"])
+```
+
+## 小结任务：课堂任务 2
+
+下面是一组受访者记录。请补全代码：输出第二位受访者的姓名和城市。
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "city": "上海", "age": 18},
+    {"name": "李四", "city": "杭州", "age": 21},
+    {"name": "王五", "city": "南京", "age": 19}
+]
+
+# print(...)
+# print(...)
+```
+
+# 综合案例：组织多条调查记录
+
+## 任务描述
+
+* 使用字典表示一位受访者
+* 使用列表组织多位受访者
+* 读取、修改和补充记录中的字段
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "city": "上海", "age": 18},
+    {"name": "李四", "city": "杭州", "age": 21},
+    {"name": "王五", "city": "南京", "age": 19}
+]
+
+respondents[0]["major"] = "应用统计学"
+print("样本量:", len(respondents))
+print("第二位受访者:", respondents[1])
+print("第一位受访者的专业:", respondents[0]["major"])
+```
+
+## 从嵌套结构到表格数据
+
+* 列表中的每个字典可以看成一行记录。
+* 相同的键可以看成不同记录共有的变量。
+* 后续学习 Pandas 时，`DataFrame` 会以更适合表格计算的方式组织这类数据。
+
+# 课堂练习
+
+## 练习 1
+
+给定年龄列表，输出第一个年龄、最后一个年龄、前3个年龄和样本量。
+
+```{pyodide}
+#| echo: true
+ages = [18, 21, 19, 22, 20]
+# 在这里补全
+```
+
+## 练习 2
+
+给定一个受访者字典，输出姓名和城市，并将年龄修改为22。
+
+```{pyodide}
+#| echo: true
+respondent = {"name": "李四", "city": "杭州", "age": 21}
+# 在这里补全
+```
+
+## 练习 3
+
+给定一组受访者记录，输出第三位受访者的姓名，并为第二位受访者增加`group`字段。
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "age": 16},
+    {"name": "李四", "age": 21},
+    {"name": "王五", "age": 19}
+]
+# 在这里补全
+```
+
+# 数据结构要服务于数据含义
+
+::: {.callout-note}
+### 记录含义，保持一致
+同一组记录应尽量使用含义一致的键；字段名称应清楚、稳定，避免同一变量出现多种命名。
+:::
+
+# 本节小结
+
+* 列表适合存放一组有顺序的数据。
+* 字典适合描述一条结构化记录。
+* “列表中放字典”可以组织多条记录。
+* 选择数据结构时，要同时考虑数据含义和后续处理方式。
+
+## 下一节
+
+下一节将介绍选择与循环结构，让程序能够按照规则逐条处理数据。

@@ -1,0 +1,391 @@
+---
+title: "第四章（一）：从记录到 DataFrame"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-05"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第四章（一） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+os.makedirs("data", exist_ok=True)
+
+survey_csv = """name,gender,age,city,major,study_hours,python_score,attendance_rate
+Alice, Female ,25,Beijing,Statistics,12,88,95%
+Bob,male,30,Shanghai,Applied Statistics,8,76,88%
+Charlie, MALE ,17,Guangzhou,Statistics,6,64,72%
+Diana, female,22,Beijing,Applied Statistics,15,92,98%
+Eve,FEMALE,16,Chengdu,Statistics,5,58,65%
+Frank,male,59,Shanghai,Applied Statistics,4,70,80%
+Grace, female ,60,Beijing,Statistics,10,84,90%
+Henry,male,unknown,Wuhan,Applied Statistics,9,,82%
+Irene,Female,45,Guangzhou,Statistics,11,86,91%
+Jack,Male,68,Chengdu,Applied Statistics,3,66,70%
+Karen,female,17,Shanghai,Statistics,7,73,78%
+Leo, male ,5,Beijing,Applied Statistics,2,55,60%
+Maria,FEMALE,33,Wuhan,Statistics,14,90,96%
+Nate,male,40,Guangzhou,Applied Statistics,10,81,89%
+Olivia, female,70,Beijing,Statistics,6,75,83%
+Paul,MALE,42,Shanghai,Applied Statistics,9,79,85%
+Quinn, female ,29,Chengdu,Statistics,13,87,92%
+Rachel,female,8,Wuhan,Applied Statistics,4,61,68%
+Steve,male,55,Guangzhou,Statistics,8,77,84%
+Tina,FEMALE,,Beijing,Applied Statistics,12,91,97%
+Uma,female,23,Shanghai,Statistics,11,85,90%
+"""
+
+with open("./data/survey_extended.csv", "w", encoding="utf-8") as f:
+    f.write(survey_csv)
+```
+
+## 本节概览
+
+* 理解为什么统计数据更适合组织成表格
+* 认识 `Series` 与 `DataFrame` 的基本形态
+* 学会用已有记录创建 DataFrame
+* 学会使用 `read_csv()` 读取表格数据
+
+# 为什么需要 Pandas
+
+## 从“多条记录”到“表格数据”
+
+* 第二章中，我们用列表和字典保存一批受访者记录。
+* 第三章中，我们把数值列放进 NumPy 数组里做批量计算。
+* 但真实统计数据通常不是单独的一列，而是一张表：每一行是一条记录，每一列是一个变量。
+
+::: {.callout-note}
+### 从 NumPy 到 Pandas
+第三章的 NumPy 更适合处理同类型数值数组，例如一组年龄、一组成绩或一组随机数。第四章的 Pandas 更适合处理真实统计数据表：一行一个个体，一列一个变量，变量可以同时包含数值、类别、文本和缺失值。
+:::
+
+## 表格更接近统计数据的样子
+
+* 问卷数据、成绩数据、实验数据、社会调查数据，通常都有“行”和“列”。
+* 行表示观测对象或一条观测记录。
+* 列表示变量，例如性别、年龄、城市、成绩、学习时长。
+* Pandas 正是 Python 中最常用的表格数据处理工具。
+
+::: {.callout-note}
+### 本章学习主线
+Pandas 是后续数据分析、可视化和统计建模的核心工具。接下来将围绕“读取—检查—清洗—汇总—合并”逐步完成常见的数据整理任务。
+:::
+
+# `Series` 与 `DataFrame`
+
+## `Series`：带标签的一列数据
+
+* `Series` 可以理解成“一列带名字的数据”。
+* 它比普通列表多了索引信息。
+
+```{pyodide}
+#| echo: true
+import pandas as pd
+
+ages = pd.Series([25, 30, 17, 22], name="age")
+print(ages)
+```
+
+## `DataFrame`：多列放在一起
+
+* `DataFrame` 可以理解成一张表。
+* 每一列可以是一个变量，每一行可以是一条观测记录。
+
+```{pyodide}
+#| echo: true
+records = [
+    {"name": "Alice", "gender": "female", "age": 25},
+    {"name": "Bob", "gender": "male", "age": 30},
+    {"name": "Charlie", "gender": "male", "age": 17},
+]
+
+df = pd.DataFrame(records)
+print(df)
+```
+
+## 和前面内容的关系
+
+* 列表适合存放一组值。
+* 字典适合描述一条记录。
+* NumPy 数组适合批量数值计算。
+* DataFrame 更适合处理多变量、多记录的结构化数据。
+
+| 已有工具 | 更适合的场景 | 本章如何衔接 |
+|---|---|---|
+| 列表 | 一组简单数据 | 可以变成一列 `Series` |
+| 字典 | 一条带字段名的记录 | 多条字典记录可以变成 `DataFrame` |
+| NumPy 数组 | 同类型数值的批量运算 | Pandas 的数值列可以继续做向量化计算 |
+| DataFrame | 多变量表格数据 | 本章的主要数据对象 |
+
+## 小结任务 1
+
+给定下面 3 条受访者记录，创建一个 DataFrame，并输出它。
+
+```{pyodide}
+#| echo: true
+records = [
+    {"name": "Diana", "gender": "female", "age": 22},
+    {"name": "Eve", "gender": "female", "age": 16},
+    {"name": "Frank", "gender": "male", "age": 59},
+]
+
+# df = # 在这里补全
+# print(df)
+```
+
+# 读取 CSV 文件
+
+## 为什么要从文件读取
+
+* 真实数据通常不会直接写在代码里。
+* 更常见的情况是：数据保存在 CSV、Excel 或数据库中。
+* 本节先从最常见的 CSV 文件开始。
+
+## `pd.read_csv()`
+
+* `pd.read_csv(path)` 可以读取 CSV 文件，并返回一个 DataFrame。
+* 读进来以后，就可以继续使用 Pandas 的方法观察和处理。
+* `head()` 可以先查看前几行，确认数据是否读入成功。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+print(df.head())
+```
+
+::: {.callout-note}
+### 注意输出中的 `...`
+在 HTML 幻灯片或 notebook 的输出区域中，如果 DataFrame 列数较多、显示空间不够，Pandas 可能会用 `...` 折叠中间几列。这只是显示被压缩，不表示这些列没有读入。要确认完整字段，可以查看 `df.columns`，或只选择几列单独输出。
+:::
+
+## CSV 文件中的变量
+
+* 这份扩展受访者数据延续第二、三章的姓名、性别、年龄。
+* 为了支持后续 Pandas 操作，又增加了城市、专业、学习时长、Python 成绩和出勤率。
+* 其中保留了少量不统一和缺失情况，用于后续清洗练习。
+
+::: {.callout-note}
+### Excel 文件怎么办
+在真实本地环境中，Pandas 也可以读取和导出 Excel 文件。例如 `pd.read_excel("data.xlsx")` 可以读取 Excel，`df.to_excel("result.xlsx", index=False)` 可以导出 Excel。读取 Excel 通常需要安装 `openpyxl` 等支持库。浏览器中的示例以更轻量、运行更稳定的 CSV 为主。
+:::
+
+## 小结任务 2
+
+读取 `./data/survey_extended.csv`，用 `head(8)` 输出前 8 行。
+
+```{pyodide}
+#| echo: true
+# df = # 在这里补全
+# print(...)
+```
+
+# 观察 DataFrame
+
+## 前几行与整体形状
+
+* 上一节已经用过 `head()`，它用于查看前几行。
+* `shape` 用于查看行数和列数。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+print(df.head())
+print(df.shape)
+```
+
+## 字段名
+
+* `columns` 可以查看所有列名。
+* 读到陌生数据时，先看列名非常重要。
+
+```{pyodide}
+#| echo: true
+print(df.columns)
+```
+
+## 数据类型与缺失概况
+
+* `info()` 可以快速查看每列的数据类型和非缺失数量。
+* 它常用于刚拿到数据时做第一轮检查。
+
+```{pyodide}
+#| echo: true
+df.info()
+```
+
+## 数值列的描述统计
+
+* `describe()` 会对数值列给出常见统计摘要。
+* 包括样本量、均值、标准差、最小值、四分位数和最大值。
+
+```{pyodide}
+#| echo: true
+print(df.describe())
+```
+
+## 小结任务 3
+
+读取扩展受访者表，输出列名、行列数和数值列描述统计。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# print(...)
+# print(...)
+# print(...)
+```
+
+# 选择列
+
+## 选择单列
+
+* `df["列名"]` 可以取出一列。
+* 取出的一列通常是 `Series`。
+
+```{pyodide}
+#| echo: true
+ages = df["age"]
+print(ages.head())
+print(type(ages))
+```
+
+## 选择多列
+
+* 如果要同时选择多列，需要把列名放在一个列表中。
+* 注意这里会出现两层方括号：外层表示选择，内层是列名列表。
+
+```{pyodide}
+#| echo: true
+basic_info = df[["name", "gender", "age"]]
+print(basic_info.head())
+```
+
+## 行索引的直观理解
+
+* DataFrame 左侧的数字是行索引。
+* 默认情况下，Pandas 会从 `0` 开始给每一行编号。
+* 行索引不是变量列，但它可以帮助定位记录。
+
+```{pyodide}
+#| echo: true
+print(df.index)
+```
+
+## 小结任务 4
+
+从扩展受访者表中选择 `name`、`major`、`python_score` 三列，并输出前 5 行。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# selected = # 在这里补全
+# print(...)
+```
+
+# 综合案例：快速认识一张表
+
+## 任务描述
+
+读入扩展受访者表，并完成最基础的数据观察：
+
+* 查看前几行
+* 查看行列数
+* 查看列名
+* 查看数据类型和缺失情况
+* 选择几个核心变量
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+print("前 5 行：")
+print(df.head())
+
+print("行列数：")
+print(df.shape)
+
+print("列名：")
+print(df.columns)
+
+print("数据结构：")
+df.info()
+
+core_columns = df[["name", "gender", "age", "python_score"]]
+print("核心变量：")
+print(core_columns.head())
+```
+
+## 本例回顾
+
+* `read_csv()` 负责把 CSV 文件读成 DataFrame。
+* `head()`、`shape`、`columns`、`info()`、`describe()` 是认识新数据的第一组工具。
+* 选择列是后续清洗、筛选、分组的基础。
+
+# 课堂练习
+
+## 练习 1：读取并查看数据
+
+读取 `survey_extended.csv`，输出前 10 行、行列数和所有列名。
+
+```{pyodide}
+#| echo: true
+# df = # 在这里补全
+
+# print(...)
+# print(...)
+# print(...)
+```
+
+## 练习 2：选择变量
+
+从数据中选择 `name`、`city`、`study_hours`、`python_score` 四列，并输出前 6 行。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# selected = # 在这里补全
+# print(...)
+```
+
+## 练习 3：初步判断变量类型
+
+查看数据结构，并思考：哪些变量现在还不能直接作为数值变量使用？
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里查看数据结构
+```
+
+# 本节小结
+
+* DataFrame 是 Pandas 中最核心的表格数据结构。
+* `read_csv()` 可以把 CSV 文件读成 DataFrame。
+* 拿到一张新表时，先观察行列数、字段名、数据类型和缺失情况。
+* 本节完成“把表读进来并看清楚”的最小流程。
+
+## 下一节
+
+下一节将介绍 Pandas 中的条件筛选、缺失值处理、类型转换、字符串列清理，以及统计分析中常见的新变量生成方法。

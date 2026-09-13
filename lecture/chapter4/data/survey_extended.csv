@@ -1,0 +1,22 @@
+name,gender,age,city,major,study_hours,python_score,attendance_rate
+Alice, Female ,25,Beijing,Statistics,12,88,95%
+Bob,male,30,Shanghai,Applied Statistics,8,76,88%
+Charlie, MALE ,17,Guangzhou,Statistics,6,64,72%
+Diana, female,22,Beijing,Applied Statistics,15,92,98%
+Eve,FEMALE,16,Chengdu,Statistics,5,58,65%
+Frank,male,59,Shanghai,Applied Statistics,4,70,80%
+Grace, female ,60,Beijing,Statistics,10,84,90%
+Henry,male,unknown,Wuhan,Applied Statistics,9,,82%
+Irene,Female,45,Guangzhou,Statistics,11,86,91%
+Jack,Male,68,Chengdu,Applied Statistics,3,66,70%
+Karen,female,17,Shanghai,Statistics,7,73,78%
+Leo, male ,5,Beijing,Applied Statistics,2,55,60%
+Maria,FEMALE,33,Wuhan,Statistics,14,90,96%
+Nate,male,40,Guangzhou,Applied Statistics,10,81,89%
+Olivia, female,70,Beijing,Statistics,6,75,83%
+Paul,MALE,42,Shanghai,Applied Statistics,9,79,85%
+Quinn, female ,29,Chengdu,Statistics,13,87,92%
+Rachel,female,8,Wuhan,Applied Statistics,4,61,68%
+Steve,male,55,Guangzhou,Statistics,8,77,84%
+Tina,FEMALE,,Beijing,Applied Statistics,12,91,97%
+Uma,female,23,Shanghai,Statistics,11,85,90%

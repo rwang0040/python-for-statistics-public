@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="面向应用统计学大一学生的 Python 程序设计课程，包含 32 学时理论与 32 学时实验。">
+  <title>面向统计学的 Python 程序设计</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #566574;
+      --paper: #f6f8fb;
+      --surface: #ffffff;
+      --line: #dce3ea;
+      --blue: #155f8f;
+      --blue-dark: #0c4165;
+      --blue-soft: #e8f3fa;
+      --gold: #b7791f;
+      --gold-soft: #fff7e6;
+      --shadow: 0 12px 32px rgb(35 55 75 / 8%);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 4%, rgb(76 154 201 / 13%), transparent 28rem),
+        linear-gradient(180deg, #f9fbfd 0, var(--paper) 32rem);
+      font-family: "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -4rem;
+      left: 1rem;
+      z-index: 10;
+      padding: .65rem 1rem;
+      color: white;
+      background: var(--blue-dark);
+      border-radius: .5rem;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .page {
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 4.5rem 0 3.2rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 .8rem;
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 16ch;
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: clamp(2.35rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .lead {
+      max-width: 46rem;
+      margin: 1.35rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.22rem);
+    }
+
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin: 1.7rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .facts li {
+      padding: .52rem .8rem;
+      border: 1px solid #c9ddea;
+      border-radius: 999px;
+      color: var(--blue-dark);
+      background: rgb(255 255 255 / 72%);
+      font-size: .9rem;
+      font-weight: 650;
+    }
+
+    .quick-start {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .quick-card {
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .quick-card strong {
+      display: block;
+      margin-bottom: .25rem;
+      color: var(--blue-dark);
+      font-size: 1.05rem;
+    }
+
+    .quick-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .quick-card a {
+      display: inline-block;
+      margin-top: .8rem;
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration-thickness: .08em;
+      text-underline-offset: .2em;
+    }
+
+    section { margin: 0 0 4.5rem; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+      padding-bottom: .8rem;
+      border-bottom: 2px solid var(--blue-dark);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .unit-list {
+      display: grid;
+      gap: .85rem;
+    }
+
+    .unit {
+      display: grid;
+      grid-template-columns: 4.7rem minmax(13rem, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 5px 18px rgb(35 55 75 / 5%);
+    }
+
+    .unit-code {
+      color: var(--blue);
+      font-size: .84rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+
+    .unit h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: .45rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.15rem;
+      padding: .38rem .7rem;
+      border: 1px solid #bad1df;
+      border-radius: .55rem;
+      color: var(--blue-dark);
+      background: var(--blue-soft);
+      font-size: .82rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--blue);
+      background: #d8ebf6;
+      outline: none;
+    }
+
+    .button.lab {
+      border-color: #ead3a8;
+      color: #754b0d;
+      background: var(--gold-soft);
+    }
+
+    .button.lab:hover,
+    .button.lab:focus-visible {
+      border-color: var(--gold);
+      background: #ffedc7;
+    }
+
+    .chapter-note {
+      margin: 0 0 1rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 2rem 0 3.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    code {
+      padding: .1em .35em;
+      border-radius: .3rem;
+      background: #edf1f5;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: .92em;
+    }
+
+    @media (max-width: 820px) {
+      header { padding-top: 3.2rem; }
+      .quick-start { grid-template-columns: 1fr; }
+      .unit { grid-template-columns: 4.2rem 1fr; }
+      .links {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding-left: 5.2rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 1.2rem, 1160px); }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: .35rem; }
+      .unit { grid-template-columns: 1fr; }
+      .links { grid-column: auto; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#course-content">跳到课程内容</a>
+
+  <header class="page">
+    <p class="eyebrow">Applied Statistics · Python</p>
+    <h1>面向统计学的 Python 程序设计</h1>
+    <p class="lead">从可执行代码出发，沿着数据组织、数组计算、表格处理、探索性分析和基础统计推断，完成一条面向真实统计学习的编程主线。</p>
+    <ul class="facts" aria-label="课程基本信息">
+      <li>64 学时标准版</li>
+      <li>16 个理论单元</li>
+      <li>16 个实验单元</li>
+      <li>Python 3.11</li>
+    </ul>
+  </header>
+
+  <main id="course-content" class="page">
+    <div class="quick-start" aria-label="快速开始">
+      <article class="quick-card">
+        <strong>配置课程环境</strong>
+        <p>使用 Conda 或 Mamba 创建统一的 Python 3.11 课程环境。</p>
+        <a href="environment.yml" download>下载 environment.yml</a>
+      </article>
+      <article class="quick-card">
+        <strong>阅读数据说明</strong>
+        <p>了解贯穿实验的数据世界、字段含义和官方检查点。</p>
+        <a href="lab/shared/README.md">查看数据流程</a>
+      </article>
+      <article class="quick-card">
+        <strong>本地运行 Notebook</strong>
+        <p>从仓库根目录启动 JupyterLab，保持实验成果衔接路径一致。</p>
+        <a href="#chapter-1">从第一章开始</a>
+      </article>
+    </div>
+
+    <section id="chapter-1">
+      <div class="section-heading">
+        <h2>第一章 · Python 起步</h2>
+        <p>2 学时理论 + 2 学时实验</p>
+      </div>
+      <p class="chapter-note">建立 Notebook 工作方式，掌握变量、类型、运算和结果核验。</p>
+      <div class="unit-list">
+        <article class="unit">
+          <span class="unit-code">T01 / E01</span>
+          <h3>交互式编程环境与 Python 基础</h3>
+          <nav class="links" aria-label="T01 和 E01 材料">
+            <a class="button" href="lecture/chapter1/chapter1.html">课堂演示</a>
+            <a class="button" href="lecture/chapter1/chapter1_inclass.ipynb" download>课堂 Notebook</a>
+            <a class="button lab" href="lab/applied-stat-64/chapter1/e01_prelab_card.md">实验预习</a>
+            <a class="button lab" href="lab/applied-stat-64/chapter1/e01_inclass.ipynb" download>实验 Notebook</a>
+          </nav>
+        </article>
+      </div>
+    </section>
+
+    <section id="chapter-2">
+      <div class="section-heading">
+        <h2>第二章 · 程序与数据结构</h2>
+        <p>8 学时理论 + 8 学时实验</p>
+      </div>
+      <p class="chapter-note">从记录组织、程序控制和函数封装，推进到文本读取、清洗与结构化输出。</p>
+      <div class="unit-list">
+        <article class="unit"><span class="unit-code">T02 / E02</span><h3>基础数据结构与调查记录</h3><nav class="links" aria-label="T02 和 E02 材料"><a class="button" href="lecture/chapter2/chapter2a.html">课堂演示</a><a class="button" href="lecture/chapter2/chapter2a_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter2/e02_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter2/e02_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T03 / E03</span><h3>程序控制与记录筛选</h3><nav class="links" aria-label="T03 和 E03 材料"><a class="button" href="lecture/chapter2/chapter2b.html">课堂演示</a><a class="button" href="lecture/chapter2/chapter2b_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter2/e03_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter2/e03_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T04 / E04</span><h3>函数、异常处理与任务封装</h3><nav class="links" aria-label="T04 和 E04 材料"><a class="button" href="lecture/chapter2/chapter2c.html">课堂演示</a><a class="button" href="lecture/chapter2/chapter2c_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter2/e04_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter2/e04_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T05 / E05</span><h3>字符串、文件读取与结构化清洗</h3><nav class="links" aria-label="T05 和 E05 材料"><a class="button" href="lecture/chapter2/chapter2d.html">课堂演示</a><a class="button" href="lecture/chapter2/chapter2d_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter2/e05_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter2/e05_inclass.ipynb" download>实验 Notebook</a></nav></article>
+      </div>
+    </section>
+
+    <section id="chapter-3">
+      <div class="section-heading">
+        <h2>第三章 · NumPy 与随机模拟</h2>
+        <p>6 学时理论 + 6 学时实验</p>
+      </div>
+      <p class="chapter-note">从一维、二维数组与向量化计算，走向缺失值处理和 Monte Carlo 思想。</p>
+      <div class="unit-list">
+        <article class="unit"><span class="unit-code">T06 / E06</span><h3>NumPy 数组与向量化计算</h3><nav class="links" aria-label="T06 和 E06 材料"><a class="button" href="lecture/chapter3/chapter3a.html">课堂演示</a><a class="button" href="lecture/chapter3/chapter3a_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter3/e06_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter3/e06_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T07 / E07</span><h3>筛选、聚合、缺失值与广播</h3><nav class="links" aria-label="T07 和 E07 材料"><a class="button" href="lecture/chapter3/chapter3b.html">课堂演示</a><a class="button" href="lecture/chapter3/chapter3b_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter3/e07_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter3/e07_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T08 / E08</span><h3>随机数与 Monte Carlo 实验</h3><nav class="links" aria-label="T08 和 E08 材料"><a class="button" href="lecture/chapter3/chapter3c.html">课堂演示</a><a class="button" href="lecture/chapter3/chapter3c_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter3/e08_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter3/e08_inclass.ipynb" download>实验 Notebook</a></nav></article>
+      </div>
+    </section>
+
+    <section id="chapter-4">
+      <div class="section-heading">
+        <h2>第四章 · Pandas 数据处理</h2>
+        <p>8 学时理论 + 8 学时实验</p>
+      </div>
+      <p class="chapter-note">沿着“读取与审计—筛选与清洗—分组与变形—多表合并”形成分析就绪数据。</p>
+      <div class="unit-list">
+        <article class="unit"><span class="unit-code">T09 / E09</span><h3>DataFrame 读取、检查与变量选择</h3><nav class="links" aria-label="T09 和 E09 材料"><a class="button" href="lecture/chapter4/chapter4a.html">课堂演示</a><a class="button" href="lecture/chapter4/chapter4a_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter4/e09_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter4/e09_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T10 / E10</span><h3>筛选、清洗与变量生成</h3><nav class="links" aria-label="T10 和 E10 材料"><a class="button" href="lecture/chapter4/chapter4b.html">课堂演示</a><a class="button" href="lecture/chapter4/chapter4b_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter4/e10_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter4/e10_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T11 / E11</span><h3>分组汇总、透视与宽长表转换</h3><nav class="links" aria-label="T11 和 E11 材料"><a class="button" href="lecture/chapter4/chapter4c.html">课堂演示</a><a class="button" href="lecture/chapter4/chapter4c_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter4/e11_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter4/e11_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T12 / E12</span><h3>多表合并、结果检查与导出</h3><nav class="links" aria-label="T12 和 E12 材料"><a class="button" href="lecture/chapter4/chapter4d.html">课堂演示</a><a class="button" href="lecture/chapter4/chapter4d_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter4/e12_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter4/e12_inclass.ipynb" download>实验 Notebook</a></nav></article>
+      </div>
+    </section>
+
+    <section id="chapter-5">
+      <div class="section-heading">
+        <h2>第五章 · 可视化与 EDA</h2>
+        <p>4 学时理论 + 4 学时实验</p>
+      </div>
+      <p class="chapter-note">根据变量类型选择图形，辨析误导性表达，并以多图和克制文字组织探索性结论。</p>
+      <div class="unit-list">
+        <article class="unit"><span class="unit-code">T13 / E13</span><h3>分布、频数和分组比较图</h3><nav class="links" aria-label="T13 和 E13 材料"><a class="button" href="lecture/chapter5/chapter5a.html">课堂演示</a><a class="button" href="lecture/chapter5/chapter5a_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter5/e13_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter5/e13_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T14 / E14</span><h3>变量关系、变化结构与 EDA 表达</h3><nav class="links" aria-label="T14 和 E14 材料"><a class="button" href="lecture/chapter5/chapter5b.html">课堂演示</a><a class="button" href="lecture/chapter5/chapter5b_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter5/e14_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter5/e14_inclass.ipynb" download>实验 Notebook</a></nav></article>
+      </div>
+    </section>
+
+    <section id="chapter-6">
+      <div class="section-heading">
+        <h2>第六章 · 基础统计分析</h2>
+        <p>4 学时理论 + 4 学时实验</p>
+      </div>
+      <p class="chapter-note">以 Welch 两组比较和简单 OLS 为核心，训练统计结果读取、残差检查和解释边界。</p>
+      <div class="unit-list">
+        <article class="unit"><span class="unit-code">T15 / E15</span><h3>两组比较与统计结果解释</h3><nav class="links" aria-label="T15 和 E15 材料"><a class="button" href="lecture/chapter6/chapter6a.html">课堂演示</a><a class="button" href="lecture/chapter6/chapter6a_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter6/e15_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter6/e15_inclass.ipynb" download>实验 Notebook</a></nav></article>
+        <article class="unit"><span class="unit-code">T16 / E16</span><h3>简单回归与可复现分析报告</h3><nav class="links" aria-label="T16 和 E16 材料"><a class="button" href="lecture/chapter6/chapter6b.html">课堂演示</a><a class="button" href="lecture/chapter6/chapter6b_inclass.ipynb" download>课堂 Notebook</a><a class="button lab" href="lab/applied-stat-64/chapter6/e16_prelab_card.md">实验预习</a><a class="button lab" href="lab/applied-stat-64/chapter6/e16_inclass.ipynb" download>实验 Notebook</a></nav></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    <p>课程数据均为固定种子生成的模拟数据，不包含真实学生信息。部分交互式课件功能需要浏览器访问网络资源。</p>
+  </footer>
+</body>
+</html>

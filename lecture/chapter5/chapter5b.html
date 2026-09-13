@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="chapter5b_files/libs/clipboard/clipboard.min.js"></script>
+<script src="chapter5b_files/libs/quarto-html/tabby.min.js"></script>
+<script src="chapter5b_files/libs/quarto-html/popper.min.js"></script>
+<script src="chapter5b_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="chapter5b_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="chapter5b_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="chapter5b_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="chapter5b_files/libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="chapter5b_files/libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="王润祖">
+  <meta name="dcterms.date" content="2026-09-01">
+  <title>第五章（二）：变量关系、变化与探索性分析表达</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="chapter5b_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="chapter5b_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="chapter5b_files/libs/revealjs/dist/theme/quarto-581a879c062cdc19e1230440c5bb8372.css">
+  <link href="chapter5b_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="chapter5b_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="chapter5b_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="chapter5b_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="chapter5b_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="chapter5b_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+  <style>
+    .reveal h1, .reveal h2, .reveal h3 {
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">第五章（二）：变量关系、变化与探索性分析表达</h1>
+  <p class="subtitle">面向统计学的 Python 程序设计</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+王润祖 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-09-01</p>
+</section>
+<section class="slide level2">
+
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJpbXBvcnQgb3NcblxuZnJvbSBtYXRwbG90bGliIGltcG9ydCBmb250X21hbmFnZXJcbmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHRcbmltcG9ydCBudW1weSBhcyBucFxuaW1wb3J0IHBhbmRhcyBhcyBwZFxuaW1wb3J0IHNlYWJvcm4gYXMgc25zXG5cbnNucy5zZXRfdGhlbWUoc3R5bGU9XCJ3aGl0ZWdyaWRcIilcbmZvbnRfcGF0aCA9IFwiLi9hc3NldHMvTm90b1NhbnNDSktzYy1SZWd1bGFyLm90ZlwiXG5pZiBvcy5wYXRoLmV4aXN0cyhmb250X3BhdGgpOlxuICAgIGZvbnRfbWFuYWdlci5mb250TWFuYWdlci5hZGRmb250KGZvbnRfcGF0aClcbiAgICBjamtfZm9udCA9IGZvbnRfbWFuYWdlci5Gb250UHJvcGVydGllcyhmbmFtZT1mb250X3BhdGgpLmdldF9uYW1lKClcbiAgICBwbHQucmNQYXJhbXNbXCJmb250LmZhbWlseVwiXSA9IGNqa19mb250XG4gICAgcGx0LnJjUGFyYW1zW1wiYXhlcy51bmljb2RlX21pbnVzXCJdID0gRmFsc2Vcblxub3MubWFrZWRpcnMoXCJkYXRhXCIsIGV4aXN0X29rPVRydWUpXG5cbiMg5LiO56ys5LqU56ug77yI5LiA77yJ5L2/55So5ZCM5LiA5aWX5Zu65a6a56eN5a2Q55qE5qih5ouf5pWZ5a2m5pWw5o2u44CCXG5ybmcgPSBucC5yYW5kb20uZGVmYXVsdF9ybmcoMjAyNjA5KVxubl9zdHVkZW50cyA9IDE2MFxubWFqb3Jfb3JkZXIgPSBbXCLnu5/orqHlraZcIiwgXCLlupTnlKjnu5/orqHlraZcIiwgXCLmlbDmja7np5HlraZcIl1cblxubWFqb3IgPSBybmcuY2hvaWNlKG1ham9yX29yZGVyLCBzaXplPW5fc3R1ZGVudHMsIHA9WzAuMzYsIDAuMzQsIDAuMzBdKVxuZ2VuZGVyID0gcm5nLmNob2ljZShbXCLlpbNcIiwgXCLnlLdcIl0sIHNpemU9bl9zdHVkZW50cywgcD1bMC41MiwgMC40OF0pXG5tYWpvcl9lZmZlY3QgPSBwZC5TZXJpZXMobWFqb3IpLm1hcCh7XCLnu5/orqHlraZcIjogMCwgXCLlupTnlKjnu5/orqHlraZcIjogMiwgXCLmlbDmja7np5HlraZcIjogNH0pLnRvX251bXB5KClcblxuc3R1ZHlfaG91cnMgPSBucC5jbGlwKFxuICAgIHJuZy5ub3JtYWwoOC41ICsgbWFqb3JfZWZmZWN0ICogMC4xOCwgMi42LCBzaXplPW5fc3R1ZGVudHMpLFxuICAgIDEsXG4gICAgMjAsXG4pLnJvdW5kKDEpXG5hdHRlbmRhbmNlX3JhdGUgPSBucC5jbGlwKHJuZy5ub3JtYWwoODQsIDgsIHNpemU9bl9zdHVkZW50cyksIDU1LCAxMDApLnJvdW5kKDEpXG5weXRob25fc2NvcmUgPSBucC5jbGlwKFxuICAgIDM5ICsgMi40NSAqIHN0dWR5X2hvdXJzICsgMC4yMyAqIGF0dGVuZGFuY2VfcmF0ZSArIG1ham9yX2VmZmVjdCArIHJuZy5ub3JtYWwoMCwgOCwgc2l6ZT1uX3N0dWRlbnRzKSxcbiAgICA0MCxcbiAgICAxMDAsXG4pLnJvdW5kKDEpXG5kYXRhX2xpdGVyYWN5X3Njb3JlID0gbnAuY2xpcChcbiAgICAyNCArIDAuNDYgKiBweXRob25fc2NvcmUgKyBybmcubm9ybWFsKDAsIDcsIHNpemU9bl9zdHVkZW50cyksXG4gICAgMzUsXG4gICAgMTAwLFxuKS5yb3VuZCgxKVxuXG5zdHVkZW50X2RmID0gcGQuRGF0YUZyYW1lKFxuICAgIHtcbiAgICAgICAgXCJzdHVkZW50X2lkXCI6IFtmXCJTe2k6MDNkfVwiIGZvciBpIGluIHJhbmdlKDEsIG5fc3R1ZGVudHMgKyAxKV0sXG4gICAgICAgIFwiZ2VuZGVyXCI6IGdlbmRlcixcbiAgICAgICAgXCJtYWpvclwiOiBwZC5DYXRlZ29yaWNhbChtYWpvciwgY2F0ZWdvcmllcz1tYWpvcl9vcmRlciwgb3JkZXJlZD1UcnVlKSxcbiAgICAgICAgXCJzdHVkeV9ob3Vyc1wiOiBzdHVkeV9ob3VycyxcbiAgICAgICAgXCJhdHRlbmRhbmNlX3JhdGVcIjogYXR0ZW5kYW5jZV9yYXRlLFxuICAgICAgICBcInB5dGhvbl9zY29yZVwiOiBweXRob25fc2NvcmUsXG4gICAgICAgIFwiZGF0YV9saXRlcmFjeV9zY29yZVwiOiBkYXRhX2xpdGVyYWN5X3Njb3JlLFxuICAgIH1cbilcblxud2F2ZV9mcmFtZXMgPSBbXVxuZm9yIHdhdmUgaW4gcmFuZ2UoMSwgNSk6XG4gICAgd2F2ZV9zdHVkeV9ob3VycyA9IG5wLmNsaXAoXG4gICAgICAgIHN0dWR5X2hvdXJzICsgMC40NSAqICh3YXZlIC0gMSkgKyBybmcubm9ybWFsKDAsIDAuOCwgc2l6ZT1uX3N0dWRlbnRzKSxcbiAgICAgICAgMSxcbiAgICAgICAgMjQsXG4gICAgKS5yb3VuZCgxKVxuICAgIHdhdmVfc2NvcmUgPSBucC5jbGlwKFxuICAgICAgICBweXRob25fc2NvcmUgLSA0ICsgMi4yICogKHdhdmUgLSAxKSArIHJuZy5ub3JtYWwoMCwgNCwgc2l6ZT1uX3N0dWRlbnRzKSxcbiAgICAgICAgMzUsXG4gICAgICAgIDEwMCxcbiAgICApLnJvdW5kKDEpXG4gICAgd2F2ZV9mcmFtZXMuYXBwZW5kKFxuICAgICAgICBwZC5EYXRhRnJhbWUoXG4gICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgXCJzdHVkZW50X2lkXCI6IHN0dWRlbnRfZGZbXCJzdHVkZW50X2lkXCJdLFxuICAgICAgICAgICAgICAgIFwibWFqb3JcIjogc3R1ZGVudF9kZltcIm1ham9yXCJdLFxuICAgICAgICAgICAgICAgIFwid2F2ZVwiOiB3YXZlLFxuICAgICAgICAgICAgICAgIFwic3R1ZHlfaG91cnNcIjogd2F2ZV9zdHVkeV9ob3VycyxcbiAgICAgICAgICAgICAgICBcInB5dGhvbl9zY29yZVwiOiB3YXZlX3Njb3JlLFxuICAgICAgICAgICAgfVxuICAgICAgICApXG4gICAgKVxuXG53YXZlX2RmID0gcGQuY29uY2F0KHdhdmVfZnJhbWVzLCBpZ25vcmVfaW5kZXg9VHJ1ZSlcbnN0dWRlbnRfZGYudG9fY3N2KFwiLi9kYXRhL3N0dWRlbnRfZWRhLmNzdlwiLCBpbmRleD1GYWxzZSlcbndhdmVfZGYudG9fY3N2KFwiLi9kYXRhL2xlYXJuaW5nX3dhdmUuY3N2XCIsIGluZGV4PUZhbHNlKSJ9
+</script>
+</div>
+</section>
+<section id="本节概览" class="slide level2">
+<h2>本节概览</h2>
+<ul>
+<li>用散点图探索两个数值变量的关系</li>
+<li>使用 <code>hue</code> 引入第三个分类变量</li>
+<li>先分组汇总，再绘制有序记录的变化图</li>
+<li>读懂相关矩阵热力图，并理解相关不等于因果</li>
+</ul>
+</section>
+<section>
+<section id="从变量关系开始" class="title-slide slide level1 center">
+<h1>从变量关系开始</h1>
+
+</section>
+<section id="两个数值变量可以先画散点图" class="slide level2">
+<h2>两个数值变量可以先画散点图</h2>
+<ul>
+<li>散点图适合观察两个数值变量之间是否存在共同变化。</li>
+<li>每个点通常对应一条记录。</li>
+<li>关注整体趋势、离散程度、可能的非线性和异常点。</li>
+</ul>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc25zLnNjYXR0ZXJwbG90KFxuICAgIGRhdGE9c3R1ZGVudF9kZixcbiAgICB4PVwic3R1ZHlfaG91cnNcIixcbiAgICB5PVwicHl0aG9uX3Njb3JlXCIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQoXG4gICAgdGl0bGU9XCLlrabkuaDml7bplb/kuI4gUHl0aG9uIOaIkOe7qVwiLFxuICAgIHhsYWJlbD1cIuavj+WRqOWtpuS5oOaXtumVv++8iOWwj+aXtu+8iVwiLFxuICAgIHlsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIixcbilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="hue把第三个变量编码为颜色" class="slide level2">
+<h2><code>hue</code>：把第三个变量编码为颜色</h2>
+<ul>
+<li><code>hue</code> 可以把一个分类变量编码为颜色。</li>
+<li>颜色用于比较组别，不应用来代替完整的分组统计。</li>
+<li>类别太多时，颜色会难以区分，应先考虑是否真的需要全部展示。</li>
+</ul>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLnNjYXR0ZXJwbG90KFxuICAgIGRhdGE9c3R1ZGVudF9kZixcbiAgICB4PVwic3R1ZHlfaG91cnNcIixcbiAgICB5PVwicHl0aG9uX3Njb3JlXCIsXG4gICAgaHVlPVwibWFqb3JcIixcbiAgICBodWVfb3JkZXI9bWFqb3Jfb3JkZXIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQoXG4gICAgdGl0bGU9XCLkuI3lkIzkuJPkuJrnmoTlrabkuaDml7bplb/kuI4gUHl0aG9uIOaIkOe7qVwiLFxuICAgIHhsYWJlbD1cIuavj+WRqOWtpuS5oOaXtumVv++8iOWwj+aXtu+8iVwiLFxuICAgIHlsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIixcbilcbmF4LmxlZ2VuZCh0aXRsZT1cIuS4k+S4mlwiKVxuXG5maWcudGlnaHRfbGF5b3V0KClcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</section>
+<section id="小结任务-1" class="slide level2">
+<h2>小结任务 1</h2>
+<p>绘制 <code>attendance_rate</code> 与 <code>python_score</code> 的散点图，并按 <code>gender</code> 着色。写出一个图形支持的观察，以及一个图形不能直接回答的问题。</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBmaWcsIGF4ID0gcGx0LnN1YnBsb3RzKGZpZ3NpemU9KDcsIDQpKVxuIyBzbnMuc2NhdHRlcnBsb3QoXG4jICAgICBkYXRhPXN0dWRlbnRfZGYsXG4jICAgICB4PS4uLixcbiMgICAgIHk9Li4uLFxuIyAgICAgaHVlPS4uLixcbiMgICAgIGF4PWF4LFxuIyApXG4jIGF4LnNldCh0aXRsZT0uLi4sIHhsYWJlbD0uLi4sIHlsYWJlbD0uLi4pXG4jIGF4LmxlZ2VuZCh0aXRsZT0uLi4pXG4jIGZpZy50aWdodF9sYXlvdXQoKVxuIyBwbHQuc2hvdygpIn0=
+</script>
+</div>
+</section></section>
+<section>
+<section id="描述性趋势线的边界" class="title-slide slide level1 center">
+<h1>描述性趋势线的边界</h1>
+
+</section>
+<section id="sns.regplot一条趋势线能说明什么" class="slide level2">
+<h2><code>sns.regplot()</code>：一条趋势线能说明什么</h2>
+<ul>
+<li><code>regplot()</code> 可以在散点图上叠加线性趋势线。</li>
+<li>它适合帮助观察总体线性变化方向。</li>
+<li>趋势线不自动证明因果关系，也不替代回归诊断和统计推断。</li>
+</ul>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc25zLnJlZ3Bsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJzdHVkeV9ob3Vyc1wiLFxuICAgIHk9XCJweXRob25fc2NvcmVcIixcbiAgICBjaT1Ob25lLFxuICAgIHNjYXR0ZXJfa3dzPXtcImFscGhhXCI6IDAuNn0sXG4gICAgbGluZV9rd3M9e1wiY29sb3JcIjogXCIjRTE1NzU5XCJ9LFxuICAgIGF4PWF4LFxuKVxuYXguc2V0KFxuICAgIHRpdGxlPVwi5a2m5Lmg5pe26ZW/5LiOIFB5dGhvbiDmiJDnu6nnmoTmj4/ov7DmgKfotovlir9cIixcbiAgICB4bGFiZWw9XCLmr4/lkajlrabkuaDml7bplb/vvIjlsI/ml7bvvIlcIixcbiAgICB5bGFiZWw9XCJQeXRob24g5oiQ57upXCIsXG4pXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>图形观察与统计推断的边界</strong></p>
+</div>
+<div class="callout-content">
+<p>从图上看到正向趋势，可以写“在当前样本中，学习时长较高的学生往往也有较高的 Python 成绩”。不能仅凭这张图写“增加学习时长一定会提高成绩”。回归系数、残差、拟合程度和因果解释边界将在下一章进一步讨论。</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="有序记录与变化图" class="title-slide slide level1 center">
+<h1>有序记录与变化图</h1>
+
+</section>
+<section id="先把多轮记录汇总清楚" class="slide level2">
+<h2>先把多轮记录汇总清楚</h2>
+<ul>
+<li>多轮数据中，每位学生会出现多次。</li>
+<li>作图前先明确每个点代表什么：个人记录、专业均值，还是全体学生均值。</li>
+<li>本节先使用第四章的 <code>groupby()</code> 生成按轮次、按专业的平均成绩。</li>
+</ul>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoid2F2ZV9zdW1tYXJ5ID0gKFxuICAgIHdhdmVfZGZcbiAgICAuZ3JvdXBieShbXCJ3YXZlXCIsIFwibWFqb3JcIl0sIG9ic2VydmVkPVRydWUpXG4gICAgLmFnZyhcbiAgICAgICAgbWVhbl9zY29yZT0oXCJweXRob25fc2NvcmVcIiwgXCJtZWFuXCIpLFxuICAgICAgICBuPShcInN0dWRlbnRfaWRcIiwgXCJjb3VudFwiKSxcbiAgICApXG4gICAgLnJlc2V0X2luZGV4KClcbilcblxucHJpbnQod2F2ZV9zdW1tYXJ5LmhlYWQoOSkpIn0=
+</script>
+</div>
+</section>
+<section id="sns.lineplot展示有序变化" class="slide level2">
+<h2><code>sns.lineplot()</code>：展示有序变化</h2>
+<ul>
+<li>折线图适合横轴有自然顺序的场景，例如时间、轮次或测量阶段。</li>
+<li>如果横轴只是无序类别，不应把类别硬连成折线。</li>
+<li>这里的每个点都是一个专业在某一轮的平均成绩，而不是单个学生。</li>
+</ul>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLmxpbmVwbG90KFxuICAgIGRhdGE9d2F2ZV9zdW1tYXJ5LFxuICAgIHg9XCJ3YXZlXCIsXG4gICAgeT1cIm1lYW5fc2NvcmVcIixcbiAgICBodWU9XCJtYWpvclwiLFxuICAgIGh1ZV9vcmRlcj1tYWpvcl9vcmRlcixcbiAgICBtYXJrZXI9XCJvXCIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQoXG4gICAgdGl0bGU9XCLkuI3lkIzkuJPkuJrnmoTlubPlnYcgUHl0aG9uIOaIkOe7qeWPmOWMllwiLFxuICAgIHhsYWJlbD1cIuWtpuS5oOi9ruasoVwiLFxuICAgIHlsYWJlbD1cIuW5s+WdhyBQeXRob24g5oiQ57upXCIsXG4pXG5heC5sZWdlbmQodGl0bGU9XCLkuJPkuJpcIilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="快速辨析有类别不等于要连线" class="slide level2">
+<h2>快速辨析：有类别不等于要连线</h2>
+<p>下面左图故意把无自然顺序的专业类别连成折线。它会暗示“专业一、专业二、专业三”之间存在连续变化，但专业只是分类标签；右图用柱形图比较同一组均值，更符合这个问题。折线图应留给 <code>wave</code> 这样的轮次或时间顺序。</p>
+<p>这里只需要根据横轴是否具有自然顺序选择图形。还要记住：无论使用柱形图、折线图还是散点图，图形中的组间差异和共同变化都不能单独证明因果关系。</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWFqb3Jfc2NvcmVfc3VtbWFyeSA9IChcbiAgICBzdHVkZW50X2RmXG4gICAgLmdyb3VwYnkoXCJtYWpvclwiLCBvYnNlcnZlZD1UcnVlKVxuICAgIC5hZ2cobWVhbl9zY29yZT0oXCJweXRob25fc2NvcmVcIiwgXCJtZWFuXCIpKVxuICAgIC5yZWluZGV4KG1ham9yX29yZGVyKVxuICAgIC5yZXNldF9pbmRleCgpXG4pXG5cbmZpZywgYXhlcyA9IHBsdC5zdWJwbG90cygxLCAyLCBmaWdzaXplPSgxMCwgNCkpXG5cbiMg5LiN6KeE6IyD56S65L6L77ya5oqK5peg5bqP57G75Yir5b2T5oiQ6L+e57ut5qiq6L2044CCXG5zbnMubGluZXBsb3QoXG4gICAgZGF0YT1tYWpvcl9zY29yZV9zdW1tYXJ5LFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJtZWFuX3Njb3JlXCIsXG4gICAgbWFya2VyPVwib1wiLFxuICAgIGNvbG9yPVwiI0UxNTc1OVwiLFxuICAgIGVycm9yYmFyPU5vbmUsXG4gICAgYXg9YXhlc1swXSxcbilcbmF4ZXNbMF0uc2V0KHRpdGxlPVwi5LiN6KeE6IyD56S65L6L77ya5peg5bqP57G75Yir6L+e57q/XCIsIHhsYWJlbD1cIuS4k+S4mlwiLCB5bGFiZWw9XCLlubPlnYcgUHl0aG9uIOaIkOe7qVwiKVxuXG4jIOS/ruato+ekuuS+i++8muexu+WIq+avlOi+g+S9v+eUqOafseW9ouWbvuOAglxuc25zLmJhcnBsb3QoXG4gICAgZGF0YT1tYWpvcl9zY29yZV9zdW1tYXJ5LFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJtZWFuX3Njb3JlXCIsXG4gICAgY29sb3I9XCIjNTlBMTRGXCIsXG4gICAgZXJyb3JiYXI9Tm9uZSxcbiAgICBheD1heGVzWzFdLFxuKVxuYXhlc1sxXS5zZXQodGl0bGU9XCLkv67mraPnpLrkvovvvJrnsbvliKvnlKjmn7HlvaLmr5TovoNcIiwgeGxhYmVsPVwi5LiT5LiaXCIsIHlsYWJlbD1cIuW5s+WdhyBQeXRob24g5oiQ57upXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</section>
+<section id="小结任务-2" class="slide level2">
+<h2>小结任务 2</h2>
+<p>按 <code>wave</code> 汇总总体平均学习时长，并绘制折线图。说明横轴为什么适合使用折线图。</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBob3VyX3N1bW1hcnkgPSAoXG4jICAgICB3YXZlX2RmXG4jICAgICAuZ3JvdXBieSguLi4pXG4jICAgICAuYWdnKG1lYW5faG91cnM9KC4uLiwgLi4uKSlcbiMgICAgIC5yZXNldF9pbmRleCgpXG4jIClcbiNcbiMgZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcbiMgc25zLmxpbmVwbG90KGRhdGE9aG91cl9zdW1tYXJ5LCB4PS4uLiwgeT0uLi4sIG1hcmtlcj1cIm9cIiwgYXg9YXgpXG4jIGF4LnNldCh0aXRsZT0uLi4sIHhsYWJlbD0uLi4sIHlsYWJlbD0uLi4pXG4jIGZpZy50aWdodF9sYXlvdXQoKVxuIyBwbHQuc2hvdygpIn0=
+</script>
+</div>
+</section></section>
+<section>
+<section id="相关矩阵与热力图" class="title-slide slide level1 center">
+<h1>相关矩阵与热力图</h1>
+
+</section>
+<section id="相关矩阵" class="slide level2">
+<h2>相关矩阵</h2>
+<ul>
+<li><code>corr()</code> 计算数值变量之间的线性相关系数矩阵。</li>
+<li>正相关大致表示两个变量倾向于同升同降，负相关大致表示一个变量高时另一个变量低。</li>
+<li>相关系数接近 <code>1</code> 或 <code>-1</code> 表示线性关系较强，接近 <code>0</code> 表示线性关系较弱。</li>
+<li>相关矩阵只针对数值变量；分类变量不应直接放入其中。</li>
+</ul>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibnVtZXJpY19jb2xzID0gW1xuICAgIFwic3R1ZHlfaG91cnNcIixcbiAgICBcImF0dGVuZGFuY2VfcmF0ZVwiLFxuICAgIFwicHl0aG9uX3Njb3JlXCIsXG4gICAgXCJkYXRhX2xpdGVyYWN5X3Njb3JlXCIsXG5dXG5cbmNvcnIgPSBzdHVkZW50X2RmW251bWVyaWNfY29sc10uY29ycigpXG5wcmludChjb3JyLnJvdW5kKDIpKSJ9
+</script>
+</div>
+</section>
+<section id="sns.heatmap把矩阵变成颜色图" class="slide level2">
+<h2><code>sns.heatmap()</code>：把矩阵变成颜色图</h2>
+<ul>
+<li>热力图把矩阵中的数值映射为颜色，适合快速比较结构。</li>
+<li><code>annot=True</code> 显示具体数值，<code>fmt=".2f"</code> 控制小数位。</li>
+<li>相关热力图的颜色深浅不代表因果强度。</li>
+</ul>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA1KSlcblxuc25zLmhlYXRtYXAoXG4gICAgY29ycixcbiAgICBhbm5vdD1UcnVlLFxuICAgIGZtdD1cIi4yZlwiLFxuICAgIGNtYXA9XCJjb29sd2FybVwiLFxuICAgIHZtaW49LTEsXG4gICAgY2VudGVyPTAsXG4gICAgdm1heD0xLFxuICAgIGF4PWF4LFxuKVxuYXguc2V0KHRpdGxlPVwi5a2m5Lmg6KGM5Li65LiO5oiQ57up5oyH5qCH55qE55u45YWz55+p6Zi1XCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</section>
+<section id="小结任务-3" class="slide level2">
+<h2>小结任务 3</h2>
+<p>对 <code>student_df</code> 中的数值列计算相关矩阵，并绘制热力图。选择其中一对变量，写出相关方向和一个合理的解释边界。</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBzZWxlY3RlZF9jb2xzID0gWy4uLl1cbiMgY29yciA9IHN0dWRlbnRfZGZbc2VsZWN0ZWRfY29sc10uY29ycigpXG4jXG4jIGZpZywgYXggPSBwbHQuc3VicGxvdHMoZmlnc2l6ZT0oNywgNSkpXG4jIHNucy5oZWF0bWFwKFxuIyAgICAgY29ycixcbiMgICAgIGFubm90PVRydWUsXG4jICAgICBmbXQ9Li4uLFxuIyAgICAgY21hcD0uLi4sXG4jICAgICB2bWluPS4uLixcbiMgICAgIHZtYXg9Li4uLFxuIyAgICAgYXg9YXgsXG4jIClcbiMgYXguc2V0KHRpdGxlPS4uLilcbiMgZmlnLnRpZ2h0X2xheW91dCgpXG4jIHBsdC5zaG93KCkifQ==
+</script>
+</div>
+</section></section>
+<section>
+<section id="从图形到-eda-表达" class="title-slide slide level1 center">
+<h1>从图形到 EDA 表达</h1>
+
+</section>
+<section id="一组图回答一组问题" class="slide level2 scrollable">
+<h2>一组图回答一组问题</h2>
+<p>一个小型 EDA 不需要画很多图，而应让每张图承担不同任务：</p>
+<ol type="1">
+<li>分布图：样本整体是什么样。</li>
+<li>分组图：哪些组值得比较。</li>
+<li>关系图或变化图：变量之间有哪些值得进一步分析的结构。</li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>结果表达的基本顺序</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>描述图上直接看到的现象。</li>
+<li>说明样本、指标或图形的限制。</li>
+<li>提出可以进一步检验的问题。</li>
+</ol>
+<p>避免把相关、组间差异或时间变化直接写成因果结论。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="综合案例" class="slide level2">
+<h2>综合案例</h2>
+<p>问题：模拟样本中，学习投入、出勤与 Python 成绩之间有哪些值得进一步分析的结构？</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLnNjYXR0ZXJwbG90KFxuICAgIGRhdGE9c3R1ZGVudF9kZixcbiAgICB4PVwiYXR0ZW5kYW5jZV9yYXRlXCIsXG4gICAgeT1cInB5dGhvbl9zY29yZVwiLFxuICAgIGh1ZT1cIm1ham9yXCIsXG4gICAgaHVlX29yZGVyPW1ham9yX29yZGVyLFxuICAgIGFscGhhPTAuNzUsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQoXG4gICAgdGl0bGU9XCLlh7rli6TnjofkuI4gUHl0aG9uIOaIkOe7qVwiLFxuICAgIHhsYWJlbD1cIuWHuuWLpOeOh++8iCXvvIlcIixcbiAgICB5bGFiZWw9XCJQeXRob24g5oiQ57upXCIsXG4pXG5heC5sZWdlbmQodGl0bGU9XCLkuJPkuJpcIilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>一种合格的 EDA 表达</strong></p>
+</div>
+<div class="callout-content">
+<p>模拟样本中，出勤率与 Python 成绩呈现正向共同变化；不同专业的点云位置也有一定差别。由于这里没有控制学生基础、课程难度等其他因素，图形只能说明样本中的关联结构，不能单独证明出勤率造成了成绩差异。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="课堂练习" class="slide level2 scrollable">
+<h2>课堂练习</h2>
+<p>围绕 <code>student_df</code> 和 <code>wave_df</code> 完成一个三图 EDA：</p>
+<ol type="1">
+<li>用一张分布或分组图描述 Python 成绩。</li>
+<li>用散点图探索学习时长或出勤率与成绩的关系。</li>
+<li>用折线图或相关热力图展示进一步的结构。</li>
+<li>用 100 字以内写出：一个图形事实、一个解释边界、一个可进一步检验的问题。</li>
+</ol>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyDlm74gMe+8muWIhuW4g+aIluWIhue7hOW3ruW8glxuXG4jIOWbviAy77ya5Y+Y6YeP5YWz57O7XG5cbiMg5Zu+IDPvvJrlj5jljJbmiJbnm7jlhbPnu5PmnoQifQ==
+</script>
+</div>
+</section>
+<section id="本节小结" class="slide level2">
+<h2>本节小结</h2>
+<ul>
+<li>散点图用于探索数值变量关系，<code>hue</code> 可引入一个分类变量。</li>
+<li>趋势线帮助描述总体方向，但不自动给出因果结论。</li>
+<li>多轮数据先用 <code>groupby()</code> 汇总，再使用折线图表达有序变化。</li>
+<li>相关热力图帮助比较数值变量之间的线性结构，相关不等于因果。</li>
+<li>EDA 的目标是提出清楚、可继续检验的问题，而不是只生成图形。</li>
+</ul>
+</section>
+<section id="下一章" class="slide level2">
+<h2>下一章</h2>
+<p>下一章将从图形观察进入两组比较和简单线性回归，并练习规范解释统计结果。</p>
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIiwic2VhYm9ybiJdfX0=
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfMSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMS1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjFcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIxXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyJhc3NldHMvTm90b1NhbnNDSktzYy1SZWd1bGFyLm90ZiIsImFzc2V0cy9Ob3RvU2Fuc0NKSy1MSUNFTlNFLnR4dCJd
+</script>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>《Python程序设计》第五章（二） - 王润祖</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="chapter5b_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="chapter5b_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="chapter5b_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="chapter5b_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W119
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../..";
+    window._ojs.paths.runtimeToRoot = "../../../../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -1,0 +1,165 @@
+student_id,alias,gender,major,prior_programming,support_plan,reported_study_hours,reported_attendance_rate
+S001,Jackson,male,applied_statistics,no,feedback, 10.0 ,71.7%
+S002,Anne,female,statistical_computing,yes,feedback, 7.5 ,75.9%
+S003,Warren,male,applied statistics,no,feedback, 6.4 ,94.8%
+S004,Autumn,F,data_science,yes,feedback, 8.6 ,69.0%
+ S005 , Weston , male , applied_statistics ,no,regular, 6.7 ,88.9%
+ S006 , Angel , male , applied_statistics ,no,feedback, 8.6 ,89.5%
+S007,Shelby,female,statistical_computing,N,feedback, 8.9 ,91.8%
+S008,Vivian,female,statistical_computing,no,regular, 6.4 ,78.3%
+S009,Maya,female,data science,yes,regular, 6.4 ,89.5%
+S010,Ellie,female,data_science,yes,feedback,NA,86.8%
+S011,Nevaeh,female,statistical_computing,yes,feedback, 4.9 ,92.5%
+S012,Kimberly,female,data_science,yes,feedback, 9.7 ,100.0%
+S013,Sadie,female,statistical_computing,no,feedback, 7.1 ,82.1%
+S014,Mary,female,data science,no,instant_feedback, 9.6 ,92.4%
+ S015 , Darrell , male , applied_statistics ,no,feedback, 5.5 ,80.1%
+ S016 , Dominique , female , data_science ,yes,regular, 12.8 ,92.6%
+S017,Sarah,female,applied_statistics,no,feedback, 8.6 ,84.4%
+S018,Sophie,female,data_science,no,regular, 9.0 ,81.2%
+S019,Lainey,female,applied_statistics,no,regular, 6.5 ,78.6%
+S020,Adeline,female,applied_statistics,no,regular, 4.3 ,79.8%
+S021,Hope,female,data_science,yes,regular, 7.6 ,81.6%
+S022,Asher,male,data_science,yes,feedback, 10.0 ,90.2%
+S023,Floyd,male,statistical_computing,no,feedback, 8.5 ,85.0%
+S024,Kinsley,F,statistical_computing,no,feedback, 11.4 ,82.6%
+ S025 , Doris , female , statistical_computing ,no,regular, 10.4 ,86.0%
+S026,Penelope,female,statistical_computing,N,feedback, 5.6 ,88.0%
+ S027 , Noah , male , applied_statistics ,yes,feedback, 9.2 ,77.6%
+S028,Carlos,male,applied_statistics,no,regular, 9.9 ,90.8%
+S029,Diane,female,statistical_computing,no,feedback, 8.2 ,87.9%
+ S030 , Alyssa , female , statistical_computing ,Y,regular, 6.1 ,86.1%
+S031,Tyler,male,applied_statistics,no,feedback, 2.1 ,-
+ S032 , Nova , female , statistical_computing ,no,feedback, 11.3 ,86.9%
+S033,Frank,M,statistical_computing,N,regular, 9.1 ,79.4%
+S034,Bethany,F,applied_statistics,no,regular, 6.2 ,91.0%
+S035,Derek,male,applied_statistics,no,regular, 6.5 ,75.1%
+ S036 , Hayden , male , statistical_computing ,no,regular, 8.8 ,83.9%
+ S037 , Elizabeth , female , applied_statistics ,yes,regular,unknown,81.2%
+S038,Raymond,male,applied_statistics,no,feedback, 11.1 ,99.2%
+S039,Daisy,female,statistical_computing,no,feedback, 10.9 ,86.2%
+S040,Elliot,male,applied_statistics,yes,regular, 5.1 ,-
+S041,Veronica,F,applied_statistics,no,regular, 5.1 ,66.2%
+ S042 , Bradley , male , statistical_computing ,no,standard, 9.3 ,87.5%
+S043,Aurora,female,applied_statistics,no,regular, 5.0 ,84.1%
+S044,Wyatt,M,statistical_computing,no,regular, 10.1 ,82.6%
+S045,Maggie,female,data science,no,regular, 9.1 ,85.8%
+S046,Chelsea,female,data_science,N,regular, 4.7 ,86.0%
+S047,Dale,male,applied statistics,no,feedback, 8.2 ,85.1%
+S048,Brian,male,statistical_computing,no,instant_feedback, 7.0 ,90.3%
+S049,Arthur,male,statistical_computing,no,regular, 8.0 ,78.4%
+S050,Erica,female,data science,no,instant_feedback, 8.1 ,95.3%
+S051,Scott,male,applied_statistics,no,feedback, 10.4 ,91.4%
+S052,Joyce,female,applied_statistics,no,feedback, 6.5 ,76.5%
+S053,Amelia,female,applied_statistics,yes,regular, 8.2 ,86.0%
+ S054 , Wade , male , applied_statistics ,no,regular, 5.9 ,86.2%
+S055,Silas,male,statistical_computing,no,feedback, 8.7 ,-
+ S056 , Julie , female , applied_statistics ,yes,feedback, 11.3 ,94.1%
+S057,Ezra,male,applied_statistics,no,regular, 9.3 ,79.5%
+S058,Valentina,female,applied_statistics,no,regular, 9.7 ,88.1%
+S059,Ruby,F,statistical_computing,no,regular, 9.3 ,93.3%
+S060,Jacqueline,female,data_science,yes,feedback, 3.6 ,77.4%
+S061,Selena,female,statistical_computing,yes,standard, 9.7 ,84.9%
+S062,Cole,male,data science,no,feedback, 11.1 ,87.7%
+ S063 , Lawrence ,M, applied_statistics ,no,regular, 6.0 ,76.5%
+S064,Alexander,male,data_science,no,regular, 8.3 ,88.5%
+ S065 , Thiago , male , statistical_computing ,yes,regular, 3.2 ,97.7%
+ S066 , Mark , male , applied_statistics ,yes,regular, 6.3 ,73.3%
+ S067 , Jaime , female , statistical_computing ,no,regular, 6.9 ,85.7%
+ S068 , Aaliyah , female , statistical_computing ,no,feedback, 10.5 ,92.9%
+ S069 , Adam , male , statistical_computing ,no,feedback,NA,73.9%
+S070,Peter,M,data_science,no,feedback, 9.5 ,87.6%
+S071,Maria,female,applied_statistics,no,regular, 8.1 ,87.4%
+S072,Levi,male,applied statistics,yes,feedback, 3.4 ,81.2%
+S073,Avery,female,applied_statistics,no,feedback, 7.3 ,95.0%
+S074,Santiago,male,statistical_computing,no,regular, 8.8 ,76.8%
+ S075 , Roman ,M, statistical_computing ,no,regular, 6.6 ,77.8%
+S076,Karen,female,data_science,no,feedback, 8.7 ,77.2%
+S077,Janice,female,data_science,Y,instant_feedback, 5.8 ,72.8%
+S078,Leo,male,applied_statistics,yes,feedback, 6.0 ,93.8%
+S079,Samuel,male,statistical_computing,no,feedback, 7.6 ,75.4%
+S080,Christopher,male,statistical_computing,no,regular, 8.2 ,90.3%
+S081,Jake,male,applied_statistics,no,feedback, 12.2 ,84.5%
+S082,Norah,female,applied_statistics,no,regular,NA,93.0%
+S083,Cory,male,data_science,yes,regular, 11.8 ,82.2%
+S084,Naomi,female,applied_statistics,no,regular, 6.2 ,100.0%
+ S085 , Christian , male , statistical_computing ,no,feedback, 6.0 ,77.5%
+S086,Luca,male,statistical_computing,no,regular, 4.4 ,82.7%
+S087,Isaac,male,applied_statistics,no,feedback, 9.1 ,68.4%
+S088,Vincent,male,data_science,yes,regular, 7.7 ,89.7%
+S089,Gabrielle,female,applied_statistics,no,feedback, 7.3 ,94.4%
+ S090 , Hunter , male ,applied statistics,no,feedback, 8.0 ,83.9%
+S091,Annabelle,female,data_science,Y,regular, 5.3 ,89.5%
+S092,Everett,male,statistical_computing,no,regular, 7.4 ,76.4%
+S093,Camille,F,data_science,yes,feedback, 4.8 ,94.9%
+S094,Brennan,male,statistical_computing,yes,regular, 11.1 ,87.0%
+S095,Jack,M,data_science,yes,feedback, 8.2 ,91.3%
+ S096 , Darren , male , applied_statistics ,yes,feedback, 8.1 ,89.2%
+S097,Aubrey,female,data science,yes,instant_feedback, 10.4 ,83.2%
+S098,Evelyn,female,applied_statistics,no,regular, 8.5 ,75.1%
+S099,Brandon,male,statistical_computing,no,feedback, 10.2 ,80.4%
+ S100 , Adrianna ,F, statistical_computing ,no,feedback, 6.4 ,74.1%
+S101,Nora,F,data_science,no,regular, 9.5 ,88.6%
+S102,Ezekiel,male,data_science,no,feedback, 8.3 ,100.0%
+S103,Ricardo,M,applied_statistics,no,regular, 11.7 ,89.1%
+ S104 , Megan , female , statistical_computing ,no,feedback, 9.6 ,78.7%
+ S105 , Cora , female , applied_statistics ,yes,feedback, 7.2 ,82.2%
+ S106 , Charles , male , data_science ,yes,feedback, 9.2 ,90.7%
+ S107 , Gavin , male , data_science ,no,instant_feedback, 7.6 ,92.1%
+S108,Sophia,female,statistical_computing,no,standard,unknown,69.7%
+S109,Douglas,male,statistical_computing,no,regular, 10.4 ,84.5%
+S110,James,male,applied_statistics,no,regular, 9.5 ,81.5%
+S111,John,male,data_science,yes,feedback, 6.6 ,83.0%
+S112,Natalie,female,data_science,Y,regular,NA,100.0%
+S113,Melissa,female,statistical_computing,no,regular, 8.0 ,78.2%
+S114,Ashley,female,data_science,no,regular, 3.7 ,74.7%
+S115,Jade,female,applied_statistics,yes,feedback, 6.9 ,76.3%
+ S116 , Wayne , male ,data science,yes,feedback, 6.2 ,88.7%
+ S117 , Sebastian , male , statistical_computing ,no,standard, 7.0 ,88.2%
+S118,Jayden,male,applied_statistics,yes,feedback, 8.5 ,74.9%
+ S119 , Angelina , female , applied_statistics ,no,standard, 6.9 ,82.8%
+S120,Isla,female,data_science,yes,feedback, 5.4 ,84.1%
+S121,Leonard,male,statistical_computing,Y,regular, 4.5 ,88.9%
+S122,Jada,female,statistical_computing,no,instant_feedback, 8.4 ,73.5%
+S123,Gage,male,statistical_computing,no,feedback, 8.6 ,-
+S124,Jason,M,data science,Y,feedback, 10.0 ,86.2%
+S125,Judith,female,applied statistics,no,regular, 6.2 ,80.9%
+S126,Danny,male,applied_statistics,no,standard, 9.4 ,85.3%
+S127,Blake,male,statistical_computing,N,instant_feedback, 6.1 ,100.0%
+S128,Jacob,male,statistical_computing,yes,regular, 9.2 ,90.3%
+ S129 , Troy , male ,applied statistics,no,regular, 10.5 ,83.6%
+S130,Ava,female,applied_statistics,yes,standard, 6.4 ,94.6%
+ S131 , Madison , female , applied_statistics ,yes,feedback, 9.6 ,84.2%
+S132,Max,male,applied_statistics,no,regular, 6.5 ,98.0%
+S133,Rachel,female,statistical_computing,no,feedback, 11.5 ,89.9%
+S134,Jesus,male,data_science,no,feedback, 8.1 ,97.9%
+S135,Brooklyn,female,data_science,yes,regular, 7.6 ,83.3%
+S136,Micah,M,applied_statistics,no,regular, 6.9 ,80.0%
+S137,Hailey,F,applied_statistics,no,feedback, 8.6 ,92.4%
+ S138 , Xavier , male , data_science ,yes,feedback, 7.5 ,80.9%
+S139,Bryan,male,applied_statistics,yes,regular, 7.7 ,83.3%
+ S140 , Luna , female , applied_statistics ,no,feedback, 11.1 ,75.7%
+S141,Emily,female,data_science,no,regular, 7.9 ,84.7%
+S142,Evan,male,data_science,yes,feedback, 6.3 ,82.5%
+ S143 , Amanda , female , statistical_computing ,no,regular,NA,81.9%
+S144,Isabella,female,data_science,yes,feedback, 6.1 ,80.0%
+S145,Matthew,male,statistical_computing,N,regular, 9.7 ,73.6%
+ S146 , Dorothy , female , statistical_computing ,N,regular, 9.7 ,86.8%
+S147,Addison,female,applied_statistics,Y,regular, 6.1 ,82.0%
+ S148 , Mia , female , data_science ,no,standard, 4.4 ,95.5%
+S149,Maverick,M,statistical_computing,no,regular, 9.5 ,80.1%
+S150,Harper,female,statistical_computing,Y,feedback,unknown,69.3%
+S151,Alexa,female,statistical_computing,no,feedback, 2.8 ,77.2%
+ S152 , Luke , male ,applied statistics,no,regular, 6.7 ,76.7%
+ S153 , Howard , male , data_science ,N,feedback, 8.1 ,93.2%
+S154,Charlotte,female,data_science,no,regular, 6.7 ,76.1%
+S155,Nolan,male,statistical_computing,no,feedback, 8.7 ,85.4%
+ S156 , Lindsay ,F, data_science ,yes,regular, 11.0 ,86.6%
+S157,Adaline,female,statistical_computing,yes,feedback, 7.4 ,84.3%
+S158,Catherine,female,applied statistics,no,feedback, 12.2 ,76.1%
+S159,Spencer,male,data_science,yes,regular, 7.6 ,84.6%
+ S160 , Oliver , male , data_science ,no,regular, 8.8 ,83.5%
+S012,Kimberly,female,data_science,yes,feedback, 9.7 ,100.0%
+S048,Brian,male,statistical_computing,no,instant_feedback, 7.0 ,90.3%
+S094,Brennan,male,statistical_computing,yes,regular, 11.1 ,87.0%
+S139,Bryan,male,applied_statistics,yes,regular, 7.7 ,83.3%

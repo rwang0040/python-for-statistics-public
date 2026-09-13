@@ -1,0 +1,493 @@
+---
+title: "第四章（四）：多表合并与综合整理流程"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-05"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第四章（四） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+os.makedirs("data", exist_ok=True)
+
+survey_csv = """name,gender,age,city,major,study_hours,python_score,attendance_rate
+Alice, Female ,25,Beijing,Statistics,12,88,95%
+Bob,male,30,Shanghai,Applied Statistics,8,76,88%
+Charlie, MALE ,17,Guangzhou,Statistics,6,64,72%
+Diana, female,22,Beijing,Applied Statistics,15,92,98%
+Eve,FEMALE,16,Chengdu,Statistics,5,58,65%
+Frank,male,59,Shanghai,Applied Statistics,4,70,80%
+Grace, female ,60,Beijing,Statistics,10,84,90%
+Henry,male,unknown,Wuhan,Applied Statistics,9,,82%
+Irene,Female,45,Guangzhou,Statistics,11,86,91%
+Jack,Male,68,Chengdu,Applied Statistics,3,66,70%
+Karen,female,17,Shanghai,Statistics,7,73,78%
+Leo, male ,5,Beijing,Applied Statistics,2,55,60%
+Maria,FEMALE,33,Wuhan,Statistics,14,90,96%
+Nate,male,40,Guangzhou,Applied Statistics,10,81,89%
+Olivia, female,70,Beijing,Statistics,6,75,83%
+Paul,MALE,42,Shanghai,Applied Statistics,9,79,85%
+Quinn, female ,29,Chengdu,Statistics,13,87,92%
+Rachel,female,8,Wuhan,Applied Statistics,4,61,68%
+Steve,male,55,Guangzhou,Statistics,8,77,84%
+Tina,FEMALE,,Beijing,Applied Statistics,12,91,97%
+Uma,female,23,Shanghai,Statistics,11,85,90%
+"""
+
+learning_csv = """name,wave,study_hours,quiz_score,assignment_score
+Alice,1,10,82,88
+Alice,2,12,86,90
+Bob,1,7,75,78
+Bob,2,8,78,80
+Charlie,1,5,60,66
+Charlie,2,6,65,70
+Diana,1,13,90,92
+Diana,2,15,94,95
+Eve,1,4,55,60
+Eve,2,5,59,63
+Frank,1,3,68,72
+Frank,2,4,70,74
+Grace,1,9,83,86
+Grace,2,10,85,88
+Henry,1,8,,76
+Henry,2,9,74,79
+Irene,1,10,84,88
+Irene,2,11,87,90
+Jack,1,3,65,68
+Jack,2,3,66,70
+Karen,1,6,70,74
+Karen,2,7,74,77
+Maria,1,13,88,91
+Maria,2,14,92,94
+"""
+
+project_csv = """name,wave,project_group,project_score
+Alice,1,A,86
+Alice,2,A,90
+Bob,1,B,78
+Bob,2,B,82
+Charlie,1,C,65
+Charlie,2,C,70
+Diana,1,A,92
+Diana,2,A,96
+Eve,1,C,60
+Eve,2,C,64
+Frank,1,B,72
+Frank,2,B,76
+Grace,1,A,85
+Grace,2,A,88
+Henry,1,B,75
+Henry,2,B,80
+Irene,1,A,87
+Irene,2,A,91
+Jack,1,C,68
+Jack,2,C,71
+Karen,1,C,73
+Karen,2,C,78
+Maria,1,A,90
+Maria,2,A,95
+"""
+
+with open("./data/survey_extended.csv", "w", encoding="utf-8") as f:
+    f.write(survey_csv)
+
+with open("./data/learning_records.csv", "w", encoding="utf-8") as f:
+    f.write(learning_csv)
+
+with open("./data/project_records.csv", "w", encoding="utf-8") as f:
+    f.write(project_csv)
+```
+
+## 本节概览
+
+* 理解为什么真实数据常常分成多张表
+* 掌握 `concat()` 与 `merge()` 的基础用法
+* 理解单键合并与多键合并
+* 串联清洗、合并、汇总和导出，并认识单机处理边界
+
+# 为什么会有多张表
+
+## 真实数据经常分开存
+
+* 一张表可能保存基本信息。
+* 另一张表可能保存多次测验记录。
+* 还有一张表可能保存项目分组和项目成绩。
+* 数据整理时，经常需要把这些表合并起来。
+* 这里的多轮学习记录只覆盖部分受访者，因此它是一个学习记录子样本，不等于全部问卷样本。
+
+```{pyodide}
+#| echo: true
+import pandas as pd
+import numpy as np
+
+basic = pd.read_csv("./data/survey_extended.csv")
+learning = pd.read_csv("./data/learning_records.csv")
+project = pd.read_csv("./data/project_records.csv")
+
+print(basic.head())
+print(learning.head())
+print(project.head())
+```
+
+## 主键的直观理解
+
+* 主键是用于识别一条记录的字段。
+* 如果每个人只出现一次，`name` 可以作为简单主键。
+* 如果同一个人在多轮记录中出现，就需要 `name + wave` 这样的多键。
+
+# `concat()`：纵向合并
+
+## 同结构数据上下拼接
+
+* `concat()` 常用于把结构相同的多张表纵向合并。
+* 例如：两个班级、两个批次、两个月份的数据。
+
+```{pyodide}
+#| echo: true
+part1 = basic.iloc[:5][["name", "gender", "age"]]
+part2 = basic.iloc[5:10][["name", "gender", "age"]]
+
+combined = pd.concat([part1, part2])
+print(combined)
+```
+
+## 重新整理行索引
+
+* 拼接后原来的索引会被保留。
+* `ignore_index=True` 可以重新生成连续索引。
+
+```{pyodide}
+#| echo: true
+combined = pd.concat([part1, part2], ignore_index=True)
+print(combined)
+```
+
+## 小结任务 1
+
+把 `basic` 的前 3 行和第 4 到第 6 行纵向合并，并重新生成索引。
+
+```{pyodide}
+#| echo: true
+basic = pd.read_csv("./data/survey_extended.csv")
+
+# top = # 在这里补全
+# bottom = # 在这里补全
+# combined = # 在这里补全
+# print(combined)
+```
+
+# `merge()`：横向合并
+
+## 单键合并
+
+* `merge()` 用于按共同字段把两张表横向合并。
+* 如果两张表都有 `name`，可以按 `name` 合并。
+
+```{pyodide}
+#| echo: true
+basic_small = basic[["name", "gender", "age", "major"]]
+wave1_learning = learning.loc[learning["wave"] == 1, ["name", "study_hours", "quiz_score"]]
+
+merged = pd.merge(basic_small, wave1_learning, on="name", how="inner")
+print(merged.head())
+```
+
+## `inner` 与 `left`
+
+* `inner`：只保留两张表都能匹配上的记录。
+* `left`：保留左表所有记录，右表没有匹配时产生缺失值。
+* 初学阶段重点掌握这两种。
+* 本例中，第一轮学习记录只覆盖部分受访者，所以 `left` 合并后会看到一些缺失值。
+* `tail()` 和 `head()` 相对，用于查看后几行。
+
+```{pyodide}
+#| echo: true
+inner_merged = pd.merge(basic_small, wave1_learning, on="name", how="inner")
+left_merged = pd.merge(basic_small, wave1_learning, on="name", how="left")
+
+print(inner_merged.shape)
+print(left_merged.shape)
+print(left_merged.tail())
+```
+
+## 小结任务 2
+
+按 `name` 合并基本信息表和第一轮学习记录，保留基本信息表中的所有人。
+
+```{pyodide}
+#| echo: true
+basic = pd.read_csv("./data/survey_extended.csv")
+learning = pd.read_csv("./data/learning_records.csv")
+
+# wave1 = # 在这里补全
+# merged = # 在这里补全
+# print(merged.head())
+```
+
+# 多键合并
+
+## 为什么需要多个键
+
+* 如果一个人只有一条记录，`name` 可能够用。
+* 如果一个人有第 1 轮、第 2 轮记录，只靠 `name` 就不够。
+* 此时应使用 `name + wave` 共同确定一条记录。
+
+```{pyodide}
+#| echo: true
+print(learning.head(6))
+print(project.head(6))
+```
+
+## `on=["name", "wave"]`
+
+* 多键合并时，把多个键放在列表中。
+* 只有多个键都匹配，记录才会合并到同一行。
+
+```{pyodide}
+#| echo: true
+learning_project = pd.merge(
+    learning,
+    project,
+    on=["name", "wave"],
+    how="inner"
+)
+
+print(learning_project.head(10))
+```
+
+## 合并后检查缺失
+
+* 合并后要检查行数是否符合预期。
+* 也要检查关键变量是否出现大量缺失。
+
+```{pyodide}
+#| echo: true
+print(learning_project.shape)
+print(learning_project.isna().sum())
+```
+
+## 小结任务 3
+
+按 `name + wave` 合并学习记录表和项目记录表，输出前 8 行。
+
+```{pyodide}
+#| echo: true
+learning = pd.read_csv("./data/learning_records.csv")
+project = pd.read_csv("./data/project_records.csv")
+
+# merged = # 在这里补全
+# print(merged.head(8))
+```
+
+# 合并后的整理
+
+## 加入基本信息
+
+* 多轮记录合并以后，还可以继续加入基本信息。
+* 基本信息表中每个人只有一行，因此可按 `name` 合并。
+
+```{pyodide}
+#| echo: true
+basic_clean = (
+    basic
+    .assign(
+        gender_clean=lambda x: x["gender"].str.strip().str.lower(),
+        age=lambda x: pd.to_numeric(x["age"], errors="coerce")
+    )
+    [["name", "gender_clean", "age", "major", "city"]]
+)
+
+full_data = pd.merge(
+    learning_project,
+    basic_clean,
+    on="name",
+    how="left"
+)
+
+print(full_data.head())
+```
+
+## 生成综合指标
+
+* 合并后的表可以继续生成新变量。
+* 例如把测验、作业、项目成绩合成一个简单总评。
+
+```{pyodide}
+#| echo: true
+full_data["quiz_score"] = pd.to_numeric(full_data["quiz_score"], errors="coerce")
+full_data["assignment_score"] = pd.to_numeric(full_data["assignment_score"], errors="coerce")
+full_data["project_score"] = pd.to_numeric(full_data["project_score"], errors="coerce")
+
+full_data["total_score"] = (
+    full_data["quiz_score"] * 0.3
+    + full_data["assignment_score"] * 0.3
+    + full_data["project_score"] * 0.4
+)
+
+print(full_data[["name", "wave", "quiz_score", "assignment_score", "project_score", "total_score"]].head())
+```
+
+## 分组汇总
+
+* 完成合并和变量生成后，就可以按组汇总。
+* 例如比较不同性别、不同轮次的平均总评。
+
+```{pyodide}
+#| echo: true
+summary = full_data.groupby(["gender_clean", "wave"]).agg(
+    n_rows=("name", "count"),
+    n_valid_total=("total_score", "count"),
+    mean_total=("total_score", "mean"),
+    mean_hours=("study_hours", "mean")
+).reset_index()
+
+print(summary)
+```
+
+# 导出结果
+
+## `to_csv()`
+
+* 整理后的表可以导出为 CSV。
+* `index=False` 表示不把行索引写入文件。
+
+```{pyodide}
+#| echo: true
+summary.to_csv("./data/chapter4_summary.csv", index=False)
+
+check = pd.read_csv("./data/chapter4_summary.csv")
+print(check)
+```
+
+## 导出前要检查
+
+* 导出前应确认行数、列名、缺失情况和关键统计结果。
+* 否则很容易把半成品结果带到下一步分析中。
+
+# 数据规模与工具边界
+
+* DataFrame 通常需要放在计算机内存中，数据规模会受到单机资源限制。
+* CSV 很大时，可以用 `chunksize=` 分块读取和处理，而不是一次全部载入。
+* 数据超过单机能力后，通常需要数据库或分布式计算平台。
+* 无论使用哪种工具，都要记录数据来源，并检查行数、缺失值和统计口径。
+
+# 综合案例：从多张表到汇总结果
+
+## 任务描述
+
+完成一个完整整理流程：
+
+* 读取基本信息、学习记录、项目记录
+* 按 `name + wave` 合并学习记录和项目记录
+* 按 `name` 加入基本信息
+* 生成总评成绩
+* 按专业和轮次汇总
+* 导出结果
+
+这里的汇总结果只代表有学习记录和项目记录的子样本，解释时不能直接当作全部受访者的结果。
+
+```{pyodide}
+#| echo: true
+basic = pd.read_csv("./data/survey_extended.csv")
+learning = pd.read_csv("./data/learning_records.csv")
+project = pd.read_csv("./data/project_records.csv")
+
+basic_clean = (
+    basic
+    .assign(
+        gender_clean=lambda x: x["gender"].str.strip().str.lower(),
+        age=lambda x: pd.to_numeric(x["age"], errors="coerce")
+    )
+    [["name", "gender_clean", "age", "major", "city"]]
+)
+
+records = pd.merge(learning, project, on=["name", "wave"], how="inner")
+records = pd.merge(records, basic_clean, on="name", how="left")
+
+for col in ["quiz_score", "assignment_score", "project_score", "study_hours"]:
+    records[col] = pd.to_numeric(records[col], errors="coerce")
+
+records["total_score"] = (
+    records["quiz_score"] * 0.3
+    + records["assignment_score"] * 0.3
+    + records["project_score"] * 0.4
+)
+
+summary = records.groupby(["major", "wave"]).agg(
+    n_rows=("name", "count"),
+    n_valid_total=("total_score", "count"),
+    mean_total=("total_score", "mean"),
+    mean_hours=("study_hours", "mean")
+).reset_index()
+
+print(summary)
+
+summary.to_csv("./data/major_wave_summary.csv", index=False)
+```
+
+# 课堂练习
+
+## 练习 1：纵向合并
+
+把基本信息表的前 4 行和第 10 到第 13 行纵向合并，并重新生成索引。
+
+```{pyodide}
+#| echo: true
+basic = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里补全
+```
+
+## 练习 2：单键合并
+
+筛选第二轮学习记录，并按 `name` 与基本信息表合并。
+
+```{pyodide}
+#| echo: true
+basic = pd.read_csv("./data/survey_extended.csv")
+learning = pd.read_csv("./data/learning_records.csv")
+
+# 在这里补全
+```
+
+## 练习 3：多键合并与汇总
+
+按 `name + wave` 合并学习记录和项目记录，生成总评成绩，并按 `project_group` 汇总平均总评。
+
+```{pyodide}
+#| echo: true
+learning = pd.read_csv("./data/learning_records.csv")
+project = pd.read_csv("./data/project_records.csv")
+
+# 在这里补全
+```
+
+# 本节小结
+
+* `concat()` 用于同结构数据的纵向合并。
+* `merge()` 用于按键横向合并不同信息表。
+* 当同一个对象有多轮或多时间点记录时，多键合并很常见。
+* `inner` 和 `left` 是最常用、最需要先掌握的合并方式。
+* 多表整理后，要检查缺失、生成指标、汇总结果，并在必要时导出。
+
+## 下一章
+
+下一章将进入数据可视化与探索性分析，把第四章整理好的表格结果转换成更直观的图形表达。

@@ -1,0 +1,417 @@
+---
+title: "第三章（三）：随机模拟与概率现象"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.2
+author: "王润祖"
+date: "2026-04"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第三章（三） - 王润祖"
+---
+
+## 本节概览
+
+* 理解随机模拟为什么适合用程序完成
+* 学会使用 NumPy 随机数生成器生成基础随机样本
+* 能够用数组和聚合结果观察概率现象
+* 通过重复实验理解“随机中有规律”
+
+# 为什么要做随机模拟
+
+## 统计应用中的随机模拟
+
+* 统计学习中经常面对这样的现象：单次结果不稳定，但长期规律可以被观察。
+* 程序非常适合完成这类重复试验。
+* 前两节已经说明，数组能高效地批量计算和汇总；这一节继续用同样的工具来观察随机现象。
+
+## 一个直观问题
+
+* 如果只抛 5 次硬币，正面比例可能波动很大。
+* 如果抛 500 次、5000 次，结果会怎样变化？
+
+# 使用随机数生成器生成样本
+
+## 创建随机数生成器
+
+* `np.random.default_rng(种子)` 可以创建一个随机数生成器。
+* 下面统一记作 `rng`，后面所有随机样本都从这里生成。
+* `rng.random()` 可以生成在 `[0, 1)` 上均匀分布的随机数。
+
+```{pyodide}
+#| echo: true
+import numpy as np
+rng = np.random.default_rng(202604)
+
+random_value = rng.random()
+print(f"单个随机数：{random_value}")
+```
+
+## 固定种子与可复现
+
+* 使用相同种子，可以重新生成同一串随机数。
+* 改变种子，会得到另一组随机结果。
+* 固定种子不是取消随机性，而是让演示和分析可以复现。
+
+```{pyodide}
+#| echo: true
+first = np.random.default_rng(202604).random(3)
+second = np.random.default_rng(202604).random(3)
+
+print(first)
+print(second)
+print("两次结果是否相同：", np.allclose(first, second))
+```
+
+## 一组随机数也是一组数据
+
+* 除了单个随机数，还可以直接生成一组随机数。
+* 这与前两节把数据放进数组统一处理的思路是一致的。
+
+```{pyodide}
+#| echo: true
+random_values = rng.random(size=10)
+print(f"一组随机数：{random_values}")
+```
+
+## 生成随机整数
+
+* `rng.integers(low, high, size)` 可以生成位于 `[low, high)` 区间的一组随机整数。
+
+```{pyodide}
+#| echo: true
+random_ints = rng.integers(0, 10, size=10)
+print(f"随机整数：{random_ints}")
+```
+
+## 生成指定区间内的随机小数
+
+* `rng.random(size)` 默认生成 `[0, 1)` 上的随机小数。
+* 如果需要在其他区间中生成随机小数，可以使用 `rng.uniform(low, high, size)`。
+* 例如，`rng.uniform(1, 2, size=10)` 会生成位于 `[1, 2)` 区间的一组随机小数。
+
+```{pyodide}
+#| echo: true
+uniform_values = rng.uniform(1, 2, size=10)
+print(f"[1, 2) 上的随机小数：{uniform_values}")
+```
+
+## 二项分布里的 `n` 和 `size`
+
+* 单次抛一枚硬币，可以理解为一次伯努利试验。
+* 如果关心“连续抛多次以后，正面一共出现了几次”，更常用二项分布来描述。
+* `rng.binomial(n, p)` 中，`n` 表示一次实验里重复试验的次数，`p` 表示单次成功的概率。
+
+```{pyodide}
+#| echo: true
+coin_result = rng.binomial(n=10, p=0.5)
+print(f"抛 10 次硬币，出现正面的次数：{coin_result}")
+```
+
+* 如果把这样的实验再重复很多次，可以继续使用 `size` 参数。
+* 这时 `size` 表示“把同一种实验重复多少次”。
+
+```{pyodide}
+#| echo: true
+coin_results = rng.binomial(n=10, p=0.5, size=5)
+print(f"将抛 10 次硬币的实验重复 5 次：{coin_results}")
+```
+
+## 正态分布示例
+
+* `rng.normal(loc, scale, size)` 可以生成服从正态分布的一组随机样本。
+* 这里先建立“可以直接生成一组样本”的直觉。
+
+```{pyodide}
+#| echo: true
+normal_sample = rng.normal(loc=70, scale=10, size=10)
+print(f"正态样本：{normal_sample}")
+```
+
+## 小结任务：课堂任务 1
+
+使用 `rng.normal()` 生成 100 个均值为 0、标准差为 1 的正态随机数，计算这组样本的均值和标准差。
+
+```{pyodide}
+#| echo: true
+normal_sample = # 在这里补全
+
+# print(f"样本的均值为：{...:.2f}")
+# print(f"样本的标准差为：{...:.4f}")
+```
+
+# 抛硬币实验
+
+## 一次实验：抛 20 次硬币
+
+* 先看一次完整实验：连续抛 `20` 次硬币，记录出现正面的次数。
+
+```{pyodide}
+#| echo: true
+coin_result = rng.binomial(n=20, p=0.5)
+print(f"抛 20 次硬币，出现正面的次数：{coin_result}")
+```
+
+## 把次数换成比例
+
+* 既然一次实验里抛了 `20` 次硬币，那么“出现正面的次数除以 20”就是这次实验的正面比例。
+
+```{pyodide}
+#| echo: true
+coin_result = rng.binomial(n=20, p=0.5)
+print(f"抛 20 次硬币，出现正面的比例：{coin_result / 20:.2f}")
+```
+
+## 把同一个实验重复多次
+
+* 如果把“抛 20 次硬币”的实验重复很多次，就会得到一组实验结果。
+* 数组中的每个元素表示一次完整实验里的正面个数。
+
+```{pyodide}
+#| echo: true
+coin_results = rng.binomial(n=20, p=0.5, size=10)
+print(f"10 次实验的正面个数：{coin_results}")
+```
+
+## 样本量变大时
+
+* 当每次实验里抛硬币的次数增多时，平均正面比例通常会更稳定。
+
+```{pyodide}
+#| echo: true
+for n in [10, 100, 1000]:
+    coin_results = rng.binomial(n=n, p=0.5, size=10)
+    print(f"将抛 {n} 次硬币的实验重复 10 次，正面比例的平均值：{(coin_results / n).mean():.2f}")
+    print(f"将抛 {n} 次硬币的实验重复 10 次，正面比例的标准差：{(coin_results / n).std():.4f}")
+```
+
+## 小结任务：课堂任务 2
+
+模拟把“抛 30 次硬币”的实验重复 20 次，补全下面的代码：输出这些实验中正面比例的平均值和标准差。
+
+```{pyodide}
+#| echo: true
+coin_results = # 在这里补全
+
+# print(f"平均正面比例：{...:.2f}")
+# print(f"正面比例标准差：{...:.4f}")
+```
+
+# 样本量与估计稳定性
+
+## 不只比例会更稳定
+
+* 稳定性不只出现在“正面比例”上，也会出现在其他基于样本的数值估计上。
+* 下面用样本均值做一个更一般的观察。
+
+## 二维数组里的多次实验
+
+* 注意这里把 `size` 写成了 `(10, 50)`。
+* 这表示一次生成一个 `10 × 50` 的二维数组：可以把它理解为 **重复 10 次实验，每次实验生成 50 个随机数**。
+
+```{pyodide}
+#| echo: true
+samples = rng.normal(loc=70, scale=10, size=(10, 50))
+sample_means = samples.mean(axis=1)
+
+print(f"10 次实验各自的样本均值：{sample_means}")
+```
+
+## 比较不同样本量
+
+* 如果每次实验中的样本量增大，样本均值通常会更稳定。
+
+```{pyodide}
+#| echo: true
+for n in [10, 100, 1000]:
+    samples = rng.normal(loc=70, scale=10, size=(10, n))
+    sample_means = samples.mean(axis=1)
+
+    print(f"每次生成 {n} 个随机数并重复 10 次时，样本均值的均值是：{sample_means.mean():.2f}")
+    print(f"每次生成 {n} 个随机数并重复 10 次时，样本均值的标准差是：{sample_means.std():.4f}")
+```
+
+::: {.callout-note}
+### 当前只需掌握
+只需要建立两个最基础的直觉：`size=(a, b)` 表示重复 `a` 次实验、每次生成 `b` 个随机数；`axis=1` 表示按行汇总。
+:::
+
+## 小结任务：课堂任务 3
+
+分别以 `10`、`100`、`1000` 为样本量，各进行 `10` 次独立实验。每次从 `[0,1)` 的均匀分布中生成指定数量的随机数，并计算样本均值。最后，对每个样本量下得到的 `10` 个样本均值，计算它们的均值和标准差。
+
+```{pyodide}
+#| echo: true
+for n in [10, 100, 1000]:
+    samples = # 在这里补全
+    sample_means = # 在这里补全
+
+    # print(f"n={n} 时，样本均值的均值：{...:.4f}")
+    # print(f"n={n} 时，样本均值的标准差：{...:.4f}")
+```
+
+# 综合案例：蒙特卡洛 (Monte Carlo) 的直观理解
+
+## 什么是蒙特卡洛方法
+
+* 如果一个问题可以转化成“随机点落在某个区域中的比例”，程序就有机会用随机模拟来近似求解。
+* 这类方法常被称为 **蒙特卡洛方法**。
+* 这里先建立最基础的技术直觉：用随机比例近似一个数值。
+
+## 随机点与几何比例
+
+* 在边长为 `1` 的正方形中，取一个四分之一圆，圆的半径也是 `1`。
+* 正方形面积是 `1`，四分之一圆面积是 `pi / 4`。
+* 如果在正方形中随机撒很多点，那么“落在四分之一圆内的点所占比例”就会接近 `pi / 4`。
+
+## 先生成一批点
+
+```{pyodide}
+#| echo: true
+x = rng.random(10)
+y = rng.random(10)
+
+print(f"x 坐标：{x}")
+print(f"y 坐标：{y}")
+```
+
+## 判断点是否落在圆内
+
+* 对于点 `(x, y)`，如果满足 `x**2 + y**2 <= 1`，就说明它落在四分之一圆内。
+
+```{pyodide}
+#| echo: true
+x = rng.random(10)
+y = rng.random(10)
+
+inside = x**2 + y**2 <= 1
+print(f"是否在圆内：{inside}")
+```
+
+## 用比例估计 `pi`
+
+* `inside` 是一组真假值。
+* 它的均值等于“落在圆内的点所占比例”。
+* 因为这个比例接近 `pi / 4`，所以可以用 `4 * inside.mean()` 来估计 `pi`。
+
+```{pyodide}
+#| echo: true
+x = rng.random(10)
+y = rng.random(10)
+
+inside = x**2 + y**2 <= 1
+pi_est = 4 * inside.mean()
+
+print(f"pi 的估计值：{pi_est}")
+```
+
+## 小结任务：课堂任务 4
+
+给定已经生成的随机点，补全下面的代码：判断哪些点落在四分之一圆内，并估计 `pi`。
+
+```{pyodide}
+#| echo: true
+x = rng.random(10000)
+y = rng.random(10000)
+
+inside = # 在这里补全
+pi_est = # 在这里补全
+
+# print(f"pi 的估计值：{...:.4f}")
+```
+
+## 比较不同样本量下的 `pi` 估计
+
+* 随机点数量较少时，估计值波动会更明显。
+* 随机点数量增大后，估计结果通常会更稳定。
+
+```{pyodide}
+#| echo: true
+for size in [100, 10000, 1000000]:
+    x = rng.random(size)
+    y = rng.random(size)
+    inside = x**2 + y**2 <= 1
+    pi_est = 4 * inside.mean()
+    print(f"{size} 个点时的 pi 估计值：{pi_est:.4f}")
+```
+
+## 本例回顾
+
+* 随机模拟不只可以展示概率现象，也可以做数值估计。
+* 数组运算可以一次生成整批点并完成整体判断。
+* 布尔结果的均值可以自然转化为比例估计。
+* Monte Carlo 方法把“随机抽样”与“近似计算”联系在了一起。
+
+# 课堂练习
+
+## 练习 1
+
+使用 `rng.integers()` 模拟 20 次掷六面骰，补全下面的代码：输出掷骰结果、平均点数和掷出 `6` 的次数。
+
+```{pyodide}
+#| echo: true
+dice = # 在这里补全
+
+# print(f"掷骰结果：{...}")
+# print(f"平均点数：{...:.2f}")
+# print(f"掷出 6 的次数：{...}")
+```
+
+## 练习 2
+
+某游戏要求同时掷 `4` 个二十面骰子，点数总和大于 `62` 才能成功完成任务。请模拟 `10000` 次投掷，估算任务成功的概率。
+
+```{pyodide}
+#| echo: true
+# 4 个二十面骰子，重复 10000 次
+rolls = # 在这里补全
+total_scores = # 在这里补全
+success = # 在这里补全
+
+# print(f"任务成功概率：{...:.4f}")
+```
+
+## 练习 3
+
+分别使用 `1000` 个点和 `1000000` 个点，用蒙特卡洛方法估计定积分 $\int_0^1 x^2 dx$ 的值。  
+方法：在 $[0,1] \times [0,1]$ 正方形内均匀撒点，统计满足 $y \le x^2$ 的点的比例，该比例乘以 `1`（正方形面积）就是积分近似值。
+
+```{pyodide}
+#| echo: true
+for size in [1000, 1000000]:
+    x = rng.random(size)
+    y = rng.random(size)
+    inside = # 在这里补全
+    integral_est = # 在这里补全
+
+    # print(f"{size} 个点时，积分估计值：{...:.4f}")
+```
+
+# 随机中有规律
+
+* 随机模拟不是为了“制造混乱”，而是为了观察规律。
+* 统计学习关心的往往不是某一次结果，而是大量样本形成的整体趋势。
+* 程序让这种观察变得可重复、可计算，也能进一步转化为近似估计。
+
+# 本节小结
+
+* NumPy 随机数生成器可以批量生成一组随机样本。
+* 抛硬币实验能直观体现“随机性中有规律”。
+* 数组判断与聚合可以把随机样本转成比例与均值信息。
+* Monte Carlo 示例说明：随机模拟也可以用于近似计算。
+
+## 下一章
+
+下一章将介绍 Pandas，开始处理真正的表格数据。

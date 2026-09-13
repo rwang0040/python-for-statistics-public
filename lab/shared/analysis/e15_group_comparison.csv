@@ -1,0 +1,2 @@
+outcome,group_1,group_2,n_group_1,n_group_2,mean_group_1,mean_group_2,mean_difference,ci_low,ci_high,t_statistic,p_value
+final_score,feedback,regular,80,80,81.9525,77.74875,4.20375,1.163479,7.244021,2.731001,0.007034

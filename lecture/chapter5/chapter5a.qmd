@@ -1,0 +1,606 @@
+---
+title: "第五章（一）：分布、频数与分组比较"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-09"
+pyodide:
+  packages:
+    - numpy
+    - pandas
+    - matplotlib
+    - seaborn
+resources:
+  - assets
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第五章（一） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+from matplotlib import font_manager
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+sns.set_theme(style="whitegrid")
+font_path = "./assets/NotoSansCJKsc-Regular.otf"
+if os.path.exists(font_path):
+    font_manager.fontManager.addfont(font_path)
+    cjk_font = font_manager.FontProperties(fname=font_path).get_name()
+    plt.rcParams["font.family"] = cjk_font
+    plt.rcParams["axes.unicode_minus"] = False
+
+os.makedirs("data", exist_ok=True)
+
+# 固定随机种子生成模拟教学数据，保证每次课堂演示结果一致。
+rng = np.random.default_rng(202609)
+n_students = 160
+major_order = ["统计学", "应用统计学", "数据科学"]
+
+major = rng.choice(major_order, size=n_students, p=[0.36, 0.34, 0.30])
+gender = rng.choice(["女", "男"], size=n_students, p=[0.52, 0.48])
+major_effect = pd.Series(major).map({"统计学": 0, "应用统计学": 2, "数据科学": 4}).to_numpy()
+
+study_hours = np.clip(
+    rng.normal(8.5 + major_effect * 0.18, 2.6, size=n_students),
+    1,
+    20,
+).round(1)
+attendance_rate = np.clip(rng.normal(84, 8, size=n_students), 55, 100).round(1)
+python_score = np.clip(
+    39 + 2.45 * study_hours + 0.23 * attendance_rate + major_effect + rng.normal(0, 8, size=n_students),
+    40,
+    100,
+).round(1)
+data_literacy_score = np.clip(
+    24 + 0.46 * python_score + rng.normal(0, 7, size=n_students),
+    35,
+    100,
+).round(1)
+
+student_df = pd.DataFrame(
+    {
+        "student_id": [f"S{i:03d}" for i in range(1, n_students + 1)],
+        "gender": gender,
+        "major": pd.Categorical(major, categories=major_order, ordered=True),
+        "study_hours": study_hours,
+        "attendance_rate": attendance_rate,
+        "python_score": python_score,
+        "data_literacy_score": data_literacy_score,
+    }
+)
+
+student_df.to_csv("./data/student_eda.csv", index=False)
+```
+
+## 本节概览
+
+* 从分析问题和变量类型出发选择图形
+* 理解 Matplotlib 中 `Figure` 与 `Axes` 的基本分工
+* 绘制数值变量分布、分类频数和分组分布图
+* 对图形作出简洁、克制的描述性解释
+
+# 从分析问题到图形选择
+
+## 图形不是数据分析的装饰
+
+* 表格适合查看精确数值；图形适合发现结构、差异和异常。
+* 作图前先明确：要观察哪一个变量，还是比较不同组，还是研究变量关系。
+* 图形能帮助提出问题，但不能代替后续的统计推断。
+
+::: {.callout-note}
+### 一张图先回答一个问题
+
+| 分析问题 | 变量类型 | 首选图形 |
+|---|---|---|
+| 成绩主要集中在哪个区间 | 一个数值变量 | 直方图 |
+| 各专业有多少学生 | 一个分类变量 | 频数图 |
+| 不同专业的成绩分布是否不同 | 分类变量 + 数值变量 | 箱线图 + 个体点 |
+| 学习时长与成绩是否有关联 | 两个数值变量 | 散点图 |
+:::
+
+```{pyodide}
+#| echo: true
+print(student_df.shape)
+print(student_df.dtypes)
+student_df.head()
+```
+
+## 作图前仍然要检查数据
+
+* 数值列是否真的是数值类型。
+* 分类变量是否有统一的类别口径和合理顺序。
+* 缺失值、极端值和样本量都会影响图形的解释。
+* 第四章完成的数据清洗，是第五章作图的前提。
+
+```{pyodide}
+#| echo: true
+print(student_df.isna().sum())
+print(student_df["major"].value_counts().reindex(major_order))
+print(student_df[["study_hours", "python_score"]].describe().round(2))
+```
+
+# Matplotlib 的最小作图框架
+
+## `Figure` 与 `Axes`
+
+* `Figure` 可以理解为整张画布。
+* `Axes` 是真正放置坐标轴、数据和图例的绘图区。
+* 本章统一使用对象式写法：先创建 `fig, ax`，再在 `ax` 上作图。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+ax.hist(student_df["python_score"])
+ax.set(
+    title="Python 成绩分布",
+    xlabel="Python 成绩",
+    ylabel="人数",
+)
+
+fig.tight_layout()
+plt.show()
+```
+
+## 基本标注与导出
+
+* 标题说明图形回答的问题。
+* 横轴、纵轴要写清变量名和必要的单位。
+* 有多个组或多条线时，图例应能说明颜色或线型含义。
+* 在本地 Notebook 中，可用 `fig.savefig()` 保存图片。
+
+::: {.callout-note}
+### 本章的库分工
+
+* Matplotlib 提供画布、坐标轴、标题、图例和导出等基础控制。
+* Seaborn 更适合用 DataFrame 的列名快速生成统计图形。
+* 两者可以一起使用：Seaborn 在 `ax` 上作图，Matplotlib 负责进一步标注和整理。
+:::
+
+## 小结任务 1
+
+为 `data_literacy_score` 绘制一个直方图，并补充标题、横轴和纵轴标签。
+
+```{pyodide}
+#| echo: true
+# fig, ax = plt.subplots(figsize=(6, 4))
+# ax.hist(student_df["data_literacy_score"])
+# ax.set(
+#     title=...,
+#     xlabel=...,
+#     ylabel=...,
+# )
+# fig.tight_layout()
+# plt.show()
+```
+
+# 数值变量的分布
+
+## 从 Matplotlib 到 Seaborn
+
+上一小节我们介绍了 `Matplotlib` 的画布和坐标轴。但在实际操作中，更常见的方式是先用 `Seaborn` 根据 DataFrame 的列名生成统计图，再用 `Matplotlib` 调整标题、坐标轴、图例和布局。这样写的好处是代码和表格列名对应更清楚，也方便继续添加分组颜色、平滑曲线等统计图层。
+
+流程示例如下：
+
+```python
+fig, ax = plt.subplots(figsize=(6, 4))
+sns.xxxplot(data=数据表, x="列名", y="列名", ax=ax)
+ax.set(title="标题", xlabel="横轴标签", ylabel="纵轴标签")
+fig.tight_layout()
+plt.show()
+```
+
+* Matplotlib 负责创建画布、坐标轴、标题、标签、图例和图片保存。
+* Seaborn 负责把 DataFrame 中的列快速画成常见统计图。
+* `data=student_df` 表示从哪张表取数据，`x="python_score"` 表示横轴使用哪一列。
+* `ax=ax` 表示把 Seaborn 的图画到刚才创建的那个坐标轴上。
+* 不同图形需要的参数不同：直方图通常只写 `x`，箱线图常常同时写 `x` 和 `y`。
+
+## `sns.histplot()`：直方图
+
+`sns.histplot()` 可以理解为 `ax.hist()` 的高级封装。它直接使用 DataFrame 和列名作图，适合和 Pandas 数据衔接。
+
+* 直方图首先用于观察集中位置、分散程度、偏态和可能的异常值。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+sns.histplot(
+    data=student_df,
+    x="python_score",
+    ax=ax,
+)
+ax.set(title="Python 成绩的直方图", xlabel="Python 成绩", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 分箱：直方图先把横轴切成区间
+
+直方图不是直接画出每一个成绩，而是先把横轴切成若干区间，再统计每个区间里有多少人。例如 `55-60`、`60-65`、`65-70` 这样的区间，就叫分箱；每个区间的端点叫分箱边界。
+
+`bins` 可以控制横轴被切成多少个区间。分箱数少，图形更粗略；分箱数多，图形细节更多，但也可能显得更碎。下面两张图使用同一列成绩，只改变 `bins`。
+
+```{pyodide}
+#| echo: true
+fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
+
+sns.histplot(
+    data=student_df,
+    x="python_score",
+    ax=axes[0],
+)
+axes[0].set(title="默认分箱", xlabel="Python 成绩", ylabel="人数")
+
+sns.histplot(
+    data=student_df,
+    x="python_score",
+    bins=15,
+    ax=axes[1],
+)
+axes[1].set(title="bins=15", xlabel="Python 成绩", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 显式指定分箱边界
+
+如果希望分箱更容易解释，可以直接给出一组分箱边界。下面的 `np.arange(55, 105, 5)` 表示从 55 到 100，每 5 分一个区间。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+score_bins = np.arange(55, 105, 5)
+
+sns.histplot(
+    data=student_df,
+    x="python_score",
+    bins=score_bins,
+    color="#4C78A8",
+    ax=ax,
+)
+ax.set(title="Python 成绩分布（每 5 分一组）", xlabel="Python 成绩", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 分组比较：男女成绩分布
+
+比较两组直方图时，两组必须使用同一组区间。否则，一个柱子可能表示 `55-60` 分的人数，另一个柱子却表示 `56-61` 分的人数，看起来都在相近位置，其实数的不是同一件事。
+
+如果两组样本量差异明显，频数柱高还会受到组大小影响，不宜直接据此判断哪组分布更集中。此时可以比较组内比例，或改用后面的箱线图观察分布位置和离散程度。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+score_bins = np.arange(55, 105, 5)
+
+sns.histplot(
+    data=student_df,
+    x="python_score",
+    hue="gender",
+    hue_order=["女", "男"],
+    bins=score_bins,
+    element="step",
+    fill=False,
+    common_bins=True,
+    ax=ax,
+)
+ax.set(title="不同性别的 Python 成绩分布（统一分箱）", xlabel="Python 成绩", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+::: {.callout-note}
+### 参数预告
+
+`hue="gender"` 表示按 `gender` 这一列分组，并用不同颜色显示不同组。本节先把它当作“按组上色”的工具使用；下一讲会在散点图和折线图中更系统地使用 `hue` 表达分组关系。
+:::
+
+::: {.callout-tip}
+### 读图提醒
+
+`element="step"` 和 `fill=False` 会把直方图画成轮廓线，便于比较重叠的组。
+
+如果两组柱子大量重叠，直方图会变得不容易读。此时可以使用轮廓直方图，或者改用后面的箱线图比较分组分布。
+:::
+
+## 在直方图上观察 KDE 曲线
+
+* `KDE` 是核密度估计曲线；`kde=True` 可以在直方图上叠加一条平滑的密度曲线。
+* KDE 用于辅助观察分布形状，不是额外的一组观测数据。
+* 当样本量较小或分布很离散时，KDE 的形状要谨慎解释。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+hour_bins = np.arange(2, 16)
+
+sns.histplot(
+    data=student_df,
+    x="study_hours",
+    bins=hour_bins,
+    kde=True,
+    color="#59A14F",
+    ax=ax,
+)
+ax.set(title="每周学习时长分布", xlabel="每周学习时长（小时）", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 小结任务 2
+
+使用 `sns.histplot()` 绘制 `attendance_rate` 的分布图，并设置 `kde=True`。用一句话描述图形中的集中区间或偏态特征。
+
+```{pyodide}
+#| echo: true
+# fig, ax = plt.subplots(figsize=(6, 4))
+# sns.histplot(
+#     data=student_df,
+#     x=...,
+#     bins=...,
+#     kde=...,
+#     ax=ax,
+# )
+# ax.set(title=..., xlabel=..., ylabel=...)
+# fig.tight_layout()
+# plt.show()
+```
+
+# 分类变量的频数
+
+## 先看频数表
+
+* `value_counts()` 给出精确频数。
+* 对有逻辑顺序的分类变量，建议显式指定输出顺序。
+* 图形不是频数表的替代品，而是更适合比较结构的表达方式。
+
+```{pyodide}
+#| echo: true
+major_counts = student_df["major"].value_counts().reindex(major_order)
+print(major_counts)
+```
+
+## `sns.countplot()`：频数图
+
+* `countplot()` 适合展示一个分类变量中各类别的样本数。
+* `order=` 可让类别按教学或统计上的逻辑顺序排列。
+* 不建议用饼图替代频数图：类别较多时，柱形高度更容易比较。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(6, 4))
+
+sns.countplot(
+    data=student_df,
+    x="major",
+    order=major_order,
+    ax=ax,
+)
+ax.set(title="不同专业的样本人数", xlabel="专业", ylabel="人数")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 快速辨析：坐标轴和标签
+
+下面两张图使用同一组男女人数。左图故意截断纵轴，并省略必要的轴标签；右图从 0 开始并标出变量含义。样本中男女分别为 81 人和 79 人，左图会把这 2 人的差异视觉放大，标签缺失也会让读者无法判断图形表示什么。
+
+课堂只需回答三个问题：如果只看左图，能否说男女人数差距很大？一张合格的图至少需要保留哪些标题和标签？如果只展示对结论有利的类别、区间或样本范围，会不会造成新的误导？
+
+```{pyodide}
+#| echo: true
+gender_order = ["女", "男"]
+gender_counts = student_df["gender"].value_counts().reindex(gender_order)
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+# 不规范示例：纵轴被截断，且缺少变量标签。
+axes[0].bar(gender_counts.index, gender_counts.values, color="#F28E8E")
+axes[0].set_ylim(int(gender_counts.min()) - 2, int(gender_counts.max()) + 2)
+axes[0].set_title("不规范示例：差异被放大")
+
+# 修正示例：从 0 开始，并写清标题和坐标轴含义。
+axes[1].bar(gender_counts.index, gender_counts.values, color="#76B7B2")
+axes[1].set(
+    title="修正示例：从 0 开始并标注",
+    xlabel="性别",
+    ylabel="人数",
+)
+axes[1].set_ylim(0, int(gender_counts.max()) + 10)
+
+fig.tight_layout()
+plt.show()
+```
+
+# 分组分布比较
+
+## 先读懂箱线图
+
+箱线图适合比较不同组中数值变量的分布。它把一组数据压缩成几个关键位置，帮助我们快速看出“中间水平在哪里”“大多数人分布得宽不宽”“有没有特别偏离的一些值”。
+
+* 箱子中间的横线表示中位数：大约一半观测值在它下面，一半在它上面。
+* 箱子的上下边表示两个四分位数：箱子内部大约包含中间一半的观测值。
+* 箱子外面的线通常叫“须”，表示在常规范围内还能延伸到哪里。
+* 单独画出来的小圆点通常表示可能的离群点：它们不是错误，只是比同组大多数观测值更远。
+
+## `sns.boxplot()`：画出箱线图
+
+* 重点观察中位数、箱子的高度、须的范围和可能的离群点。
+* 组间箱线图不同，只说明样本分布看起来存在差异，不等于已经完成显著性检验。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.boxplot(
+    data=student_df,
+    x="major",
+    y="python_score",
+    order=major_order,
+    ax=ax,
+)
+ax.set(title="不同专业的 Python 成绩分布", xlabel="专业", ylabel="Python 成绩")
+
+fig.tight_layout()
+plt.show()
+```
+
+在这张示例图中，统计学组下面出现两个小圆点，意思是这个专业里有两名学生的成绩相对本组大多数人偏低。其他两个专业没有小圆点，只说明按当前箱线图规则没有被单独标出的观测值，不表示它们没有低分或高分。
+
+## `sns.stripplot()`：补充个体记录
+
+* 在箱线图上叠加个体点，可以让读者看到每个观测值的位置。
+* 点的轻微横向抖动只用于避免重叠，不表示额外的数值含义。
+* 这种组合既保留箱线图的概括信息，也避免把平滑密度曲线误读为真实频数。
+* 这里使用统一的浅色箱体，是为了让深灰色个体点更突出；如果希望箱体也按组着色，可以去掉 `color` 参数，使用 Seaborn 的默认调色板。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.boxplot(
+    data=student_df,
+    x="major",
+    y="python_score",
+    order=major_order,
+    color="#D9E6F2",
+    width=0.55,
+    ax=ax,
+)
+sns.stripplot(
+    data=student_df,
+    x="major",
+    y="python_score",
+    order=major_order,
+    color="#333333",
+    alpha=0.35,
+    size=3,
+    ax=ax,
+)
+ax.set(title="不同专业的 Python 成绩：箱线图与个体记录", xlabel="专业", ylabel="Python 成绩")
+
+fig.tight_layout()
+plt.show()
+```
+
+## 小结任务 3
+
+绘制不同专业学生 `study_hours` 的箱线图。写出一条图形直接支持的描述，不把图形观察写成因果结论。
+
+```{pyodide}
+#| echo: true
+# fig, ax = plt.subplots(figsize=(7, 4))
+# sns.boxplot(
+#     data=student_df,
+#     x=...,
+#     y=...,
+#     order=major_order,
+#     ax=ax,
+# )
+# ax.set(title=..., xlabel=..., ylabel=...)
+# fig.tight_layout()
+# plt.show()
+```
+
+# 综合案例：描述一组学生数据
+
+## 从问题到图形
+
+问题：模拟学生样本的 Python 成绩分布如何？不同专业的成绩是否值得进一步比较？
+
+* 第一个问题适合使用直方图。
+* 第二个问题适合使用箱线图。
+* 图形观察后，还应说明样本量、缺失情况和结论边界。
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.boxplot(
+    data=student_df,
+    x="major",
+    y="python_score",
+    order=major_order,
+    ax=ax,
+)
+sns.stripplot(
+    data=student_df,
+    x="major",
+    y="python_score",
+    order=major_order,
+    color="#333333",
+    alpha=0.35,
+    size=3,
+    ax=ax,
+)
+ax.set(title="专业与 Python 成绩：分布与个体记录", xlabel="专业", ylabel="Python 成绩")
+
+fig.tight_layout()
+plt.show()
+```
+
+::: {.callout-note}
+### 一种合格的图表解读
+
+模拟样本中，三个专业的 Python 成绩分布存在一定差异，数据科学专业的中位数相对较高。图形只是描述当前样本；是否存在稳定的总体差异，需要结合样本设计和后续统计推断进一步判断。
+:::
+
+## 课堂练习
+
+使用 `student_df` 完成：
+
+1. 为 `data_literacy_score` 绘制带 KDE 的直方图。
+2. 为 `gender` 绘制频数图。
+3. 绘制不同性别 `python_score` 的箱线图。
+4. 为每张图写一句描述性结论，避免使用“导致”“证明”等因果性表述。
+
+```{pyodide}
+#| echo: true
+# 图 1：data_literacy_score 的分布
+
+# 图 2：gender 的频数
+
+# 图 3：gender 与 python_score 的分组分布
+```
+
+## 本节小结
+
+* 先根据问题和变量类型选图，再开始写代码。
+* Matplotlib 负责图形对象与标注控制，Seaborn 负责高层统计图形。
+* 直方图看数值分布，频数图看类别结构，箱线图和个体点比较组内分布。
+* 图形用于描述和探索，不自动给出显著性或因果结论。
+
+## 下一节
+
+下一节将用散点图、折线图和相关热力图继续探索变量关系与变化结构。

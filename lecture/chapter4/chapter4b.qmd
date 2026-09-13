@@ -1,0 +1,504 @@
+---
+title: "第四章（二）：筛选、清洗与变量生成"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-05"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第四章（二） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+os.makedirs("data", exist_ok=True)
+
+survey_csv = """name,gender,age,city,major,study_hours,python_score,attendance_rate
+Alice, Female ,25,Beijing,Statistics,12,88,95%
+Bob,male,30,Shanghai,Applied Statistics,8,76,88%
+Charlie, MALE ,17,Guangzhou,Statistics,6,64,72%
+Diana, female,22,Beijing,Applied Statistics,15,92,98%
+Eve,FEMALE,16,Chengdu,Statistics,5,58,65%
+Frank,male,59,Shanghai,Applied Statistics,4,70,80%
+Grace, female ,60,Beijing,Statistics,10,84,90%
+Henry,male,unknown,Wuhan,Applied Statistics,9,,82%
+Irene,Female,45,Guangzhou,Statistics,11,86,91%
+Jack,Male,68,Chengdu,Applied Statistics,3,66,70%
+Karen,female,17,Shanghai,Statistics,7,73,78%
+Leo, male ,5,Beijing,Applied Statistics,2,55,60%
+Maria,FEMALE,33,Wuhan,Statistics,14,90,96%
+Nate,male,40,Guangzhou,Applied Statistics,10,81,89%
+Olivia, female,70,Beijing,Statistics,6,75,83%
+Paul,MALE,42,Shanghai,Applied Statistics,9,79,85%
+Quinn, female ,29,Chengdu,Statistics,13,87,92%
+Rachel,female,8,Wuhan,Applied Statistics,4,61,68%
+Steve,male,55,Guangzhou,Statistics,8,77,84%
+Tina,FEMALE,,Beijing,Applied Statistics,12,91,97%
+Uma,female,23,Shanghai,Statistics,11,85,90%
+"""
+
+with open("./data/survey_extended.csv", "w", encoding="utf-8") as f:
+    f.write(survey_csv)
+```
+
+## 本节概览
+
+* 掌握 `loc`、`iloc` 的基础用法
+* 能够使用布尔条件筛选 DataFrame
+* 能够处理缺失值、类型转换和字符串列清理
+* 能够用向量化方式生成新变量
+
+# 从“看表”到“整理表”
+
+## 真实表格很少一开始就干净
+
+* 上一节我们已经学会把 CSV 读成 DataFrame。
+* 但读进来的数据可能有空格、大小写不统一、缺失值、数字文本等问题。
+* 统计分析前，通常要先完成筛选、清洗和变量生成。
+
+```{pyodide}
+#| echo: true
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("./data/survey_extended.csv")
+print(df.head())
+df.info()
+```
+
+## Pandas 的核心习惯
+
+* 优先把一整列当成整体处理。
+* 能用列运算、字符串方法、条件表达式解决的问题，不先写 `for` 循环。
+* 这延续了第三章的向量化思想。
+
+::: {.callout-note}
+### 迁移提醒
+第三章里我们用 NumPy 数组表达“整列计算”。在 Pandas 中，一列数据通常写成 `df["列名"]`，很多思想可以直接迁移：比较会生成真假值，真假值可以用于筛选，数值列可以直接做加减乘除。
+:::
+
+# `loc` 与 `iloc`
+
+## `loc`：按标签选择
+
+* `loc` 常用于按行条件和列名取数据。
+* 它很适合表达“筛选某些行，再取某些列”。
+* 在默认索引下，`loc[0:3]` 看起来很像位置切片，是因为行索引标签刚好是 `0, 1, 2, 3`。
+* 如果把姓名、日期等设置为索引，就不能再把 `loc` 当成单纯的位置切片来理解。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+selected = df.loc[0:3, ["name", "gender", "age"]]
+print(selected)
+```
+
+::: {.callout-note}
+### `loc` 看标签，`iloc` 看位置
+初学时可以先记住：`loc` 主要看行索引标签和列名，`iloc` 主要看行列位置。默认索引刚好从 `0` 开始，所以有些 `loc` 写法看起来像位置切片，但这只是默认索引带来的表象。
+:::
+
+## `iloc`：按位置选择
+
+* `iloc` 按行列位置选择。
+* 它更接近 NumPy 里的位置索引。
+
+```{pyodide}
+#| echo: true
+first_rows = df.iloc[0:5, 0:4]
+print(first_rows)
+```
+
+## 小结任务 1
+
+使用 `loc` 取出前 6 行中的 `name`、`city`、`python_score` 三列。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# selected = # 在这里补全
+# print(selected)
+```
+
+# 布尔筛选
+
+## 单条件筛选
+
+* DataFrame 中的条件筛选与 NumPy 掩码思路一致。
+* 条件比较会得到一列真假值。
+
+| 第三章 NumPy 写法 | 第四章 Pandas 写法 |
+|---|---|
+| `ages >= 18` | `df["age"] >= 18` |
+| `ages[ages >= 18]` | `df.loc[df["age"] >= 18]` |
+
+```{pyodide}
+#| echo: true
+score_mask = df["python_score"] >= 80
+high_score = df.loc[score_mask, ["name", "python_score"]]
+
+print(score_mask.head())
+print(high_score.head())
+```
+
+## 多条件筛选
+
+* 多个条件组合时，使用 `&`、`|`、`~`。
+* 每个条件最好用括号括起来。
+* 不要在 Pandas 条件筛选中使用 Python 的 `and`、`or`。
+
+```{pyodide}
+#| echo: true
+active_high_score = df.loc[
+    (df["study_hours"] >= 10) & (df["python_score"] >= 80),
+    ["name", "study_hours", "python_score"]
+]
+
+print(active_high_score)
+```
+
+## 小结任务 2
+
+筛选 `study_hours` 不低于 10 且 `python_score` 不低于 80 的样本，输出姓名、学习时长和 Python 成绩。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# result = # 在这里补全
+# print(result)
+```
+
+# 缺失值、重复值与类型转换
+
+## 缺失值识别
+
+* `isna()` 用于判断缺失值。
+* `notna()` 用于判断非缺失值。
+* 这对应第三章中用 `np.isnan()` 判断数值数组缺失的思路。
+
+| 第三章 NumPy 写法 | 第四章 Pandas 写法 |
+|---|---|
+| `np.isnan(age_array)` | `df["age"].isna()` |
+| `~np.isnan(age_array)` | `df["age"].notna()` |
+
+```{pyodide}
+#| echo: true
+print(df["python_score"].isna().head(10))
+print(df["python_score"].isna().sum())
+```
+
+## 类型转换
+
+* CSV 中读进来的数字不一定真的是数值类型。
+* `pd.to_numeric(..., errors="coerce")` 可以把无法转换的内容变成缺失值。
+
+```{pyodide}
+#| echo: true
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+
+print(df[["age", "python_score"]].head(10))
+df[["age", "python_score"]].info()
+```
+
+## 删除或填补缺失值
+
+* `dropna()` 可以删除缺失值所在的行。
+* `fillna()` 可以用指定值填补缺失值。
+* 使用哪一种，取决于分析目标和数据含义。
+
+```{pyodide}
+#| echo: true
+valid_score = df.dropna(subset=["python_score"])
+filled_score = df["python_score"].fillna(df["python_score"].mean())
+
+print(valid_score[["name", "python_score"]].head(10))
+print(filled_score.head(10))
+```
+
+## 重复值处理
+
+* `duplicated()` 可以判断哪些行是重复记录。
+* `duplicated().sum()` 可以统计重复记录数量。
+* `drop_duplicates()` 可以删除重复记录。
+* 真实分析中不要机械删除重复值，要先判断它是录入错误，还是同一对象在不同时间的合理记录。
+
+```{pyodide}
+#| echo: true
+duplicate_example = pd.DataFrame({
+    "name": ["Alice", "Bob", "Alice", "Diana"],
+    "wave": [1, 1, 1, 1],
+    "python_score": [88, 76, 88, 92]
+})
+
+print(duplicate_example)
+print(duplicate_example.duplicated())
+print(duplicate_example.duplicated().sum())
+
+deduped = duplicate_example.drop_duplicates()
+print(deduped)
+```
+
+## 小结任务 3
+
+把 `age` 转成数值，并筛选出年龄非缺失的样本。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# df["age"] = # 在这里补全
+# valid_age_df = # 在这里补全
+# print(valid_age_df[["name", "age"]].head())
+```
+
+# 字符串列处理
+
+## `.str` 方法
+
+* 文本列不能直接用普通字符串方法批量处理。
+* Pandas 提供了 `.str` 接口，用于整列字符串处理。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+print(df[["gender", "gender_clean"]].head(10))
+```
+
+## 字符串替换与包含判断
+
+* `.str.replace()` 常用于去掉符号或替换文本。
+* `.str.contains()` 常用于判断文本中是否包含某个模式。
+
+```{pyodide}
+#| echo: true
+df["attendance_value"] = df["attendance_rate"].str.replace("%", "", regex=False)
+df["is_applied_major"] = df["major"].str.contains("Applied")
+
+print(df[["attendance_rate", "attendance_value", "major", "is_applied_major"]].head())
+```
+
+# 向量化生成新变量
+
+## 列运算
+
+* 如果一列已经是数值，就可以直接整列计算。
+* 这种写法比逐行循环更贴近 Pandas 的工作方式。
+* 可以把它理解成“带列名的 NumPy 式批量计算”。
+
+```{pyodide}
+#| echo: true
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+df["study_hours"] = pd.to_numeric(df["study_hours"], errors="coerce")
+
+df["score_per_hour"] = df["python_score"] / df["study_hours"]
+print(df[["name", "python_score", "study_hours", "score_per_hour"]].head())
+```
+
+## `np.where()`：二分类变量
+
+* `np.where(条件, 满足时的值, 不满足时的值)` 适合生成二分类变量。
+* 例如：把清理后的性别转换成 `0 / 1` 编码。
+* 这里的前提是：性别已经清理成 `female` 和 `male` 两类。
+
+```{pyodide}
+#| echo: true
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+df["gender_code"] = np.where(df["gender_clean"] == "female", 0, 1)
+
+print(df[["name", "gender_clean", "gender_code"]].head(10))
+```
+
+## `pd.cut()`
+
+* `pd.cut()` 可以把连续数值分到不同区间。
+* 在统计分析中，年龄组、成绩等级、收入分组都很常见。
+* 如果原始成绩缺失，分箱结果也会保留缺失。
+
+```{pyodide}
+#| echo: true
+df["score_level"] = pd.cut(
+    df["python_score"],
+    bins=[0, 60, 80, 90, 101],
+    labels=["below_60", "60_79", "80_89", "90_plus"],
+    right=False
+)
+
+print(df[["name", "python_score", "score_level"]].head(12))
+```
+
+## 小结任务 4
+
+生成三个新变量：
+
+* `gender_clean`：清理后的性别
+* `high_score`：Python 成绩是否不低于 80
+* `score_level`：使用 `pd.cut()` 生成的成绩等级
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 在这里补全清洗、类型转换和新变量生成
+```
+
+# 拓展：`assign()` 与短方法链
+
+## 选学说明
+
+* 对初学者来说，分步写法最清楚，也最容易调试。
+* 本课程首先要求掌握分步写法。
+* `assign()` 与短方法链用于阅读拓展，不作为本节必须熟练掌握的内容。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+
+adult_df = df.loc[df["age"] >= 18]
+print(adult_df[["name", "gender_clean", "age", "python_score"]].head())
+```
+
+## `assign()` 服务于方法链
+
+* 如果要把连续处理流程写成短方法链，生成新列时需要用 `assign()`。
+* `assign()` 中常用 `lambda x: ...` 表示“基于当前这张表生成新列”。
+
+```{pyodide}
+#| echo: true
+clean_adult_df = (
+    pd.read_csv("./data/survey_extended.csv")
+    .assign(
+        gender_clean=lambda x: x["gender"].str.strip().str.lower(),
+        age=lambda x: pd.to_numeric(x["age"], errors="coerce"),
+        python_score=lambda x: pd.to_numeric(x["python_score"], errors="coerce")
+    )
+    .loc[lambda x: x["age"] >= 18]
+)
+
+print(clean_adult_df[["name", "gender_clean", "age", "python_score"]].head())
+```
+
+::: {.callout-warning}
+### 先清楚，再简洁
+短方法链适合表达连续而清楚的处理流程。步骤较多时可以保留中间变量，方便逐步检查结果。
+:::
+
+# 综合案例：清洗并生成分析变量
+
+## 任务描述
+
+读入扩展受访者表，完成：
+
+* 清理性别
+* 将年龄、学习时长、Python 成绩转成数值
+* 生成年龄状态、成绩等级、是否高分
+* 筛选年龄和成绩都有效的样本
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+df["gender_clean"] = df["gender"].str.strip().str.lower()
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
+df["study_hours"] = pd.to_numeric(df["study_hours"], errors="coerce")
+df["python_score"] = pd.to_numeric(df["python_score"], errors="coerce")
+
+df["age_status"] = pd.cut(
+    df["age"],
+    bins=[0, 18, 60, np.inf],
+    labels=["minor", "adult", "senior"],
+    right=False,
+)
+df["score_level"] = pd.cut(
+    df["python_score"],
+    bins=[0, 60, 80, 90, 101],
+    labels=["below_60", "60_79", "80_89", "90_plus"],
+    right=False
+)
+df["high_score"] = df["python_score"] >= 80
+
+analysis_df = df.loc[df["age"].notna() & df["python_score"].notna()]
+print(analysis_df[["name", "gender_clean", "age", "age_status", "python_score", "score_level", "high_score"]].head(12))
+```
+
+# 课堂练习
+
+## 练习 1：筛选样本
+
+筛选年龄不低于 18、学习时长不低于 10 的样本，输出姓名、年龄、学习时长和成绩。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 先完成必要的类型转换，再筛选
+```
+
+## 练习 2：生成分组变量
+
+生成 `attendance_value`、`score_level` 和 `high_attendance` 三个变量。
+
+```{pyodide}
+#| echo: true
+df = pd.read_csv("./data/survey_extended.csv")
+
+# 提示：attendance_rate 需要先去掉百分号
+# 提示：score_level 可以用 pd.cut
+# 提示：high_attendance 可以判断 attendance_value 是否不低于 90
+# 注意：缺失成绩不要直接归入某个正常等级
+```
+
+## 拓展练习（选做）：短方法链阅读
+
+阅读下面代码，说出它完成了哪几步处理。
+
+```{pyodide}
+#| echo: true
+result = (
+    pd.read_csv("./data/survey_extended.csv")
+    .assign(
+        gender_clean=lambda x: x["gender"].str.strip().str.lower(),
+        age=lambda x: pd.to_numeric(x["age"], errors="coerce")
+    )
+    .loc[lambda x: x["age"].notna()]
+)
+
+print(result[["name", "gender_clean", "age"]].head())
+```
+
+# 本节小结
+
+* Pandas 筛选延续了 NumPy 掩码的思想。
+* 清洗数据时，类型转换、缺失值处理、字符串列处理非常常见。
+* 新变量生成应优先考虑列运算和向量化方法。
+* `assign()` 与短方法链用于拓展阅读，不作为本节必须掌握的并列 API。
+* 步骤较多时先分步检查，再考虑使用短方法链。
+
+## 下一节
+
+下一节将使用 `groupby()`、交叉表和透视表，把清洗后的明细数据整理成统计汇总。

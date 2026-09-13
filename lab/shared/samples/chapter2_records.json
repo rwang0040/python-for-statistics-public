@@ -1,0 +1,82 @@
+[
+  {
+    "student_id": "S001",
+    "alias": "Jackson",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 10.0,
+    "reported_attendance_rate": 71.7
+  },
+  {
+    "student_id": "S002",
+    "alias": "Anne",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 7.5,
+    "reported_attendance_rate": 75.9
+  },
+  {
+    "student_id": "S003",
+    "alias": "Warren",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 94.8
+  },
+  {
+    "student_id": "S004",
+    "alias": "Autumn",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "yes",
+    "support_plan": "feedback",
+    "reported_study_hours": 8.6,
+    "reported_attendance_rate": 69.0
+  },
+  {
+    "student_id": "S005",
+    "alias": "Weston",
+    "gender": "male",
+    "major": "applied_statistics",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.7,
+    "reported_attendance_rate": 88.9
+  },
+  {
+    "student_id": "S008",
+    "alias": "Vivian",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 6.4,
+    "reported_attendance_rate": 78.3
+  },
+  {
+    "student_id": "S114",
+    "alias": "Ashley",
+    "gender": "female",
+    "major": "data_science",
+    "prior_programming": "no",
+    "support_plan": "regular",
+    "reported_study_hours": 3.7,
+    "reported_attendance_rate": 74.7
+  },
+  {
+    "student_id": "S151",
+    "alias": "Alexa",
+    "gender": "female",
+    "major": "statistical_computing",
+    "prior_programming": "no",
+    "support_plan": "feedback",
+    "reported_study_hours": 2.8,
+    "reported_attendance_rate": 77.2
+  }
+]

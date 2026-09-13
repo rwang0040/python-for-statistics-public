@@ -1,0 +1,458 @@
+---
+title: "第六章（一）：两组比较与统计结果解释"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-09"
+pyodide:
+  packages:
+    - numpy
+    - pandas
+    - matplotlib
+    - seaborn
+    - scipy
+resources:
+  - ../chapter5/assets
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第六章（一） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+from matplotlib import font_manager
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from scipy import stats
+
+sns.set_theme(style="whitegrid")
+font_path = "../chapter5/assets/NotoSansCJKsc-Regular.otf"
+if os.path.exists(font_path):
+    font_manager.fontManager.addfont(font_path)
+    cjk_font = font_manager.FontProperties(fname=font_path).get_name()
+    plt.rcParams["font.family"] = cjk_font
+    plt.rcParams["axes.unicode_minus"] = False
+
+os.makedirs("data", exist_ok=True)
+
+# 第六章两讲共用同一套固定种子的模拟教学数据。
+rng = np.random.default_rng(202610)
+n_students = 120
+plan_order = ["常规练习", "即时反馈"]
+
+support_plan = np.array(["常规练习"] * 60 + ["即时反馈"] * 60)
+rng.shuffle(support_plan)
+feedback = (support_plan == "即时反馈").astype(int)
+
+baseline_score = np.clip(rng.normal(68, 8, n_students), 45, 90).round(1)
+study_hours = np.clip(
+    rng.normal(7.2 + 0.6 * feedback, 2.0, n_students),
+    2,
+    14,
+).round(1)
+attendance_rate = np.clip(
+    rng.normal(84 + 1.5 * feedback, 7, n_students),
+    60,
+    100,
+).round(1)
+final_score = np.clip(
+    18
+    + 0.55 * baseline_score
+    + 1.8 * study_hours
+    + 0.14 * attendance_rate
+    + 3.0 * feedback
+    + rng.normal(0, 6, n_students),
+    40,
+    100,
+).round(1)
+
+analysis_df = pd.DataFrame(
+    {
+        "student_id": [f"S{i:03d}" for i in range(1, n_students + 1)],
+        "support_plan": pd.Categorical(
+            support_plan,
+            categories=plan_order,
+            ordered=True,
+        ),
+        "baseline_score": baseline_score,
+        "study_hours": study_hours,
+        "attendance_rate": attendance_rate,
+        "final_score": final_score,
+    }
+)
+
+analysis_df.to_csv("./data/student_analysis.csv", index=False)
+```
+
+## 本节概览
+
+* 识别两组比较中的观测单位和变量角色
+* 用描述统计和图形观察样本差异
+* 使用 Welch t 检验读取差异大小、置信区间和 p 值
+* 区分统计证据、实际意义和因果解释
+
+# 从研究问题开始
+
+## 先判断问题属于哪一类
+
+| 问题 | 变量结构 | 本章处理方式 |
+|---|---|---|
+| 学生成绩主要分布在哪里 | 一个数值变量 | 描述统计与分布图 |
+| 两种学习支持方案的成绩是否不同 | 一个两组分类变量 + 一个数值变量 | 两组比较 |
+| 学习时长与成绩有什么关系 | 两个数值变量 | 下一讲的简单回归 |
+
+## 本次分析问题
+
+> 在这份模拟数据中，“常规练习”和“即时反馈”两组学生的期末 Python 成绩是否存在差异？
+
+* 一行代表一名学生，观测单位是学生。
+* `support_plan` 是两组分类变量。
+* `final_score` 是数值结果变量。
+* 两组学生彼此不同，因此把它作为独立两组案例。
+
+## 检查数据
+
+```{pyodide}
+#| echo: true
+print(analysis_df.shape)
+print(analysis_df.dtypes)
+analysis_df.head()
+```
+
+## 缺失值与数值范围
+
+```{pyodide}
+#| echo: true
+print(analysis_df[["support_plan", "final_score"]].isna().sum())
+print(analysis_df["support_plan"].value_counts().reindex(plan_order))
+print(analysis_df["final_score"].describe())
+```
+
+## 使用 Welch t 检验前
+
+确认：
+
+* 每名学生只出现在一组，观测相互独立；
+* 结果是数值变量，并且适合用均值概括；
+* 没有严重异常值主导均值；
+* 每组样本量和分布形态基本可接受。
+
+::: {.callout-note}
+### 检查原则
+
+方法选择要结合数据结构、研究设计和图形检查，不用一串前置检验机械决定。
+:::
+
+# 先描述样本中的两组差异
+
+## 描述统计回答“样本中看到了什么”
+
+```{pyodide}
+#| echo: true
+group_summary = (
+    analysis_df
+    .groupby("support_plan", observed=True)["final_score"]
+    .agg(["count", "mean", "median", "std"])
+    .reindex(plan_order)
+)
+
+group_summary.round(2)
+```
+
+阅读顺序：
+
+* `count`：每组有多少名学生；
+* `mean` 与 `median`：两组成绩的中心位置；
+* `std`：组内成绩的离散程度；
+* 先描述实际数值，再考虑统计方法。
+
+## 图形帮助检查重叠和异常值
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.boxplot(
+    data=analysis_df,
+    x="support_plan",
+    y="final_score",
+    order=plan_order,
+    color="#D9E6F2",
+    width=0.55,
+    showfliers=False,
+    ax=ax,
+)
+sns.stripplot(
+    data=analysis_df,
+    x="support_plan",
+    y="final_score",
+    order=plan_order,
+    color="#333333",
+    alpha=0.40,
+    size=3,
+    ax=ax,
+)
+ax.set(
+    title="两种学习支持方案的期末成绩",
+    xlabel="学习支持方案",
+    ylabel="期末 Python 成绩",
+)
+
+fig.tight_layout()
+plt.show()
+```
+
+::: {.callout-warning}
+### 图上有差异，不等于已经完成统计比较
+
+箱线图描述当前样本。它不能单独回答：
+
+* 这种差异是否可能来自抽样波动；
+* 差异在其他学生中是否仍然存在；
+* 学习支持方案是否造成了成绩差异。
+:::
+
+## 小结任务 1
+
+根据描述统计和箱线图，写出一句只针对当前样本的结论。不要使用“证明”“导致”或“必然提高”等词语。
+
+# 为什么样本差异会变化
+
+## 同一总体也会抽出不同样本
+
+下面从两个完全相同的总体模型中重复抽取小样本。总体均值相同，但每次得到的样本均值差并不完全等于 0。
+
+```{pyodide}
+#| echo: true
+demo_rng = np.random.default_rng(202611)
+sampling_rows = []
+
+for repeat in range(1, 7):
+    sample_a = demo_rng.normal(80, 8, 30)
+    sample_b = demo_rng.normal(80, 8, 30)
+    sampling_rows.append(
+        {
+            "重复抽样": repeat,
+            "A组均值": sample_a.mean(),
+            "B组均值": sample_b.mean(),
+            "样本均值差": sample_b.mean() - sample_a.mean(),
+        }
+    )
+
+sampling_demo = pd.DataFrame(sampling_rows)
+sampling_demo.round(2)
+```
+
+## 样本差异与不确定性
+
+* 样本统计量会随抽样而变化。
+* 样本均值不同，不代表总体必然不同。
+* 统计方法尝试把“观察到的差异”和“抽样波动”放在一起判断。
+
+::: {.callout-note}
+### 与第三章的联系
+
+第三章通过随机模拟看到：重复实验的结果会波动。
+
+本章把同一思想用于统计比较：我们不仅关心“差多少”，还关心这个差异有多不确定。
+:::
+
+# Welch 独立样本 t 检验
+
+## 用 Welch t 检验比较两组均值
+
+当前问题中：
+
+* 两组由不同学生组成；
+* `final_score` 是数值变量；
+* 我们希望比较两组的平均成绩。
+
+`equal_var=False` 表示使用 Welch 版本，不要求两组方差完全相同。
+
+```{pyodide}
+#| echo: true
+regular_scores = analysis_df.loc[
+    analysis_df["support_plan"] == "常规练习",
+    "final_score",
+]
+feedback_scores = analysis_df.loc[
+    analysis_df["support_plan"] == "即时反馈",
+    "final_score",
+]
+
+test_result = stats.ttest_ind(
+    feedback_scores,
+    regular_scores,
+    equal_var=False,
+)
+
+test_result
+```
+
+## 先报告差异大小
+
+```{pyodide}
+#| echo: true
+mean_difference = feedback_scores.mean() - regular_scores.mean()
+
+print(f"即时反馈组均值：{feedback_scores.mean():.2f}")
+print(f"常规练习组均值：{regular_scores.mean():.2f}")
+print(f"样本均值差：{mean_difference:.2f}")
+```
+
+样本均值差保留了成绩的原始单位，是最直接的差异大小：
+
+> 在当前模拟样本中，即时反馈组的平均成绩比常规练习组高约 3.96 分。
+
+这句话描述差异大小，但还没有说明不确定性。
+
+## 用置信区间表达不确定性
+
+```{pyodide}
+#| echo: true
+confidence_interval = test_result.confidence_interval(confidence_level=0.95)
+
+print(f"均值差的 95% 置信区间：")
+print(f"[{confidence_interval.low:.2f}, {confidence_interval.high:.2f}]")
+```
+
+读取这个区间时，注意：
+
+* 区间给出与数据和方法相容的差异范围；
+* 区间越宽，说明估计越不精确；
+* 不把它写成“真实差异有 95% 概率位于这个固定区间”；
+* 置信区间表达估计的不确定性，不是对单个学生成绩的范围预测。
+
+## p 值只能回答一个有限的问题
+
+```{pyodide}
+#| echo: true
+print(f"t 统计量：{test_result.statistic:.3f}")
+print(f"p 值：{test_result.pvalue:.4f}")
+```
+
+> 假设两组总体均值没有差异，当前这样或更极端的样本差异有多罕见？
+
+:::: {.columns}
+
+::: {.column width="45%"}
+### p 值可以帮助判断
+
+* 数据是否提供了反对“总体均值无差异”的证据
+:::
+
+::: {.column width="55%"}
+### p 值不能告诉我们
+
+* 两组相差多少
+* 差异是否具有实际意义
+* 是否存在因果效果
+:::
+
+::::
+
+## 结论辨析
+
+哪一种表述符合当前结果？
+
+1. p 值是“两组没有差异”的概率。
+2. p < 0.05 证明即时反馈一定能提高成绩。
+3. 当前数据提供了反对“两组总体均值无差异”的统计证据。
+
+## 如何表达结果
+
+::: {.callout-tip}
+### 选择第 3 项
+
+均值差约为 3.96 分，95% 置信区间约为 1.29–6.62 分。统计证据不能替代对数据来源和分组过程的判断。
+:::
+
+::: {.callout-warning}
+### 注意
+
+如果 p 值没有低于某个阈值，只能说当前数据提供的反对证据不足，不能证明“两组没有差异”。
+:::
+
+# 从工具输出回到分析流程
+
+## 最小结果表
+
+```{pyodide}
+#| echo: true
+result_table = pd.DataFrame(
+    {
+        "项目": [
+            "即时反馈组均值",
+            "常规练习组均值",
+            "样本均值差",
+            "95% 置信区间下限",
+            "95% 置信区间上限",
+            "p 值",
+        ],
+        "结果": [
+            feedback_scores.mean(),
+            regular_scores.mean(),
+            mean_difference,
+            confidence_interval.low,
+            confidence_interval.high,
+            test_result.pvalue,
+        ],
+    }
+)
+
+result_table.round(3)
+```
+
+## 运行与解释前的检查
+
+在报告结果前确认：
+
+1. 两组是否由不同观测单位构成；
+2. 分组过程和数据来源是否清楚；
+3. 是否检查过缺失值和明显异常值；
+4. 成绩是否适合用均值差概括；
+5. 结论是否超出了当前样本和研究设计。
+
+## 课堂练习
+
+补全下面的分析摘要：
+
+> 本次分析比较了 ________。当前样本中，两组平均成绩分别为 ________ 和 ________，均值相差约 ________ 分。均值差的 95% 置信区间为 ________。Welch t 检验的 p 值为 ________。这些结果说明 ________，但不能说明 ________。
+
+## AI 解释核验
+
+某 AI 工具给出以下结论：
+
+> p 值为 0.004，说明即时反馈有 99.6% 的概率提高所有学生的成绩，而且平均能提高 3.96 分。
+
+请指出至少三处问题，并改写为符合当前数据和方法边界的结论。
+
+## 本节小结
+
+* 统计比较从研究问题、观测单位和变量角色开始。
+* 调用方法之前要完成样本量、缺失值、描述统计和图形检查。
+* Welch t 检验可以比较两个独立组的数值结果。
+* 均值差描述差异大小，置信区间描述估计的不确定性。
+* p 值不是原假设概率、差异大小或因果证据。
+* 规范结论应同时报告样本事实、统计证据和解释边界。
+
+## 下一节
+
+下一节将从散点图进入简单线性回归，读取斜率、残差和 \(R^2\)。

@@ -1,0 +1,382 @@
+---
+title: "第一章：交互式编程环境与 Python 基础"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.1
+author: "王润祖"
+date: "2026-03"
+format: 
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第一章 - 王润祖"
+---
+
+## 本节概览
+
+* 理解 Python 在统计分析中的地位
+* 搭建 Anaconda + Jupyter 科学计算环境
+* 掌握 Python 核心基础语法
+* 独立运行并检查第一个数据处理程序
+
+# Python 与统计数据处理
+
+## 为什么统计专业选择 Python？
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**R 语言**
+
+统计方法和学术研究生态丰富。
+:::
+
+::: {.column width="50%"}
+**Python 语言**
+
+兼顾数据处理、统计建模、自动化和人工智能应用。
+:::
+
+::::
+
+## 开发环境
+
+### **Anaconda**：科学计算工具箱
+* 面向科学计算的 Python 发行版
+* 集成 Python 与常用数据分析库
+
+### **Jupyter Notebook**：交互式工作环境
+* **交互式**计算环境
+* 代码、公式、图表、文字说明整合
+
+## Jupyter 最小操作流程
+
+1. 新建一个 Notebook
+2. 在 Markdown 单元中写文字说明
+3. 在代码单元中输入代码并运行
+4. 及时保存，必要时重启内核
+
+## 交互式运行与顺序运行
+
+* 在普通脚本里，代码通常按从上到下顺序执行。
+* 在 Notebook 里，代码单元可以单独运行，因此结果会依赖你之前执行过什么。
+
+::: {.fragment}
+
+::: {.callout-warning}
+### 关键注意：执行顺序
+Jupyter 代码块左侧的序号 `[1]`, `[2]` 代表**执行顺序**。未定义先使用会触发 `NameError`。
+:::
+
+:::
+
+## 欢迎来到 Python 的数据世界
+
+* 在统计分析的过程中经常需要输出结果。`print()` 是 Python 中最常用的输出函数。
+* 在这个例子中，使用 `print()` 开始 Python 之旅。
+
+```{pyodide}
+#| echo: true
+print("Hello, Statistics!")
+print("欢迎来到 Python 的数据世界。")
+```
+
+# 变量与基本语法
+
+## 变量赋值与动态类型
+
+* **动态类型**：Python 不需要显式声明类型，类型由“值”决定。
+* **基本语法**：
+```python
+变量名 = 对象
+```
+
+## 实机演示
+
+```{pyodide}
+#| echo: true
+sample_size = 500          # 整数（int）
+print("sample_size 的值:", sample_size)
+print("sample_size 的类型:", type(sample_size))
+
+confidence_level = 0.95    # 浮点数（float）
+print("confidence_level 的值:", confidence_level)
+print("confidence_level 的类型:", type(confidence_level))
+
+research_topic = "消费行为分析"  # 字符串（str）
+print("research_topic 的值:", research_topic)
+print("research_topic 的类型:", type(research_topic))
+```
+
+## 命名规范
+
+在统计项目中，良好的命名习惯至关重要。对比以下两种写法，哪一种在三个月后还能让你一眼看懂代码的含义？
+
+* **反面教材**：`a = 500`
+* **推荐规范**：`sample_size = 500`
+
+## PEP-8 命名规范
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+1.  **组成**：字母、数字、下划线，**不能数字开头**。
+2.  **风格**：蛇形命名法(`snake_case`)。
+3.  **大小写敏感**：`data` $\neq$ `Data`。
+4.  **避免冲突**：
+    * 严禁使用关键字 (`if`, `for`)。
+:::
+
+::: {.column width="40%"}
+| 规范性 | 示例 |
+| :--- | :--- |
+| $\checkmark$ | `gpa_score` |
+| $\times$ | `1st_place` |
+| $\times$ | `gpa score` |
+:::
+
+::::
+
+## 错误命名可能导致 Bug
+
+```{pyodide}
+#| echo: true
+my_str = "123"
+print(my_str)
+
+print = 5
+print(my_str)
+```
+
+## 修复方法
+
+```{pyodide}
+#| echo: true
+import builtins
+print = builtins.print # 恢复被错误覆盖的 print 函数
+
+print(my_str)
+```
+
+# 核心数据类型
+
+## 数值类型
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### **整型 (int)**
+
+  * 样本量
+  * 频数
+  * ID
+:::
+
+::: {.column width="50%"}
+
+### **浮点型 (float)**
+
+  * 均值
+  * 比例
+  * 测量值
+:::
+
+::::
+
+## 新手的第一个“坑”：浮点数精度
+
+```{pyodide}
+#| echo: true
+print("0.1 + 0.2 等于 0.3 吗？", 0.1 + 0.2 == 0.3)
+print("实际计算结果:", 0.1 + 0.2)
+```
+
+## 正确的判断方式
+
+```{pyodide}
+#| echo: true
+print("0.1 + 0.2 等于 0.3 吗？", abs(0.1 + 0.2 - 0.3) <= 1e-10)
+```
+
+## 字符串与格式化输出
+
+### 格式化输出：**f-string**
+
+```{pyodide}
+#| echo: true
+avg_score = 88.54321
+print(f"该班级的平均分为：{avg_score:.2f}") 
+```
+
+## 类型转换 (Casting)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+  * `int(x)`：转换为整数
+  * `float(x)`：转换为浮点数
+  * `str(x)`：转换为字符串
+:::
+
+::: {.column width="50%"}
+
+### 链式转换演示
+
+```{pyodide}
+#| echo: true
+age_str = "3.14"
+age_int = int(float(age_str))
+print(f"转换后整数: {age_int}")
+```
+
+:::
+
+::::
+
+## 经典 Debug
+* 在处理统计调查数据时，我们经常会从 Excel 读取数据。
+* 有时，看起来像数字的值，实际上是字符串（文本）。
+* **文本不能直接与数字相加！**
+
+```{pyodide}
+#| echo: true
+mean_score = "85.5"  
+adjustment = 2.5
+corrected_score = mean_score + adjustment
+print(f"调整后的分数为: {corrected_score}")
+```
+
+# 运算符与逻辑表达式
+
+## 算术运算符
+
+除了四则运算 `+`、`-`、`*`、`/` 外，Python 还支持下面的算术运算符：
+
+| 运算符 | 描述 | 示例 | 结果 |
+| :-- | :-- | :-- | :-- |
+| `**` | 幂运算 | `2 ** 3` | `8` |
+| `%` | 取模 | `10 % 3` | `1` |
+| `//` | 整除 | `10 // 3` | `3` |
+
+## 比较运算与逻辑运算
+
+* **比较运算符**：`==`, `!=`, `>`, `<`, `>=`, `<=`
+* **逻辑运算符**：`and`（且）, `or`（或）, `not`（非）
+
+例如，判断一位受访者的年龄是否处于 `18` 到 `60` 之间：
+
+```{pyodide}
+#| echo: true
+age = 25
+is_working_age = (age >= 18) and (age < 60)
+print(f"是否处于指定年龄范围：{is_working_age}")
+```
+
+# Jupyter 使用与常见错误
+
+## Markdown 基础
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+### 常用语法
+
+  * 标题：`#`, `##`
+  * 列表：`-` 或 `*`
+  * 加粗：`**内容**`
+:::
+
+::: {.column width="40%"}
+
+### **数学公式 (LaTeX)**
+
+`$ \bar{x} = \frac{\sum x_i}{n} $`
+
+渲染结果：
+$\bar{x} = \frac{\sum x_i}{n}$
+:::
+
+::::
+
+## Python 帮助与代码补全
+
+* 输入 `函数名?` 查看帮助文档，例如：`print?`
+* 使用 `Tab` 键进行代码自动补全。
+
+## 经典排错：NameError 与“大小写陷阱”
+
+* 阅读公式或表格时，我们有时会看到不同大小写的符号。
+* 但在 Python 中，**变量名是严格区分大小写的**！
+* 拼写错误或大小写不一致，会触发最常见的 `NameError`（变量未定义）。
+
+## 找茬游戏：为什么这段代码会报错？
+
+```{pyodide}
+#| echo: true
+Response_Rate = 0.85
+print("问卷回收率为：", response_rate)
+```
+
+::: {.fragment}
+
+::: {.callout-tip}
+
+### Debug 启蒙
+
+遇到报错不要慌，根据报错内容处理即可。这里我们碰到的是
+`NameError: name 'response_rate' is not defined.`
+这说明计算机在内存里找不到这个名字，90% 的原因是**拼写错误**或**大小写写错了**。
+
+:::
+
+:::
+
+## 综合实战：BMI 计算器与代码规范
+
+**任务描述：**
+某受试者的身高为 1.75 米，体重为 68.5 千克。BMI 计算公式为：
+$$BMI = \frac{体重}{身高^2}$$
+
+```{pyodide}
+#| echo: true
+# 1. 定义受试者的基本生理指标（注意命名规范）
+patient_height = 1.75  # 单位：米
+patient_weight = 68.5  # 单位：千克
+
+# 2. 使用幂运算符 (**) 计算 BMI
+# patient_bmi = 
+
+# 3. 打印结果并保留两位小数
+# print(f"该受试者的 BMI 为: {patient_bmi:.2f}")
+```
+
+# 数据规范与学术意识
+
+## 四条基本原则
+
+1. **数据真实性** <br>
+   严禁篡改或伪造数据。
+2. **规范分析** <br>
+   分析过程必须**可复现**。
+3. **隐私保护** <br>
+   保护个人隐私数据。
+4. **工具核验** <br>
+   AI 或其他工具生成的代码，必须经过运行、检查和解释。
+
+## 下一节
+
+下一节将先学习列表与字典，用程序组织一组观测值和多条记录。

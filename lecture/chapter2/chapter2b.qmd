@@ -1,0 +1,349 @@
+---
+title: "第二章（二）：程序控制"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.3.0
+author: "王润祖"
+date: "2026-07"
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第二章（二） - 王润祖"
+---
+
+## 本节概览
+
+* 掌握 `if-elif-else` 选择结构
+* 掌握 `for` 循环，认识 `while` 循环
+* 能够综合使用循环与判断完成筛选、分类和计数
+* 会读、会写基础列表推导式
+
+# 从数据到处理规则
+
+* 上一单元解决了“怎样组织一组数据”。
+* 本单元开始解决“怎样按照规则逐条处理数据”。
+* 筛选、分类和计数，都是统计数据处理中常见的程序控制任务。
+
+# 选择结构：让程序会判断
+
+## `if` 语句
+
+* 选择结构的作用是根据条件执行不同的操作。
+* 在统计场景中，它经常用于分组、分类和规则判断。
+
+```{pyodide}
+#| echo: true
+score = 87
+
+if score >= 60:
+    print("成绩合格")
+```
+
+## `if-else`
+
+```{pyodide}
+#| echo: true
+score = 52
+
+if score >= 60:
+    print("成绩合格")
+else:
+    print("成绩不合格")
+```
+
+## 多种情况：`if-elif-else`
+
+```{pyodide}
+#| echo: true
+score = 87
+
+if score >= 90:
+    level = "优秀"
+elif score >= 80:
+    level = "良好"
+elif score >= 60:
+    level = "及格"
+else:
+    level = "不及格"
+
+print("成绩等级:", level)
+```
+
+## 条件顺序会影响结果
+
+* 多分支结构会从上到下检查条件。
+* 先写高分段，再写低分段，通常更清楚。
+* 逻辑错误不一定触发语法错误，却会直接改变分类结果。
+
+```{pyodide}
+#| echo: true
+score = 95
+
+if score >= 60:
+    level = "及格"
+elif score >= 90:
+    level = "优秀"
+
+print(level)
+```
+
+## 缩进是语法，不是排版
+
+::: {.callout-warning}
+### 关键提醒
+Python用缩进表示代码块。缩进错误不仅影响外观，还会改变程序结构或导致代码无法运行。
+:::
+
+## 小结任务：课堂任务1
+
+根据年龄段划分规则补全代码：`0-17`为“未成年”，`18-59`为“成年人”，`60`及以上为“老年人”。
+
+```{pyodide}
+#| echo: true
+age = 16
+
+if age < 18:
+    group = "未成年"
+elif age < 60:
+    # 在这里补全
+    pass
+else:
+    # 在这里补全
+    pass
+
+print(age, group)
+```
+
+# 循环结构：让程序重复做事
+
+## `for`循环
+
+* `for`适合对一组数据逐个处理。
+* 遍历列表是本章最常见的循环场景。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+
+for score in scores:
+    print(score)
+```
+
+## 累计求和
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+total_score = 0
+
+for score in scores:
+    total_score = total_score + score
+
+mean_score = total_score / len(scores)
+print(f"平均分为：{mean_score:.2f}")
+```
+
+## 循环与判断
+
+* 很多任务需要在遍历过程中进行判断。
+* “逐条检查—符合条件—执行操作”是常见的处理模式。
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 58, 79]
+
+for score in scores:
+    if score < 60:
+        print(f"{score}分需要重点关注")
+```
+
+## 条件计数
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 58, 79]
+passed_count = 0
+
+for score in scores:
+    if score >= 60:
+        passed_count = passed_count + 1
+
+print("及格人数:", passed_count)
+```
+
+## `while`循环
+
+* `while`适合重复次数不确定、但结束条件明确的任务。
+* 入门阶段以认识其基本结构和防止无限循环为主。
+
+```{pyodide}
+#| echo: true
+count = 1
+
+while count <= 5:
+    print("当前计数:", count)
+    count = count + 1
+```
+
+## `for`和`while`怎么选
+
+| 场景 | 更适合 |
+| :-- | :-- |
+| 已知要遍历一组数据 | `for` |
+| 不确定重复次数，只知道结束条件 | `while` |
+
+## 小结任务：课堂任务2
+
+补全代码：计算平均年龄，并统计成年人数量。
+
+```{pyodide}
+#| echo: true
+ages = [16, 18, 21, 17, 24]
+total_age = 0
+adult_count = 0
+
+for age in ages:
+    # 在这里补全累计和计数
+    pass
+
+mean_age = total_age / len(ages)
+print(f"平均年龄：{mean_age:.2f}")
+print("成年人数量:", adult_count)
+```
+
+# 列表推导式：简洁地生成列表
+
+## 基本形式
+
+* 列表推导式可以把“循环生成新列表”写得更紧凑。
+* 先理解普通循环，再学习等价的简洁写法。
+
+```python
+[表达式 for 变量 in 序列]
+```
+
+## 转换数据
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 88, 79]
+adjusted_scores = [score + 5 for score in scores]
+print(adjusted_scores)
+```
+
+## 筛选数据
+
+```{pyodide}
+#| echo: true
+scores = [82, 76, 91, 58, 79]
+passed_scores = [score for score in scores if score >= 60]
+print("及格成绩:", passed_scores)
+```
+
+::: {.callout-note}
+### 先保证可读
+本节只使用基础列表推导式。遇到难以一眼读懂的写法时，优先改用普通循环。
+:::
+
+# 综合案例：筛选多条受访者记录
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "age": 16},
+    {"name": "李四", "age": 21},
+    {"name": "王五", "age": 19},
+    {"name": "赵六", "age": 15}
+]
+
+adult_names = []
+
+for respondent in respondents:
+    if respondent["age"] >= 18:
+        adult_names.append(respondent["name"])
+
+print("成年人姓名:", adult_names)
+print("成年人数:", len(adult_names))
+```
+
+## 改写成列表推导式
+
+```{pyodide}
+#| echo: true
+adult_names = [
+    respondent["name"]
+    for respondent in respondents
+    if respondent["age"] >= 18
+]
+
+print(adult_names)
+```
+
+# 课堂练习
+
+## 练习1
+
+给定成绩列表，计算平均成绩并统计不及格人数。
+
+```{pyodide}
+#| echo: true
+scores = [82, 58, 91, 46, 79]
+# 在这里补全
+```
+
+## 练习2
+
+根据年龄为每位受访者补充`group`字段。
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "age": 16},
+    {"name": "李四", "age": 21},
+    {"name": "王五", "age": 63}
+]
+# 在这里补全循环和判断
+```
+
+## 练习3
+
+使用列表推导式生成所有成年人的姓名列表。
+
+```{pyodide}
+#| echo: true
+respondents = [
+    {"name": "张三", "age": 16},
+    {"name": "李四", "age": 21},
+    {"name": "王五", "age": 19}
+]
+# 在这里补全
+```
+
+# 分类规则要一致
+
+::: {.callout-note}
+### 规则要公开，边界要清楚
+无论是成绩分级、问卷分类还是样本筛选，都应明确判断标准和边界，保证处理规则一致、过程可检查、结果可解释。
+:::
+
+# 本节小结
+
+* `if-elif-else`负责按照条件选择不同分支。
+* `for`适合逐条处理一组数据，`while`适合根据条件持续重复。
+* 循环与判断可以组合完成筛选、分类、计数和汇总。
+* 列表推导式用于基础转换与筛选，不应牺牲可读性。
+
+## 下一节
+
+下一节将介绍函数与异常处理，让程序从“能够处理数据”走向“能够组织任务”。

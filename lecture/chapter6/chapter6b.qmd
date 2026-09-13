@@ -1,0 +1,461 @@
+---
+title: "第六章（二）：简单线性回归与可复现分析"
+subtitle: "面向统计学的 Python 程序设计"
+version: 0.1.0
+author: "王润祖"
+date: "2026-09"
+pyodide:
+  packages:
+    - numpy
+    - pandas
+    - matplotlib
+    - seaborn
+    - statsmodels
+resources:
+  - ../chapter5/assets
+format:
+  live-revealjs:
+    theme: sky
+    mainfont: "Source Han Sans SC"
+    header-includes: |
+      <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+          letter-spacing: 0.02em;
+        }
+      </style>
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    code-copy: true
+    footer: "《Python程序设计》第六章（二） - 王润祖"
+---
+
+```{pyodide}
+#| echo: false
+import os
+
+from matplotlib import font_manager
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import statsmodels.formula.api as smf
+
+sns.set_theme(style="whitegrid")
+font_path = "../chapter5/assets/NotoSansCJKsc-Regular.otf"
+if os.path.exists(font_path):
+    font_manager.fontManager.addfont(font_path)
+    cjk_font = font_manager.FontProperties(fname=font_path).get_name()
+    plt.rcParams["font.family"] = cjk_font
+    plt.rcParams["axes.unicode_minus"] = False
+
+os.makedirs("data", exist_ok=True)
+
+# 与第六章（一）使用同一套固定种子的模拟教学数据。
+rng = np.random.default_rng(202610)
+n_students = 120
+plan_order = ["常规练习", "即时反馈"]
+
+support_plan = np.array(["常规练习"] * 60 + ["即时反馈"] * 60)
+rng.shuffle(support_plan)
+feedback = (support_plan == "即时反馈").astype(int)
+
+baseline_score = np.clip(rng.normal(68, 8, n_students), 45, 90).round(1)
+study_hours = np.clip(
+    rng.normal(7.2 + 0.6 * feedback, 2.0, n_students),
+    2,
+    14,
+).round(1)
+attendance_rate = np.clip(
+    rng.normal(84 + 1.5 * feedback, 7, n_students),
+    60,
+    100,
+).round(1)
+final_score = np.clip(
+    18
+    + 0.55 * baseline_score
+    + 1.8 * study_hours
+    + 0.14 * attendance_rate
+    + 3.0 * feedback
+    + rng.normal(0, 6, n_students),
+    40,
+    100,
+).round(1)
+
+analysis_df = pd.DataFrame(
+    {
+        "student_id": [f"S{i:03d}" for i in range(1, n_students + 1)],
+        "support_plan": pd.Categorical(
+            support_plan,
+            categories=plan_order,
+            ordered=True,
+        ),
+        "baseline_score": baseline_score,
+        "study_hours": study_hours,
+        "attendance_rate": attendance_rate,
+        "final_score": final_score,
+    }
+)
+
+analysis_df.to_csv("./data/student_analysis.csv", index=False)
+```
+
+## 本节概览
+
+* 从研究问题识别响应变量和解释变量
+* 从散点图进入简单 OLS，并使用 Statsmodels 完成拟合
+* 解释截距、斜率、拟合值、残差和 \(R^2\)
+* 区分样本关联、预测和因果，并组织可复现结果
+
+# 从散点图进入线性模型
+
+## 分析问题
+
+> 在当前模拟学生样本中，每周学习时长与期末 Python 成绩之间有什么线性关系？
+
+* 响应变量：`final_score`
+* 解释变量：`study_hours`
+* 两个变量都是数值变量
+* 一行仍然代表一名学生
+
+第五章用散点图观察变量关系。现在，我们进一步用一条直线概括关系方向和平均变化幅度。
+
+## 作图和建模之前仍要检查数据
+
+```{pyodide}
+#| echo: true
+print(analysis_df[["study_hours", "final_score"]].isna().sum())
+print(analysis_df[["study_hours", "final_score"]].describe())
+```
+
+检查重点：
+
+1. 两列是否为数值类型；
+2. 是否存在缺失值；
+3. 取值范围是否合理；
+4. 是否有少量极端点主导整体关系。
+
+## 先画散点图
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.scatterplot(
+    data=analysis_df,
+    x="study_hours",
+    y="final_score",
+    alpha=0.70,
+    ax=ax,
+)
+ax.set(
+    title="每周学习时长与期末 Python 成绩",
+    xlabel="每周学习时长（小时）",
+    ylabel="期末 Python 成绩",
+)
+
+fig.tight_layout()
+plt.show()
+```
+
+图形可以帮助回答：
+
+* 关系大致向上还是向下；
+* 点云是否接近一条直线；
+* 同一学习时长附近的成绩是否仍有明显差异；
+* 是否存在值得检查的异常点。
+
+# 简单线性回归的最小框架
+
+## 用一条直线概括平均关系
+
+简单线性回归可以写成：
+
+\[
+\text{期末成绩}
+=
+\text{截距}
++
+\text{斜率}\times\text{学习时长}
++
+\text{残差}
+\]
+
+先直观理解三个部分：
+
+* 截距：学习时长为 0 时模型给出的数值；
+* 斜率：学习时长相差 1 小时时，模型估计的平均成绩差异；
+* 残差：实际成绩与模型拟合值之间的差。
+
+## 使用 Statsmodels 公式接口
+
+```{pyodide}
+#| echo: true
+model = smf.ols(
+    "final_score ~ study_hours",
+    data=analysis_df,
+).fit()
+
+model.params
+```
+
+公式左侧是响应变量，右侧是解释变量：
+
+```text
+响应变量 ~ 解释变量
+```
+
+## 读取截距和斜率
+
+```{pyodide}
+#| echo: true
+intercept = model.params["Intercept"]
+slope = model.params["study_hours"]
+
+print(f"截距：{intercept:.3f}")
+print(f"学习时长系数：{slope:.3f}")
+```
+
+在当前样本中，斜率约为 1.79，可以写：
+
+> 每周学习时长相差 1 小时的学生，其模型拟合的期末 Python 成绩平均相差约 1.79 分，学习时长较高者的拟合成绩较高。
+
+不能写：
+
+> 每多学习 1 小时，一定会使每名学生提高 1.79 分。
+
+## 截距可能没有直接现实意义
+
+模型截距对应“每周学习 0 小时”时的拟合成绩。
+
+但当前样本的学习时长范围约为 2–14 小时，0 小时超出了主要观测范围。因此：
+
+* 截距是模型直线的一部分；
+* 不必强行给每个截距赋予现实解释；
+* 不建议在没有数据支持的范围外进行外推。
+
+# 拟合值、残差与 \(R^2\)
+
+## 把拟合直线画回散点图
+
+```{pyodide}
+#| echo: true
+plot_df = analysis_df.copy()
+plot_df["fitted_score"] = model.fittedvalues
+
+plot_df = plot_df.sort_values("study_hours")
+
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.scatterplot(
+    data=analysis_df,
+    x="study_hours",
+    y="final_score",
+    alpha=0.60,
+    ax=ax,
+)
+ax.plot(
+    plot_df["study_hours"],
+    plot_df["fitted_score"],
+    color="#E15759",
+    linewidth=2,
+)
+ax.set(
+    title="学习时长与期末成绩：散点和 OLS 拟合线",
+    xlabel="每周学习时长（小时）",
+    ylabel="期末 Python 成绩",
+)
+
+fig.tight_layout()
+plt.show()
+```
+
+拟合线描述的是给定学习时长时的平均线性趋势，不要求每个点都落在线上。
+
+## 残差是模型没有解释的部分
+
+```{pyodide}
+#| echo: true
+analysis_with_model = analysis_df.assign(
+    fitted_score=model.fittedvalues,
+    residual=model.resid,
+)
+
+analysis_with_model[
+    ["student_id", "study_hours", "final_score", "fitted_score", "residual"]
+].head().round(2)
+```
+
+对每名学生：
+
+\[
+\text{残差}=\text{实际成绩}-\text{拟合成绩}
+\]
+
+* 残差为正：实际成绩高于模型拟合值；
+* 残差为负：实际成绩低于模型拟合值；
+* 残差不是“错误学生”，而是模型尚未解释的差异。
+
+## 用残差图检查拟合
+
+```{pyodide}
+#| echo: true
+fig, ax = plt.subplots(figsize=(7, 4))
+
+sns.scatterplot(
+    data=analysis_with_model,
+    x="fitted_score",
+    y="residual",
+    alpha=0.65,
+    ax=ax,
+)
+ax.axhline(0, color="#E15759", linestyle="--")
+ax.set(
+    title="拟合值与残差",
+    xlabel="模型拟合成绩",
+    ylabel="残差",
+)
+
+fig.tight_layout()
+plt.show()
+```
+
+观察：
+
+* 残差是否大致分布在 0 两侧；
+* 是否有特别大的残差；
+* 是否存在明显弯曲或扩散趋势。
+
+## \(R^2\) 描述样本中的拟合程度
+
+```{pyodide}
+#| echo: true
+print(f"R²：{model.rsquared:.3f}")
+```
+
+当前模型的 \(R^2\) 约为 0.24。可以直观理解为：
+
+> 在当前模拟样本中，简单线性模型使用学习时长描述了约 24% 的期末成绩变异。
+
+不要写：
+
+* 学习时长造成了 24% 的成绩；
+* 模型有 24% 的概率正确；
+* 剩余 76% 都是随机误差；
+* \(R^2\) 越高就一定越有实际价值。
+
+# 关联、预测和因果不是一回事
+
+## 快速判断：模型支持哪句话
+
+1. 当前样本中，学习时长与期末成绩呈正向线性关系。
+2. 强制每名学生多学习 1 小时，成绩都会提高 1.79 分。
+3. 所有学生的成绩都按同样幅度变化。
+4. 基础成绩、出勤率和学习支持方案没有影响。
+
+::: {.callout-tip}
+### 当前模型支持第 1 项
+
+简单 OLS 描述当前样本中的平均线性关系，不能单独给出个体变化或因果结论。
+:::
+
+## 模型之外还有什么
+
+```{pyodide}
+#| echo: true
+print("模型中的项：", model.model.exog_names)
+print("数据中的列：", analysis_df.columns.tolist())
+```
+
+当前模型没有加入 `baseline_score`、`attendance_rate` 和 `support_plan`。
+
+::: {.callout-warning}
+### 没有进入模型，不等于没有影响
+
+解释结果时，要主动说明模型中没有包含哪些重要变量。
+:::
+
+## 小结任务 1
+
+判断下列表述属于“样本关联”“预测”还是“因果”，并说明当前模型是否足以支持：
+
+1. 学习时长较高的学生，期末成绩整体也较高；
+2. 使用模型估计一名每周学习 8 小时学生的成绩；
+3. 强制所有学生每周多学习 1 小时，会使成绩提高 1.79 分。
+
+# 组织一份最小可复现分析
+
+## 六步分析流程
+
+> **问题 → 数据 → EDA → 模型 → 结果 → 解释**
+
+| 问题 | 数据 | EDA | 模型 | 结果 | 解释 |
+|---|---|---|---|---|---|
+| 描述什么关系 | 变量与样本 | 统计量与图形 | 公式与工具 | 系数与 \(R^2\) | 发现与局限 |
+
+## 整理核心结果
+
+```{pyodide}
+#| echo: true
+model_result = pd.DataFrame(
+    {
+        "项目": [
+            "样本量",
+            "截距",
+            "学习时长系数",
+            "R²",
+            "残差标准差",
+        ],
+        "结果": [
+            int(model.nobs),
+            intercept,
+            slope,
+            model.rsquared,
+            np.sqrt(model.mse_resid),
+        ],
+    }
+)
+
+model_result.round(3)
+```
+
+## 一种合格的结果表达
+
+> 在 120 名模拟学生中，每周学习时长与期末 Python 成绩呈正向线性关系。简单 OLS 模型估计，学习时长相差 1 小时的学生，其拟合成绩平均相差约 1.79 分，学习时长较高者的拟合成绩较高；模型的 \(R^2\) 约为 0.24。残差图显示个体成绩仍存在较大差异。该模型描述当前样本中的关联，未控制基础成绩、出勤率和学习支持方案，不能单独解释为学习时长对成绩的因果效应。
+
+## 课堂练习
+
+使用 `attendance_rate` 作为解释变量、`final_score` 作为响应变量，完成：
+
+1. 绘制散点图；
+2. 拟合一个简单 OLS 模型；
+3. 提取截距、斜率和 \(R^2\)；
+4. 画一张基础残差图；
+5. 用 100 字以内写出样本发现和解释边界。
+
+```{pyodide}
+#| echo: true
+# attendance_model = smf.ols(
+#     "... ~ ...",
+#     data=analysis_df,
+# ).fit()
+#
+# print(attendance_model.params)
+# print(attendance_model.rsquared)
+```
+
+## AI 解释核验
+
+某 AI 工具给出以下结论：
+
+> 回归系数为 1.79，证明每名学生只要每周多学习 1 小时，成绩就会准确提高 1.79 分。模型解释了 24% 的成绩，所以预测准确率是 24%。
+
+请指出至少三处问题，并改写为符合简单 OLS 模型边界的结论。
+
+## 本节小结
+
+* 简单线性回归用 `响应变量 ~ 解释变量` 描述两个数值变量的线性关系。
+* 斜率描述样本中的平均线性变化；拟合值与实际值之差形成残差。
+* \(R^2\) 描述当前样本中的拟合程度，不是准确率或因果贡献率。
+* 可复现分析应保留问题、数据、EDA、模型、结果和解释边界。

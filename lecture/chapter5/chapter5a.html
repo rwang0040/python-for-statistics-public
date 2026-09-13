@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="chapter5a_files/libs/clipboard/clipboard.min.js"></script>
+<script src="chapter5a_files/libs/quarto-html/tabby.min.js"></script>
+<script src="chapter5a_files/libs/quarto-html/popper.min.js"></script>
+<script src="chapter5a_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="chapter5a_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="chapter5a_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="chapter5a_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="chapter5a_files/libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="chapter5a_files/libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="王润祖">
+  <meta name="dcterms.date" content="2026-09-01">
+  <title>第五章（一）：分布、频数与分组比较</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="chapter5a_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="chapter5a_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="chapter5a_files/libs/revealjs/dist/theme/quarto-581a879c062cdc19e1230440c5bb8372.css">
+  <link href="chapter5a_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="chapter5a_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="chapter5a_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="chapter5a_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="chapter5a_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="chapter5a_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+  <style>
+    .reveal h1, .reveal h2, .reveal h3 {
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">第五章（一）：分布、频数与分组比较</h1>
+  <p class="subtitle">面向统计学的 Python 程序设计</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+王润祖 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-09-01</p>
+</section>
+<section class="slide level2">
+
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJpbXBvcnQgb3NcblxuZnJvbSBtYXRwbG90bGliIGltcG9ydCBmb250X21hbmFnZXJcbmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHRcbmltcG9ydCBudW1weSBhcyBucFxuaW1wb3J0IHBhbmRhcyBhcyBwZFxuaW1wb3J0IHNlYWJvcm4gYXMgc25zXG5cbnNucy5zZXRfdGhlbWUoc3R5bGU9XCJ3aGl0ZWdyaWRcIilcbmZvbnRfcGF0aCA9IFwiLi9hc3NldHMvTm90b1NhbnNDSktzYy1SZWd1bGFyLm90ZlwiXG5pZiBvcy5wYXRoLmV4aXN0cyhmb250X3BhdGgpOlxuICAgIGZvbnRfbWFuYWdlci5mb250TWFuYWdlci5hZGRmb250KGZvbnRfcGF0aClcbiAgICBjamtfZm9udCA9IGZvbnRfbWFuYWdlci5Gb250UHJvcGVydGllcyhmbmFtZT1mb250X3BhdGgpLmdldF9uYW1lKClcbiAgICBwbHQucmNQYXJhbXNbXCJmb250LmZhbWlseVwiXSA9IGNqa19mb250XG4gICAgcGx0LnJjUGFyYW1zW1wiYXhlcy51bmljb2RlX21pbnVzXCJdID0gRmFsc2Vcblxub3MubWFrZWRpcnMoXCJkYXRhXCIsIGV4aXN0X29rPVRydWUpXG5cbiMg5Zu65a6a6ZqP5py656eN5a2Q55Sf5oiQ5qih5ouf5pWZ5a2m5pWw5o2u77yM5L+d6K+B5q+P5qyh6K++5aCC5ryU56S657uT5p6c5LiA6Ie044CCXG5ybmcgPSBucC5yYW5kb20uZGVmYXVsdF9ybmcoMjAyNjA5KVxubl9zdHVkZW50cyA9IDE2MFxubWFqb3Jfb3JkZXIgPSBbXCLnu5/orqHlraZcIiwgXCLlupTnlKjnu5/orqHlraZcIiwgXCLmlbDmja7np5HlraZcIl1cblxubWFqb3IgPSBybmcuY2hvaWNlKG1ham9yX29yZGVyLCBzaXplPW5fc3R1ZGVudHMsIHA9WzAuMzYsIDAuMzQsIDAuMzBdKVxuZ2VuZGVyID0gcm5nLmNob2ljZShbXCLlpbNcIiwgXCLnlLdcIl0sIHNpemU9bl9zdHVkZW50cywgcD1bMC41MiwgMC40OF0pXG5tYWpvcl9lZmZlY3QgPSBwZC5TZXJpZXMobWFqb3IpLm1hcCh7XCLnu5/orqHlraZcIjogMCwgXCLlupTnlKjnu5/orqHlraZcIjogMiwgXCLmlbDmja7np5HlraZcIjogNH0pLnRvX251bXB5KClcblxuc3R1ZHlfaG91cnMgPSBucC5jbGlwKFxuICAgIHJuZy5ub3JtYWwoOC41ICsgbWFqb3JfZWZmZWN0ICogMC4xOCwgMi42LCBzaXplPW5fc3R1ZGVudHMpLFxuICAgIDEsXG4gICAgMjAsXG4pLnJvdW5kKDEpXG5hdHRlbmRhbmNlX3JhdGUgPSBucC5jbGlwKHJuZy5ub3JtYWwoODQsIDgsIHNpemU9bl9zdHVkZW50cyksIDU1LCAxMDApLnJvdW5kKDEpXG5weXRob25fc2NvcmUgPSBucC5jbGlwKFxuICAgIDM5ICsgMi40NSAqIHN0dWR5X2hvdXJzICsgMC4yMyAqIGF0dGVuZGFuY2VfcmF0ZSArIG1ham9yX2VmZmVjdCArIHJuZy5ub3JtYWwoMCwgOCwgc2l6ZT1uX3N0dWRlbnRzKSxcbiAgICA0MCxcbiAgICAxMDAsXG4pLnJvdW5kKDEpXG5kYXRhX2xpdGVyYWN5X3Njb3JlID0gbnAuY2xpcChcbiAgICAyNCArIDAuNDYgKiBweXRob25fc2NvcmUgKyBybmcubm9ybWFsKDAsIDcsIHNpemU9bl9zdHVkZW50cyksXG4gICAgMzUsXG4gICAgMTAwLFxuKS5yb3VuZCgxKVxuXG5zdHVkZW50X2RmID0gcGQuRGF0YUZyYW1lKFxuICAgIHtcbiAgICAgICAgXCJzdHVkZW50X2lkXCI6IFtmXCJTe2k6MDNkfVwiIGZvciBpIGluIHJhbmdlKDEsIG5fc3R1ZGVudHMgKyAxKV0sXG4gICAgICAgIFwiZ2VuZGVyXCI6IGdlbmRlcixcbiAgICAgICAgXCJtYWpvclwiOiBwZC5DYXRlZ29yaWNhbChtYWpvciwgY2F0ZWdvcmllcz1tYWpvcl9vcmRlciwgb3JkZXJlZD1UcnVlKSxcbiAgICAgICAgXCJzdHVkeV9ob3Vyc1wiOiBzdHVkeV9ob3VycyxcbiAgICAgICAgXCJhdHRlbmRhbmNlX3JhdGVcIjogYXR0ZW5kYW5jZV9yYXRlLFxuICAgICAgICBcInB5dGhvbl9zY29yZVwiOiBweXRob25fc2NvcmUsXG4gICAgICAgIFwiZGF0YV9saXRlcmFjeV9zY29yZVwiOiBkYXRhX2xpdGVyYWN5X3Njb3JlLFxuICAgIH1cbilcblxuc3R1ZGVudF9kZi50b19jc3YoXCIuL2RhdGEvc3R1ZGVudF9lZGEuY3N2XCIsIGluZGV4PUZhbHNlKSJ9
+</script>
+</div>
+</section>
+<section id="本节概览" class="slide level2">
+<h2>本节概览</h2>
+<ul>
+<li>从分析问题和变量类型出发选择图形</li>
+<li>理解 Matplotlib 中 <code>Figure</code> 与 <code>Axes</code> 的基本分工</li>
+<li>绘制数值变量分布、分类频数和分组分布图</li>
+<li>对图形作出简洁、克制的描述性解释</li>
+</ul>
+</section>
+<section>
+<section id="从分析问题到图形选择" class="title-slide slide level1 center">
+<h1>从分析问题到图形选择</h1>
+
+</section>
+<section id="图形不是数据分析的装饰" class="slide level2">
+<h2>图形不是数据分析的装饰</h2>
+<ul>
+<li>表格适合查看精确数值；图形适合发现结构、差异和异常。</li>
+<li>作图前先明确：要观察哪一个变量，还是比较不同组，还是研究变量关系。</li>
+<li>图形能帮助提出问题，但不能代替后续的统计推断。</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>一张图先回答一个问题</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>分析问题</th>
+<th>变量类型</th>
+<th>首选图形</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>成绩主要集中在哪个区间</td>
+<td>一个数值变量</td>
+<td>直方图</td>
+</tr>
+<tr class="even">
+<td>各专业有多少学生</td>
+<td>一个分类变量</td>
+<td>频数图</td>
+</tr>
+<tr class="odd">
+<td>不同专业的成绩分布是否不同</td>
+<td>分类变量 + 数值变量</td>
+<td>箱线图 + 个体点</td>
+</tr>
+<tr class="even">
+<td>学习时长与成绩是否有关联</td>
+<td>两个数值变量</td>
+<td>散点图</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoc3R1ZGVudF9kZi5zaGFwZSlcbnByaW50KHN0dWRlbnRfZGYuZHR5cGVzKVxuc3R1ZGVudF9kZi5oZWFkKCkifQ==
+</script>
+</div>
+</section>
+<section id="作图前仍然要检查数据" class="slide level2">
+<h2>作图前仍然要检查数据</h2>
+<ul>
+<li>数值列是否真的是数值类型。</li>
+<li>分类变量是否有统一的类别口径和合理顺序。</li>
+<li>缺失值、极端值和样本量都会影响图形的解释。</li>
+<li>第四章完成的数据清洗，是第五章作图的前提。</li>
+</ul>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoc3R1ZGVudF9kZi5pc25hKCkuc3VtKCkpXG5wcmludChzdHVkZW50X2RmW1wibWFqb3JcIl0udmFsdWVfY291bnRzKCkucmVpbmRleChtYWpvcl9vcmRlcikpXG5wcmludChzdHVkZW50X2RmW1tcInN0dWR5X2hvdXJzXCIsIFwicHl0aG9uX3Njb3JlXCJdXS5kZXNjcmliZSgpLnJvdW5kKDIpKSJ9
+</script>
+</div>
+</section></section>
+<section>
+<section id="matplotlib-的最小作图框架" class="title-slide slide level1 center">
+<h1>Matplotlib 的最小作图框架</h1>
+
+</section>
+<section id="figure-与-axes" class="slide level2">
+<h2><code>Figure</code> 与 <code>Axes</code></h2>
+<ul>
+<li><code>Figure</code> 可以理解为整张画布。</li>
+<li><code>Axes</code> 是真正放置坐标轴、数据和图例的绘图区。</li>
+<li>本章统一使用对象式写法：先创建 <code>fig, ax</code>，再在 <code>ax</code> 上作图。</li>
+</ul>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuYXguaGlzdChzdHVkZW50X2RmW1wicHl0aG9uX3Njb3JlXCJdKVxuYXguc2V0KFxuICAgIHRpdGxlPVwiUHl0aG9uIOaIkOe7qeWIhuW4g1wiLFxuICAgIHhsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIixcbiAgICB5bGFiZWw9XCLkurrmlbBcIixcbilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="基本标注与导出" class="slide level2">
+<h2>基本标注与导出</h2>
+<ul>
+<li>标题说明图形回答的问题。</li>
+<li>横轴、纵轴要写清变量名和必要的单位。</li>
+<li>有多个组或多条线时，图例应能说明颜色或线型含义。</li>
+<li>在本地 Notebook 中，可用 <code>fig.savefig()</code> 保存图片。</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>本章的库分工</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Matplotlib 提供画布、坐标轴、标题、图例和导出等基础控制。</li>
+<li>Seaborn 更适合用 DataFrame 的列名快速生成统计图形。</li>
+<li>两者可以一起使用：Seaborn 在 <code>ax</code> 上作图，Matplotlib 负责进一步标注和整理。</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="小结任务-1" class="slide level2">
+<h2>小结任务 1</h2>
+<p>为 <code>data_literacy_score</code> 绘制一个直方图，并补充标题、横轴和纵轴标签。</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBmaWcsIGF4ID0gcGx0LnN1YnBsb3RzKGZpZ3NpemU9KDYsIDQpKVxuIyBheC5oaXN0KHN0dWRlbnRfZGZbXCJkYXRhX2xpdGVyYWN5X3Njb3JlXCJdKVxuIyBheC5zZXQoXG4jICAgICB0aXRsZT0uLi4sXG4jICAgICB4bGFiZWw9Li4uLFxuIyAgICAgeWxhYmVsPS4uLixcbiMgKVxuIyBmaWcudGlnaHRfbGF5b3V0KClcbiMgcGx0LnNob3coKSJ9
+</script>
+</div>
+</section></section>
+<section>
+<section id="数值变量的分布" class="title-slide slide level1 center">
+<h1>数值变量的分布</h1>
+
+</section>
+<section id="从-matplotlib-到-seaborn" class="slide level2">
+<h2>从 Matplotlib 到 Seaborn</h2>
+<p>上一小节我们介绍了 <code>Matplotlib</code> 的画布和坐标轴。但在实际操作中，更常见的方式是先用 <code>Seaborn</code> 根据 DataFrame 的列名生成统计图，再用 <code>Matplotlib</code> 调整标题、坐标轴、图例和布局。这样写的好处是代码和表格列名对应更清楚，也方便继续添加分组颜色、平滑曲线等统计图层。</p>
+<p>流程示例如下：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb1-2"><a href=""></a>sns.xxxplot(data<span class="op">=</span>数据表, x<span class="op">=</span><span class="st">"列名"</span>, y<span class="op">=</span><span class="st">"列名"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb1-3"><a href=""></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"标题"</span>, xlabel<span class="op">=</span><span class="st">"横轴标签"</span>, ylabel<span class="op">=</span><span class="st">"纵轴标签"</span>)</span>
+<span id="cb1-4"><a href=""></a>fig.tight_layout()</span>
+<span id="cb1-5"><a href=""></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Matplotlib 负责创建画布、坐标轴、标题、标签、图例和图片保存。</li>
+<li>Seaborn 负责把 DataFrame 中的列快速画成常见统计图。</li>
+<li><code>data=student_df</code> 表示从哪张表取数据，<code>x="python_score"</code> 表示横轴使用哪一列。</li>
+<li><code>ax=ax</code> 表示把 Seaborn 的图画到刚才创建的那个坐标轴上。</li>
+<li>不同图形需要的参数不同：直方图通常只写 <code>x</code>，箱线图常常同时写 <code>x</code> 和 <code>y</code>。</li>
+</ul>
+</section>
+<section id="sns.histplot直方图" class="slide level2">
+<h2><code>sns.histplot()</code>：直方图</h2>
+<p><code>sns.histplot()</code> 可以理解为 <code>ax.hist()</code> 的高级封装。它直接使用 DataFrame 和列名作图，适合和 Pandas 数据衔接。</p>
+<ul>
+<li>直方图首先用于观察集中位置、分散程度、偏态和可能的异常值。</li>
+</ul>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc25zLmhpc3RwbG90KFxuICAgIGRhdGE9c3R1ZGVudF9kZixcbiAgICB4PVwicHl0aG9uX3Njb3JlXCIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQodGl0bGU9XCJQeXRob24g5oiQ57up55qE55u05pa55Zu+XCIsIHhsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIiwgeWxhYmVsPVwi5Lq65pWwXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</section>
+<section id="分箱直方图先把横轴切成区间" class="slide level2">
+<h2>分箱：直方图先把横轴切成区间</h2>
+<p>直方图不是直接画出每一个成绩，而是先把横轴切成若干区间，再统计每个区间里有多少人。例如 <code>55-60</code>、<code>60-65</code>、<code>65-70</code> 这样的区间，就叫分箱；每个区间的端点叫分箱边界。</p>
+<p><code>bins</code> 可以控制横轴被切成多少个区间。分箱数少，图形更粗略；分箱数多，图形细节更多，但也可能显得更碎。下面两张图使用同一列成绩，只改变 <code>bins</code>。</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheGVzID0gcGx0LnN1YnBsb3RzKDEsIDIsIGZpZ3NpemU9KDEwLCA0KSwgc2hhcmV5PVRydWUpXG5cbnNucy5oaXN0cGxvdChcbiAgICBkYXRhPXN0dWRlbnRfZGYsXG4gICAgeD1cInB5dGhvbl9zY29yZVwiLFxuICAgIGF4PWF4ZXNbMF0sXG4pXG5heGVzWzBdLnNldCh0aXRsZT1cIum7mOiupOWIhueusVwiLCB4bGFiZWw9XCJQeXRob24g5oiQ57upXCIsIHlsYWJlbD1cIuS6uuaVsFwiKVxuXG5zbnMuaGlzdHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJweXRob25fc2NvcmVcIixcbiAgICBiaW5zPTE1LFxuICAgIGF4PWF4ZXNbMV0sXG4pXG5heGVzWzFdLnNldCh0aXRsZT1cImJpbnM9MTVcIiwgeGxhYmVsPVwiUHl0aG9uIOaIkOe7qVwiLCB5bGFiZWw9XCLkurrmlbBcIilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="显式指定分箱边界" class="slide level2">
+<h2>显式指定分箱边界</h2>
+<p>如果希望分箱更容易解释，可以直接给出一组分箱边界。下面的 <code>np.arange(55, 105, 5)</code> 表示从 55 到 100，每 5 分一个区间。</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc2NvcmVfYmlucyA9IG5wLmFyYW5nZSg1NSwgMTA1LCA1KVxuXG5zbnMuaGlzdHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJweXRob25fc2NvcmVcIixcbiAgICBiaW5zPXNjb3JlX2JpbnMsXG4gICAgY29sb3I9XCIjNEM3OEE4XCIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQodGl0bGU9XCJQeXRob24g5oiQ57up5YiG5biD77yI5q+PIDUg5YiG5LiA57uE77yJXCIsIHhsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIiwgeWxhYmVsPVwi5Lq65pWwXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</section>
+<section id="分组比较男女成绩分布" class="slide level2">
+<h2>分组比较：男女成绩分布</h2>
+<p>比较两组直方图时，两组必须使用同一组区间。否则，一个柱子可能表示 <code>55-60</code> 分的人数，另一个柱子却表示 <code>56-61</code> 分的人数，看起来都在相近位置，其实数的不是同一件事。</p>
+<p>如果两组样本量差异明显，频数柱高还会受到组大小影响，不宜直接据此判断哪组分布更集中。此时可以比较组内比例，或改用后面的箱线图观察分布位置和离散程度。</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc2NvcmVfYmlucyA9IG5wLmFyYW5nZSg1NSwgMTA1LCA1KVxuXG5zbnMuaGlzdHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJweXRob25fc2NvcmVcIixcbiAgICBodWU9XCJnZW5kZXJcIixcbiAgICBodWVfb3JkZXI9W1wi5aWzXCIsIFwi55S3XCJdLFxuICAgIGJpbnM9c2NvcmVfYmlucyxcbiAgICBlbGVtZW50PVwic3RlcFwiLFxuICAgIGZpbGw9RmFsc2UsXG4gICAgY29tbW9uX2JpbnM9VHJ1ZSxcbiAgICBheD1heCxcbilcbmF4LnNldCh0aXRsZT1cIuS4jeWQjOaAp+WIq+eahCBQeXRob24g5oiQ57up5YiG5biD77yI57uf5LiA5YiG566x77yJXCIsIHhsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIiwgeWxhYmVsPVwi5Lq65pWwXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>参数预告</strong></p>
+</div>
+<div class="callout-content">
+<p><code>hue="gender"</code> 表示按 <code>gender</code> 这一列分组，并用不同颜色显示不同组。本节先把它当作“按组上色”的工具使用；下一讲会在散点图和折线图中更系统地使用 <code>hue</code> 表达分组关系。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>读图提醒</strong></p>
+</div>
+<div class="callout-content">
+<p><code>element="step"</code> 和 <code>fill=False</code> 会把直方图画成轮廓线，便于比较重叠的组。</p>
+<p>如果两组柱子大量重叠，直方图会变得不容易读。此时可以使用轮廓直方图，或者改用后面的箱线图比较分组分布。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="在直方图上观察-kde-曲线" class="slide level2">
+<h2>在直方图上观察 KDE 曲线</h2>
+<ul>
+<li><code>KDE</code> 是核密度估计曲线；<code>kde=True</code> 可以在直方图上叠加一条平滑的密度曲线。</li>
+<li>KDE 用于辅助观察分布形状，不是额外的一组观测数据。</li>
+<li>当样本量较小或分布很离散时，KDE 的形状要谨慎解释。</li>
+</ul>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuaG91cl9iaW5zID0gbnAuYXJhbmdlKDIsIDE2KVxuXG5zbnMuaGlzdHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJzdHVkeV9ob3Vyc1wiLFxuICAgIGJpbnM9aG91cl9iaW5zLFxuICAgIGtkZT1UcnVlLFxuICAgIGNvbG9yPVwiIzU5QTE0RlwiLFxuICAgIGF4PWF4LFxuKVxuYXguc2V0KHRpdGxlPVwi5q+P5ZGo5a2m5Lmg5pe26ZW/5YiG5biDXCIsIHhsYWJlbD1cIuavj+WRqOWtpuS5oOaXtumVv++8iOWwj+aXtu+8iVwiLCB5bGFiZWw9XCLkurrmlbBcIilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="小结任务-2" class="slide level2">
+<h2>小结任务 2</h2>
+<p>使用 <code>sns.histplot()</code> 绘制 <code>attendance_rate</code> 的分布图，并设置 <code>kde=True</code>。用一句话描述图形中的集中区间或偏态特征。</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBmaWcsIGF4ID0gcGx0LnN1YnBsb3RzKGZpZ3NpemU9KDYsIDQpKVxuIyBzbnMuaGlzdHBsb3QoXG4jICAgICBkYXRhPXN0dWRlbnRfZGYsXG4jICAgICB4PS4uLixcbiMgICAgIGJpbnM9Li4uLFxuIyAgICAga2RlPS4uLixcbiMgICAgIGF4PWF4LFxuIyApXG4jIGF4LnNldCh0aXRsZT0uLi4sIHhsYWJlbD0uLi4sIHlsYWJlbD0uLi4pXG4jIGZpZy50aWdodF9sYXlvdXQoKVxuIyBwbHQuc2hvdygpIn0=
+</script>
+</div>
+</section></section>
+<section>
+<section id="分类变量的频数" class="title-slide slide level1 center">
+<h1>分类变量的频数</h1>
+
+</section>
+<section id="先看频数表" class="slide level2">
+<h2>先看频数表</h2>
+<ul>
+<li><code>value_counts()</code> 给出精确频数。</li>
+<li>对有逻辑顺序的分类变量，建议显式指定输出顺序。</li>
+<li>图形不是频数表的替代品，而是更适合比较结构的表达方式。</li>
+</ul>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWFqb3JfY291bnRzID0gc3R1ZGVudF9kZltcIm1ham9yXCJdLnZhbHVlX2NvdW50cygpLnJlaW5kZXgobWFqb3Jfb3JkZXIpXG5wcmludChtYWpvcl9jb3VudHMpIn0=
+</script>
+</div>
+</section>
+<section id="sns.countplot频数图" class="slide level2">
+<h2><code>sns.countplot()</code>：频数图</h2>
+<ul>
+<li><code>countplot()</code> 适合展示一个分类变量中各类别的样本数。</li>
+<li><code>order=</code> 可让类别按教学或统计上的逻辑顺序排列。</li>
+<li>不建议用饼图替代频数图：类别较多时，柱形高度更容易比较。</li>
+</ul>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg2LCA0KSlcblxuc25zLmNvdW50cGxvdChcbiAgICBkYXRhPXN0dWRlbnRfZGYsXG4gICAgeD1cIm1ham9yXCIsXG4gICAgb3JkZXI9bWFqb3Jfb3JkZXIsXG4gICAgYXg9YXgsXG4pXG5heC5zZXQodGl0bGU9XCLkuI3lkIzkuJPkuJrnmoTmoLfmnKzkurrmlbBcIiwgeGxhYmVsPVwi5LiT5LiaXCIsIHlsYWJlbD1cIuS6uuaVsFwiKVxuXG5maWcudGlnaHRfbGF5b3V0KClcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</section>
+<section id="快速辨析坐标轴和标签" class="slide level2">
+<h2>快速辨析：坐标轴和标签</h2>
+<p>下面两张图使用同一组男女人数。左图故意截断纵轴，并省略必要的轴标签；右图从 0 开始并标出变量含义。样本中男女分别为 81 人和 79 人，左图会把这 2 人的差异视觉放大，标签缺失也会让读者无法判断图形表示什么。</p>
+<p>课堂只需回答三个问题：如果只看左图，能否说男女人数差距很大？一张合格的图至少需要保留哪些标题和标签？如果只展示对结论有利的类别、区间或样本范围，会不会造成新的误导？</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZ2VuZGVyX29yZGVyID0gW1wi5aWzXCIsIFwi55S3XCJdXG5nZW5kZXJfY291bnRzID0gc3R1ZGVudF9kZltcImdlbmRlclwiXS52YWx1ZV9jb3VudHMoKS5yZWluZGV4KGdlbmRlcl9vcmRlcilcblxuZmlnLCBheGVzID0gcGx0LnN1YnBsb3RzKDEsIDIsIGZpZ3NpemU9KDEwLCA0KSlcblxuIyDkuI3op4TojIPnpLrkvovvvJrnurXovbTooqvmiKrmlq3vvIzkuJTnvLrlsJHlj5jph4/moIfnrb7jgIJcbmF4ZXNbMF0uYmFyKGdlbmRlcl9jb3VudHMuaW5kZXgsIGdlbmRlcl9jb3VudHMudmFsdWVzLCBjb2xvcj1cIiNGMjhFOEVcIilcbmF4ZXNbMF0uc2V0X3lsaW0oaW50KGdlbmRlcl9jb3VudHMubWluKCkpIC0gMiwgaW50KGdlbmRlcl9jb3VudHMubWF4KCkpICsgMilcbmF4ZXNbMF0uc2V0X3RpdGxlKFwi5LiN6KeE6IyD56S65L6L77ya5beu5byC6KKr5pS+5aSnXCIpXG5cbiMg5L+u5q2j56S65L6L77ya5LuOIDAg5byA5aeL77yM5bm25YaZ5riF5qCH6aKY5ZKM5Z2Q5qCH6L205ZCr5LmJ44CCXG5heGVzWzFdLmJhcihnZW5kZXJfY291bnRzLmluZGV4LCBnZW5kZXJfY291bnRzLnZhbHVlcywgY29sb3I9XCIjNzZCN0IyXCIpXG5heGVzWzFdLnNldChcbiAgICB0aXRsZT1cIuS/ruato+ekuuS+i++8muS7jiAwIOW8gOWni+W5tuagh+azqFwiLFxuICAgIHhsYWJlbD1cIuaAp+WIq1wiLFxuICAgIHlsYWJlbD1cIuS6uuaVsFwiLFxuKVxuYXhlc1sxXS5zZXRfeWxpbSgwLCBpbnQoZ2VuZGVyX2NvdW50cy5tYXgoKSkgKyAxMClcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section></section>
+<section>
+<section id="分组分布比较" class="title-slide slide level1 center">
+<h1>分组分布比较</h1>
+
+</section>
+<section id="先读懂箱线图" class="slide level2">
+<h2>先读懂箱线图</h2>
+<p>箱线图适合比较不同组中数值变量的分布。它把一组数据压缩成几个关键位置，帮助我们快速看出“中间水平在哪里”“大多数人分布得宽不宽”“有没有特别偏离的一些值”。</p>
+<ul>
+<li>箱子中间的横线表示中位数：大约一半观测值在它下面，一半在它上面。</li>
+<li>箱子的上下边表示两个四分位数：箱子内部大约包含中间一半的观测值。</li>
+<li>箱子外面的线通常叫“须”，表示在常规范围内还能延伸到哪里。</li>
+<li>单独画出来的小圆点通常表示可能的离群点：它们不是错误，只是比同组大多数观测值更远。</li>
+</ul>
+</section>
+<section id="sns.boxplot画出箱线图" class="slide level2">
+<h2><code>sns.boxplot()</code>：画出箱线图</h2>
+<ul>
+<li>重点观察中位数、箱子的高度、须的范围和可能的离群点。</li>
+<li>组间箱线图不同，只说明样本分布看起来存在差异，不等于已经完成显著性检验。</li>
+</ul>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLmJveHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJweXRob25fc2NvcmVcIixcbiAgICBvcmRlcj1tYWpvcl9vcmRlcixcbiAgICBheD1heCxcbilcbmF4LnNldCh0aXRsZT1cIuS4jeWQjOS4k+S4mueahCBQeXRob24g5oiQ57up5YiG5biDXCIsIHhsYWJlbD1cIuS4k+S4mlwiLCB5bGFiZWw9XCJQeXRob24g5oiQ57upXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+<p>在这张示例图中，统计学组下面出现两个小圆点，意思是这个专业里有两名学生的成绩相对本组大多数人偏低。其他两个专业没有小圆点，只说明按当前箱线图规则没有被单独标出的观测值，不表示它们没有低分或高分。</p>
+</section>
+<section id="sns.stripplot补充个体记录" class="slide level2">
+<h2><code>sns.stripplot()</code>：补充个体记录</h2>
+<ul>
+<li>在箱线图上叠加个体点，可以让读者看到每个观测值的位置。</li>
+<li>点的轻微横向抖动只用于避免重叠，不表示额外的数值含义。</li>
+<li>这种组合既保留箱线图的概括信息，也避免把平滑密度曲线误读为真实频数。</li>
+<li>这里使用统一的浅色箱体，是为了让深灰色个体点更突出；如果希望箱体也按组着色，可以去掉 <code>color</code> 参数，使用 Seaborn 的默认调色板。</li>
+</ul>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLmJveHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJweXRob25fc2NvcmVcIixcbiAgICBvcmRlcj1tYWpvcl9vcmRlcixcbiAgICBjb2xvcj1cIiNEOUU2RjJcIixcbiAgICB3aWR0aD0wLjU1LFxuICAgIGF4PWF4LFxuKVxuc25zLnN0cmlwcGxvdChcbiAgICBkYXRhPXN0dWRlbnRfZGYsXG4gICAgeD1cIm1ham9yXCIsXG4gICAgeT1cInB5dGhvbl9zY29yZVwiLFxuICAgIG9yZGVyPW1ham9yX29yZGVyLFxuICAgIGNvbG9yPVwiIzMzMzMzM1wiLFxuICAgIGFscGhhPTAuMzUsXG4gICAgc2l6ZT0zLFxuICAgIGF4PWF4LFxuKVxuYXguc2V0KHRpdGxlPVwi5LiN5ZCM5LiT5Lia55qEIFB5dGhvbiDmiJDnu6nvvJrnrrHnur/lm77kuI7kuKrkvZPorrDlvZVcIiwgeGxhYmVsPVwi5LiT5LiaXCIsIHlsYWJlbD1cIlB5dGhvbiDmiJDnu6lcIilcblxuZmlnLnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</section>
+<section id="小结任务-3" class="slide level2">
+<h2>小结任务 3</h2>
+<p>绘制不同专业学生 <code>study_hours</code> 的箱线图。写出一条图形直接支持的描述，不把图形观察写成因果结论。</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBmaWcsIGF4ID0gcGx0LnN1YnBsb3RzKGZpZ3NpemU9KDcsIDQpKVxuIyBzbnMuYm94cGxvdChcbiMgICAgIGRhdGE9c3R1ZGVudF9kZixcbiMgICAgIHg9Li4uLFxuIyAgICAgeT0uLi4sXG4jICAgICBvcmRlcj1tYWpvcl9vcmRlcixcbiMgICAgIGF4PWF4LFxuIyApXG4jIGF4LnNldCh0aXRsZT0uLi4sIHhsYWJlbD0uLi4sIHlsYWJlbD0uLi4pXG4jIGZpZy50aWdodF9sYXlvdXQoKVxuIyBwbHQuc2hvdygpIn0=
+</script>
+</div>
+</section></section>
+<section>
+<section id="综合案例描述一组学生数据" class="title-slide slide level1 center">
+<h1>综合案例：描述一组学生数据</h1>
+
+</section>
+<section id="从问题到图形" class="slide level2">
+<h2>从问题到图形</h2>
+<p>问题：模拟学生样本的 Python 成绩分布如何？不同专业的成绩是否值得进一步比较？</p>
+<ul>
+<li>第一个问题适合使用直方图。</li>
+<li>第二个问题适合使用箱线图。</li>
+<li>图形观察后，还应说明样本量、缺失情况和结论边界。</li>
+</ul>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZmlnLCBheCA9IHBsdC5zdWJwbG90cyhmaWdzaXplPSg3LCA0KSlcblxuc25zLmJveHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJweXRob25fc2NvcmVcIixcbiAgICBvcmRlcj1tYWpvcl9vcmRlcixcbiAgICBheD1heCxcbilcbnNucy5zdHJpcHBsb3QoXG4gICAgZGF0YT1zdHVkZW50X2RmLFxuICAgIHg9XCJtYWpvclwiLFxuICAgIHk9XCJweXRob25fc2NvcmVcIixcbiAgICBvcmRlcj1tYWpvcl9vcmRlcixcbiAgICBjb2xvcj1cIiMzMzMzMzNcIixcbiAgICBhbHBoYT0wLjM1LFxuICAgIHNpemU9MyxcbiAgICBheD1heCxcbilcbmF4LnNldCh0aXRsZT1cIuS4k+S4muS4jiBQeXRob24g5oiQ57up77ya5YiG5biD5LiO5Liq5L2T6K6w5b2VXCIsIHhsYWJlbD1cIuS4k+S4mlwiLCB5bGFiZWw9XCJQeXRob24g5oiQ57upXCIpXG5cbmZpZy50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>一种合格的图表解读</strong></p>
+</div>
+<div class="callout-content">
+<p>模拟样本中，三个专业的 Python 成绩分布存在一定差异，数据科学专业的中位数相对较高。图形只是描述当前样本；是否存在稳定的总体差异，需要结合样本设计和后续统计推断进一步判断。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="课堂练习" class="slide level2 scrollable">
+<h2>课堂练习</h2>
+<p>使用 <code>student_df</code> 完成：</p>
+<ol type="1">
+<li>为 <code>data_literacy_score</code> 绘制带 KDE 的直方图。</li>
+<li>为 <code>gender</code> 绘制频数图。</li>
+<li>绘制不同性别 <code>python_score</code> 的箱线图。</li>
+<li>为每张图写一句描述性结论，避免使用“导致”“证明”等因果性表述。</li>
+</ol>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyDlm74gMe+8mmRhdGFfbGl0ZXJhY3lfc2NvcmUg55qE5YiG5biDXG5cbiMg5Zu+IDLvvJpnZW5kZXIg55qE6aKR5pWwXG5cbiMg5Zu+IDPvvJpnZW5kZXIg5LiOIHB5dGhvbl9zY29yZSDnmoTliIbnu4TliIbluIMifQ==
+</script>
+</div>
+</section>
+<section id="本节小结" class="slide level2">
+<h2>本节小结</h2>
+<ul>
+<li>先根据问题和变量类型选图，再开始写代码。</li>
+<li>Matplotlib 负责图形对象与标注控制，Seaborn 负责高层统计图形。</li>
+<li>直方图看数值分布，频数图看类别结构，箱线图和个体点比较组内分布。</li>
+<li>图形用于描述和探索，不自动给出显著性或因果结论。</li>
+</ul>
+</section>
+<section id="下一节" class="slide level2">
+<h2>下一节</h2>
+<p>下一节将用散点图、折线图和相关热力图继续探索变量关系与变化结构。</p>
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIiwic2VhYm9ybiJdfX0=
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfMSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMS1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjFcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIxXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyJhc3NldHMvTm90b1NhbnNDSktzYy1SZWd1bGFyLm90ZiIsImFzc2V0cy9Ob3RvU2Fuc0NKSy1MSUNFTlNFLnR4dCJd
+</script>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>《Python程序设计》第五章（一） - 王润祖</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="chapter5a_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="chapter5a_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="chapter5a_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="chapter5a_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W119
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../..";
+    window._ojs.paths.runtimeToRoot = "../../../../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
