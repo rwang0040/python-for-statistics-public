@@ -46,7 +46,7 @@ format:
 * 这组真假结果常被称为 **布尔掩码**，英文里常写作 `mask`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([82, 76, 91, 58, 79])
@@ -62,7 +62,7 @@ print(f"是否高于等于 80: {high_mask}")
 * 先把条件结果保存为 `mask`，再用 `scores[mask]` 筛选，会让程序更容易读。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([82, 76, 91, 58, 79])
 high_mask = scores >= 80
 high_scores = scores[high_mask]
@@ -74,7 +74,7 @@ print(f"筛选结果: {high_scores}")
 ## 例子：筛选成年样本
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = np.array([17, 18, 21, 16, 20, 19])
 adult_mask = ages >= 18
 adult_ages = ages[adult_mask]
@@ -97,7 +97,7 @@ print(f"成年样本: {adult_ages}")
 * 不要用 Python 普通的 `and` / `or` 来组合数组条件。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = np.array([17, 22, 35, 16, 48, 63])
 income = np.array([4200, 5100, 6800, 3900, 5700, 4600])
 
@@ -113,7 +113,7 @@ print(f"对应收入: {adult_high_income}")
 给定一组收入数据，补全下面的代码：先生成大于等于 `5000` 的收入掩码，再用掩码筛选样本，并输出筛选结果与样本量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 income = np.array([4200, 5100, 3900, 6800, 5700, 4600])
 high_income_mask = # 在这里补全
 high_income = # 在这里补全
@@ -133,7 +133,7 @@ high_income = # 在这里补全
 ## 常用聚合函数
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([82, 76, 91, 58, 79])
 
 print(f"总分: {scores.sum()}")
@@ -151,7 +151,7 @@ print(f"标准差: {scores.std()}")
 * 如果数组里有 `np.nan`，直接计算均值通常也会得到 `np.nan`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = np.array([25, 30, np.nan, 22, 18], dtype=float)
 valid_age_mask = ~np.isnan(ages)
 
@@ -171,7 +171,7 @@ print(f"忽略缺失后的均值: {ages[valid_age_mask].mean():.2f}")
 给定一组测验成绩，补全下面的代码：输出平均分、最高分和标准差。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([82, 76, 91, 58, 79])
 
 # print(f"平均分: {...}")
@@ -187,7 +187,7 @@ scores = np.array([82, 76, 91, 58, 79])
 * 虽然还不是最完整的表格表达方式，但已能承载很多基础统计计算。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -200,7 +200,7 @@ print(f"原数组:\n{scores}")
 ## 整体均值
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -215,7 +215,7 @@ print(f"整体均值: {scores.mean():.2f}")
 * 如果把每一行看作一个学生的多门成绩，按行均值就是“每个学生的平均分”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -230,7 +230,7 @@ print(f"按行均值: {scores.mean(axis=1)}")
 * 如果把每一列看作一门课程，按列均值就是“每门课程的平均分”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -252,7 +252,7 @@ print(f"按列均值: {scores.mean(axis=0)}")
 给定二维数组，补全下面的代码：输出按行均值和按列均值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 data = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -271,7 +271,7 @@ data = np.array([
 * 可以先直观理解为：标量会自动应用到数组的每个元素上。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([82, 76, 91, 88, 79])
 print(f"统一加 5 分后: {scores + 5}")
 ```
@@ -282,7 +282,7 @@ print(f"统一加 5 分后: {scores + 5}")
 * 这里先观察一维数组如何自动作用到二维数组的每一行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -303,7 +303,7 @@ print(f"加分后成绩:\n{scores + bonus}")
 给定二维成绩数组和一维加分数组，补全下面的代码：输出加分后的二维数组和第二位学生加分后的成绩。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -326,7 +326,7 @@ adjusted_scores = # 在这里补全
 * 先筛选出女性对应的收入，再计算女性的平均收入
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 income = np.array([
@@ -357,7 +357,7 @@ print(f"女性平均收入: {female_income.mean()}")
 给定一组学生成绩数据，第一列表示性别，其中 `0` 表示女生，`1` 表示男生；后面三列表示三门课程成绩。补全下面的代码：计算每位学生的平均分，并输出平均分超过 `80` 分的学生比例。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 data = np.array([
     [1, 82, 76, 91],
     [0, 88, 79, 85],
@@ -378,7 +378,7 @@ high_ratio = # 在这里补全
 继续使用上面的数据，补全下面的代码：输出每一科的平均分和最高分，并判断每科最高分是否不低于 `90` 分。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 course_scores = # 在这里补全
 course_means = # 在这里补全
 course_max = # 在这里补全
@@ -393,7 +393,7 @@ course_max = # 在这里补全
 继续使用上面的数据，补全下面的代码：分别输出男生和女生在每门课上的最高分。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 boys = # 在这里补全
 girls = # 在这里补全
 boys_max = # 在这里补全

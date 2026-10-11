@@ -38,7 +38,7 @@ format:
 * 例如：全班 50 个人的成绩都想加 5 分，就需要逐个处理。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 这是列表
 scores = [82, 76, 91, 88, 79]
 # 得用循环才能整体加 5
@@ -65,7 +65,7 @@ NumPy 是 Python 中常用的第三方库，主要用于数值数组与数值计
 * 打印出来虽然和列表很像，但它已经能够直接承担批量运算。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = [82, 76, 91, 88, 79]
@@ -83,7 +83,7 @@ print(type(score_array))
 * 也可以把数组理解为：把表格中的一列数值单独抽出来，放进一个更适合计算的结构中。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 heights = np.array([168.5, 172.0, 165.3, 178.1])
@@ -98,7 +98,7 @@ print(heights)
 * 一维数组的 `shape` 写作 `(元素个数,)`。那个逗号表示这里只有一个维度。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 heights = np.array([168.5, 172.0, 165.3, 178.1])
 print(f"shape: {heights.shape}")
 ```
@@ -110,7 +110,7 @@ print(f"shape: {heights.shape}")
 * 它还不是最完整的表格表达方式，但已经能帮助建立对表格数据的直观认识。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([
@@ -134,7 +134,7 @@ print(f"shape: {scores.shape}")
 给定两组数据，补全下面的代码：分别创建一维数组和二维数组，并输出它们的 `shape`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [18, 21, 19, 22]
 scores = [
     [82, 76, 91],
@@ -156,7 +156,7 @@ score_array = # 在这里补全
 * 在数组里，这件事可以直接写成整体运算：**直接 `+ 5` 即可**。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([82, 76, 91, 88, 79])
@@ -172,7 +172,7 @@ print(f"加分后: {adjusted_scores}")
 * 这很适合表示“同一批样本上的两个指标”，例如基本工资和奖金。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 income = np.array([4200, 5100, 3900])
@@ -192,7 +192,7 @@ print(final_income)
 * 把第二章的循环写法和数组写法放在一起看，差别会更直观。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 第二章的方式：循环
 scores = [82, 76, 91, 88, 79]
 adjusted_scores = []
@@ -204,7 +204,7 @@ print(f"循环结果: {adjusted_scores}")
 ```
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # NumPy 的方式：向量化
 import numpy as np
 
@@ -230,7 +230,7 @@ print(f"向量化结果: {scores + 5}")
 给定一组基础收入和奖金数据，补全下面的代码：计算总收入，并输出总收入数组和数组的 `shape`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 base_income = np.array([4200, 5100, 3900, 4600])
 bonus = np.array([300, 200, 500, 100])
 
@@ -248,7 +248,7 @@ total_income = # 在这里补全
 * 第一项仍然是位置 `0`，最后一项仍然可以写成 `-1`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([82, 76, 91, 88, 79])
@@ -261,7 +261,7 @@ print(f"最后一个成绩: {scores[-1]}")
 * 切片规则也和列表一致：`[起点:终点]`，左闭右开。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([82, 76, 91, 88, 79])
@@ -275,7 +275,7 @@ print(f"后两个成绩: {scores[2:]}")
 * 需要先建立这个最基础的顺序：`[行, 列]`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([
@@ -297,7 +297,7 @@ print(f"第一行第二列: {scores[0, 1]}")
 给定二维数组，补全下面的代码：输出数组的 `shape`、第二行和第二行第三列的值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 data = np.array([
     [82, 76, 91],
     [88, 79, 85],
@@ -323,7 +323,7 @@ data = np.array([
 * 这种“一次作用到整列”的方式，就是向量化带来的便利。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 heights_cm = np.array([168.5, 172.0, 165.3, 178.1])
@@ -337,7 +337,7 @@ print(f"身高（米）: {heights_m}")
 给定一组以厘米为单位的身高数据，补全下面的代码：统一换算成米，并输出换算后的数组和前两位受访者的身高。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 heights_cm = np.array([168.5, 172.0, 165.3, 178.1])
 heights_m = # 在这里补全
 
@@ -355,7 +355,7 @@ heights_m = # 在这里补全
 * 最后换算成百分制比例（除以 100）
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 
 scores = np.array([82, 76, 91, 88, 79])
@@ -384,7 +384,7 @@ print(f"对应比例: {score_ratio}")
 给定一组问卷填写时长（单位：分钟），补全下面的代码：先把列表转成数组，再统一加上 2 分钟整理时间，换算成小时，并输出数组的 `shape` 与前 3 个结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 minutes = [25, 32, 28, 35, 30]
 minute_array = # 在这里补全
 adjusted_minutes = # 在这里补全
@@ -399,7 +399,7 @@ hours = # 在这里补全
 给定一组基础收入和奖金数据，补全下面的代码：先计算总收入，再统一换算成“千元”，并输出数组的 `shape` 与前 3 位受访者的结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 base_income = np.array([4200, 5100, 3900, 4600, 4800])
 bonus = np.array([300, 200, 500, 100, 400])
 total_income = # 在这里补全
@@ -414,7 +414,7 @@ income_k = # 在这里补全
 给定二维数组，补全下面的代码：输出数组的 `shape`、第一列，以及第二行第二列的值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 data = np.array([
     [82, 76, 91],
     [88, 79, 85],

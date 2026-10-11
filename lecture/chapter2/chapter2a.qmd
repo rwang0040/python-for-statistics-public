@@ -49,7 +49,7 @@ format:
 * 你也可以把它理解成“某个指标的一列观测值”，例如一组成绩、一组年龄或一组身高。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91, 88, 79]
 print(scores)
 print(type(scores))
@@ -61,7 +61,7 @@ print(type(scores))
 * 第一个元素是 `scores[0]`，最后一个元素也可以写成 `scores[-1]`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91, 88, 79]
 print("第一个成绩:", scores[0])
 print("最后一个成绩:", scores[-1])
@@ -73,7 +73,7 @@ print("最后一个成绩:", scores[-1])
 * 在数据处理中，这种操作非常常见。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91, 88, 79]
 print("前3个成绩:", scores[:3])
 print("后2个成绩:", scores[3:])
@@ -85,7 +85,7 @@ print("后2个成绩:", scores[3:])
 * 例如 `len()`、`max()`、`min()`、`sum()`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91]
 scores.append(88)
 scores.append(79)
@@ -105,7 +105,7 @@ print("总分:", sum(scores))
 :::
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91, 88, 79]
 print(scores[5])
 ```
@@ -116,7 +116,7 @@ print(scores[5])
 * 但列表本身不会自动进行统计分析，我们仍然需要写逻辑来处理它。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 scores = [82, 76, 91, 88, 79]
 mean_score = sum(scores) / len(scores)
 print(f"平均分为：{mean_score:.2f}")
@@ -127,7 +127,7 @@ print(f"平均分为：{mean_score:.2f}")
 给定 5 位受访者的年龄列表，补全下面的代码：输出第一个年龄、后 3 个年龄和样本量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [18, 21, 19, 22, 20]
 # print(...)
 # print(...)
@@ -143,7 +143,7 @@ ages = [18, 21, 19, 22, 20]
 * 如果说列表更像“一列数据”，那么字典更像“一条观测记录的完整画像”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 student = {
     "name": "张三",
     "gender": "女",
@@ -161,7 +161,7 @@ print(type(student))
 * 通过键名取值，代码会比按位置取值更清楚。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 student = {
     "name": "张三",
     "gender": "女",
@@ -179,7 +179,7 @@ print("成绩:", student["score"])
 * 在数据处理过程中，我们经常需要补充或更新字段。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 student = {"name": "张三", "score": 89}
 student["score"] = 92
 student["major"] = "统计学"
@@ -196,7 +196,7 @@ print(student)
 ## 一条记录
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 survey = {
     "age": 19,
     "city": "上海",
@@ -213,7 +213,7 @@ print(f"城市：{survey['city']}")
 * 例如：多个学生记录，可以表示为“列表里放多个字典”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 students = [
     {"name": "张三", "score": 85},
     {"name": "李四", "score": 92},
@@ -229,7 +229,7 @@ print(students[1]["score"])
 下面是一组受访者记录。请补全代码：输出第二位受访者的姓名和城市。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 respondents = [
     {"name": "张三", "city": "上海", "age": 18},
     {"name": "李四", "city": "杭州", "age": 21},
@@ -249,7 +249,7 @@ respondents = [
 * 读取、修改和补充记录中的字段
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 respondents = [
     {"name": "张三", "city": "上海", "age": 18},
     {"name": "李四", "city": "杭州", "age": 21},
@@ -275,7 +275,7 @@ print("第一位受访者的专业:", respondents[0]["major"])
 给定年龄列表，输出第一个年龄、最后一个年龄、前3个年龄和样本量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [18, 21, 19, 22, 20]
 # 在这里补全
 ```
@@ -285,7 +285,7 @@ ages = [18, 21, 19, 22, 20]
 给定一个受访者字典，输出姓名和城市，并将年龄修改为22。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 respondent = {"name": "李四", "city": "杭州", "age": 21}
 # 在这里补全
 ```
@@ -295,7 +295,7 @@ respondent = {"name": "李四", "city": "杭州", "age": 21}
 给定一组受访者记录，输出第三位受访者的姓名，并为第二位受访者增加`group`字段。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 respondents = [
     {"name": "张三", "age": 16},
     {"name": "李四", "age": 21},

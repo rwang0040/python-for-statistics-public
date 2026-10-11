@@ -130,7 +130,7 @@ analysis_df.to_csv("./data/student_analysis.csv", index=False)
 ## 检查数据
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(analysis_df.shape)
 print(analysis_df.dtypes)
 analysis_df.head()
@@ -139,7 +139,7 @@ analysis_df.head()
 ## 缺失值与数值范围
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(analysis_df[["support_plan", "final_score"]].isna().sum())
 print(analysis_df["support_plan"].value_counts().reindex(plan_order))
 print(analysis_df["final_score"].describe())
@@ -165,7 +165,7 @@ print(analysis_df["final_score"].describe())
 ## 描述统计回答“样本中看到了什么”
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 group_summary = (
     analysis_df
     .groupby("support_plan", observed=True)["final_score"]
@@ -186,7 +186,7 @@ group_summary.round(2)
 ## 图形帮助检查重叠和异常值
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.boxplot(
@@ -240,7 +240,7 @@ plt.show()
 下面从两个完全相同的总体模型中重复抽取小样本。总体均值相同，但每次得到的样本均值差并不完全等于 0。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 demo_rng = np.random.default_rng(202611)
 sampling_rows = []
 
@@ -287,7 +287,7 @@ sampling_demo.round(2)
 `equal_var=False` 表示使用 Welch 版本，不要求两组方差完全相同。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 regular_scores = analysis_df.loc[
     analysis_df["support_plan"] == "常规练习",
     "final_score",
@@ -309,7 +309,7 @@ test_result
 ## 先报告差异大小
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 mean_difference = feedback_scores.mean() - regular_scores.mean()
 
 print(f"即时反馈组均值：{feedback_scores.mean():.2f}")
@@ -326,7 +326,7 @@ print(f"样本均值差：{mean_difference:.2f}")
 ## 用置信区间表达不确定性
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 confidence_interval = test_result.confidence_interval(confidence_level=0.95)
 
 print(f"均值差的 95% 置信区间：")
@@ -343,7 +343,7 @@ print(f"[{confidence_interval.low:.2f}, {confidence_interval.high:.2f}]")
 ## p 值只能回答一个有限的问题
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(f"t 统计量：{test_result.statistic:.3f}")
 print(f"p 值：{test_result.pvalue:.4f}")
 ```
@@ -395,7 +395,7 @@ print(f"p 值：{test_result.pvalue:.4f}")
 ## 最小结果表
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 result_table = pd.DataFrame(
     {
         "项目": [

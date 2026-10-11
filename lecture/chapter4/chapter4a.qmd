@@ -96,7 +96,7 @@ Pandas 是后续数据分析、可视化和统计建模的核心工具。接下�
 * 它比普通列表多了索引信息。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import pandas as pd
 
 ages = pd.Series([25, 30, 17, 22], name="age")
@@ -109,7 +109,7 @@ print(ages)
 * 每一列可以是一个变量，每一行可以是一条观测记录。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 records = [
     {"name": "Alice", "gender": "female", "age": 25},
     {"name": "Bob", "gender": "male", "age": 30},
@@ -139,7 +139,7 @@ print(df)
 给定下面 3 条受访者记录，创建一个 DataFrame，并输出它。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 records = [
     {"name": "Diana", "gender": "female", "age": 22},
     {"name": "Eve", "gender": "female", "age": 16},
@@ -165,7 +165,7 @@ records = [
 * `head()` 可以先查看前几行，确认数据是否读入成功。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 print(df.head())
 ```
@@ -191,7 +191,7 @@ print(df.head())
 读取 `./data/survey_extended.csv`，用 `head(8)` 输出前 8 行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # df = # 在这里补全
 # print(...)
 ```
@@ -204,7 +204,7 @@ print(df.head())
 * `shape` 用于查看行数和列数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 print(df.head())
@@ -217,7 +217,7 @@ print(df.shape)
 * 读到陌生数据时，先看列名非常重要。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(df.columns)
 ```
 
@@ -227,7 +227,7 @@ print(df.columns)
 * 它常用于刚拿到数据时做第一轮检查。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df.info()
 ```
 
@@ -237,7 +237,7 @@ df.info()
 * 包括样本量、均值、标准差、最小值、四分位数和最大值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(df.describe())
 ```
 
@@ -246,7 +246,7 @@ print(df.describe())
 读取扩展受访者表，输出列名、行列数和数值列描述统计。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # print(...)
@@ -262,7 +262,7 @@ df = pd.read_csv("./data/survey_extended.csv")
 * 取出的一列通常是 `Series`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = df["age"]
 print(ages.head())
 print(type(ages))
@@ -274,7 +274,7 @@ print(type(ages))
 * 注意这里会出现两层方括号：外层表示选择，内层是列名列表。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic_info = df[["name", "gender", "age"]]
 print(basic_info.head())
 ```
@@ -286,7 +286,7 @@ print(basic_info.head())
 * 行索引不是变量列，但它可以帮助定位记录。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(df.index)
 ```
 
@@ -295,7 +295,7 @@ print(df.index)
 从扩展受访者表中选择 `name`、`major`、`python_score` 三列，并输出前 5 行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # selected = # 在这里补全
@@ -315,7 +315,7 @@ df = pd.read_csv("./data/survey_extended.csv")
 * 选择几个核心变量
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 print("前 5 行：")
@@ -348,7 +348,7 @@ print(core_columns.head())
 读取 `survey_extended.csv`，输出前 10 行、行列数和所有列名。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # df = # 在这里补全
 
 # print(...)
@@ -361,7 +361,7 @@ print(core_columns.head())
 从数据中选择 `name`、`city`、`study_hours`、`python_score` 四列，并输出前 6 行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # selected = # 在这里补全
@@ -373,7 +373,7 @@ df = pd.read_csv("./data/survey_extended.csv")
 查看数据结构，并思考：哪些变量现在还不能直接作为数值变量使用？
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # 在这里查看数据结构

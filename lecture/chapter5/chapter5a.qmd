@@ -118,7 +118,7 @@ student_df.to_csv("./data/student_eda.csv", index=False)
 :::
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(student_df.shape)
 print(student_df.dtypes)
 student_df.head()
@@ -132,7 +132,7 @@ student_df.head()
 * 第四章完成的数据清洗，是第五章作图的前提。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(student_df.isna().sum())
 print(student_df["major"].value_counts().reindex(major_order))
 print(student_df[["study_hours", "python_score"]].describe().round(2))
@@ -147,7 +147,7 @@ print(student_df[["study_hours", "python_score"]].describe().round(2))
 * 本章统一使用对象式写法：先创建 `fig, ax`，再在 `ax` 上作图。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 ax.hist(student_df["python_score"])
@@ -181,7 +181,7 @@ plt.show()
 为 `data_literacy_score` 绘制一个直方图，并补充标题、横轴和纵轴标签。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # fig, ax = plt.subplots(figsize=(6, 4))
 # ax.hist(student_df["data_literacy_score"])
 # ax.set(
@@ -222,7 +222,7 @@ plt.show()
 * 直方图首先用于观察集中位置、分散程度、偏态和可能的异常值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 sns.histplot(
@@ -243,7 +243,7 @@ plt.show()
 `bins` 可以控制横轴被切成多少个区间。分箱数少，图形更粗略；分箱数多，图形细节更多，但也可能显得更碎。下面两张图使用同一列成绩，只改变 `bins`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
 
 sns.histplot(
@@ -270,7 +270,7 @@ plt.show()
 如果希望分箱更容易解释，可以直接给出一组分箱边界。下面的 `np.arange(55, 105, 5)` 表示从 55 到 100，每 5 分一个区间。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 score_bins = np.arange(55, 105, 5)
@@ -295,7 +295,7 @@ plt.show()
 如果两组样本量差异明显，频数柱高还会受到组大小影响，不宜直接据此判断哪组分布更集中。此时可以比较组内比例，或改用后面的箱线图观察分布位置和离散程度。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 score_bins = np.arange(55, 105, 5)
@@ -338,7 +338,7 @@ plt.show()
 * 当样本量较小或分布很离散时，KDE 的形状要谨慎解释。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 hour_bins = np.arange(2, 16)
@@ -362,7 +362,7 @@ plt.show()
 使用 `sns.histplot()` 绘制 `attendance_rate` 的分布图，并设置 `kde=True`。用一句话描述图形中的集中区间或偏态特征。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # fig, ax = plt.subplots(figsize=(6, 4))
 # sns.histplot(
 #     data=student_df,
@@ -385,7 +385,7 @@ plt.show()
 * 图形不是频数表的替代品，而是更适合比较结构的表达方式。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 major_counts = student_df["major"].value_counts().reindex(major_order)
 print(major_counts)
 ```
@@ -397,7 +397,7 @@ print(major_counts)
 * 不建议用饼图替代频数图：类别较多时，柱形高度更容易比较。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 sns.countplot(
@@ -419,7 +419,7 @@ plt.show()
 课堂只需回答三个问题：如果只看左图，能否说男女人数差距很大？一张合格的图至少需要保留哪些标题和标签？如果只展示对结论有利的类别、区间或样本范围，会不会造成新的误导？
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 gender_order = ["女", "男"]
 gender_counts = student_df["gender"].value_counts().reindex(gender_order)
 
@@ -460,7 +460,7 @@ plt.show()
 * 组间箱线图不同，只说明样本分布看起来存在差异，不等于已经完成显著性检验。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.boxplot(
@@ -486,7 +486,7 @@ plt.show()
 * 这里使用统一的浅色箱体，是为了让深灰色个体点更突出；如果希望箱体也按组着色，可以去掉 `color` 参数，使用 Seaborn 的默认调色板。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.boxplot(
@@ -519,7 +519,7 @@ plt.show()
 绘制不同专业学生 `study_hours` 的箱线图。写出一条图形直接支持的描述，不把图形观察写成因果结论。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # fig, ax = plt.subplots(figsize=(7, 4))
 # sns.boxplot(
 #     data=student_df,
@@ -544,7 +544,7 @@ plt.show()
 * 图形观察后，还应说明样本量、缺失情况和结论边界。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.boxplot(
@@ -586,7 +586,7 @@ plt.show()
 4. 为每张图写一句描述性结论，避免使用“导致”“证明”等因果性表述。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 图 1：data_literacy_score 的分布
 
 # 图 2：gender 的频数

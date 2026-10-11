@@ -60,7 +60,7 @@ def 函数名(参数):
 * 先有参数，再有计算过程，最后返回结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def mean_of_two_numbers(a, b):
     result = (a + b) / 2
     return result
@@ -74,7 +74,7 @@ print(mean_of_two_numbers(80, 90))
 * 返回值：把函数计算结果交回去。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def calculate_bmi(weight, height):
     bmi = weight / (height ** 2)
     return bmi
@@ -90,7 +90,7 @@ print(f"BMI 为：{student_bmi:.2f}")
 * 这也是很多初学者第一次分清 `print()` 和 `return` 的地方。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def say_hello(name):
     print(f"你好，{name}")
 
@@ -109,7 +109,7 @@ print("函数返回值是：", result)
 补全下面的函数，使它返回两位受访者年龄的总和与平均值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def total_and_mean(age1, age2):
     total = age1 + age2
     # 在这里补全平均值和返回语句
@@ -126,7 +126,7 @@ print(total_and_mean(18, 21))
 * 现在开始让函数处理“一组数据”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def calculate_mean(ages):
     total_age = sum(ages)
     mean_age = total_age / len(ages)
@@ -155,7 +155,7 @@ print(f"平均年龄为：{calculate_mean(ages):.2f}")
 * 对数据分析来说，这一步很重要，因为“读取、计算、判断”本来就是不同任务。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def calculate_mean(ages):
     return sum(ages) / len(ages)
 
@@ -177,7 +177,7 @@ print(f"成年人数量：{count_adults(ages)}")
 * 调用时传什么值，函数就拿到什么值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def add_years(age, years):
     return age + years
 
@@ -190,7 +190,7 @@ print("明年的年龄:", next_year_age)
 补全下面的函数：统计一组受访者中成年人的人数。写完后再运行，观察它和前面的完整写法有什么对应关系。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def count_adults(ages):
     adult_count = 0
     for age in ages:
@@ -223,7 +223,7 @@ print(count_adults(ages))
 * 关键是知道什么时候该直接调用它们，而不是自己重写一遍。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [18, 21, 19, 22, 20]
 print("样本量:", len(ages))
 print("年龄总和:", sum(ages))
@@ -237,7 +237,7 @@ print("排序后:", sorted(ages))
 给定一组受访者年龄数据，补全下面的代码：输出样本量、年龄总和和排序后的结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [19, 22, 18, 21, 20]
 print("样本量:", # 在这里补全)
 print("年龄总和:", # 在这里补全)
@@ -258,7 +258,7 @@ print("排序后:", # 在这里补全)
 * 在真实数据里，这种情况非常常见——比如年龄一栏里填的不是 `25`，而是 `二十五` 或 `25岁`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 value = "3.14"
 print(int(value))
 ```
@@ -278,7 +278,7 @@ except ValueError:
 * `except` 里放出错后的处理方式。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 value = "3.14"
 
 try:
@@ -295,7 +295,7 @@ except ValueError:
 * 记住：报错不是终点，而是帮我们定位问题的线索。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 value = "3.14"
 
 try:
@@ -317,7 +317,7 @@ except ValueError:
 补全下面的代码：尝试把问卷中的年龄字符串 `"unknown"` 转成整数；如果失败，就输出一条提示信息。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 age_text = "unknown"
 
 try:
@@ -334,7 +334,7 @@ except ValueError:
 * 更常见的写法是：不同函数分别负责不同任务。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def calculate_mean_age(ages):
     return sum(ages) / len(ages)
 
@@ -367,7 +367,7 @@ main()
 下面是一段“计算平均年龄并判断是否存在未成年人”的小程序。请补全其中缺失的平均年龄函数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def calculate_mean_age(ages):
     # 在这里补全平均年龄函数
     pass
@@ -393,7 +393,7 @@ main()
 编写函数 `total_and_mean_of_three(age1, age2, age3)`，返回三位受访者年龄的总和与平均值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def total_and_mean_of_three(age1, age2, age3):
     # 在这里补全函数
     pass
@@ -406,7 +406,7 @@ print(total_and_mean_of_three(18, 21, 19))
 先编写函数 `is_adult(age)`，判断一个人是否成年；再用它统计列表中的成年人数量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def is_adult(age):
     # 在这里补全函数
     pass
@@ -426,7 +426,7 @@ print("成年人数量:", adult_count)
 尝试用 `try-except` 处理问卷年龄字符串 `"unknown"` 转为整数时的错误。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 age_text = "unknown"
 
 try:
@@ -442,7 +442,7 @@ except ValueError:
 将一段“先求平均年龄，再判断是否存在未成年人”的重复代码改写成函数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 ages = [16, 18, 21, 17, 24]
 # 提示：可以分别写“求平均年龄”和“是否有小于 18 的值”两个函数
 ```

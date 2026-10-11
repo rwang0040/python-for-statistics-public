@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "releaseId": "applied-stat-64",
-  "sourceCommit": "03492d458993d459c8e45c674651fa13b3e5e477",
+  "sourceCommit": "43bfedae9d2c1e657603b46a1258f1510bed9c31",
   "sourceDirty": false,
-  "generatedAt": "2026-09-28T07:24:20.4830175Z",
+  "generatedAt": "2026-10-11T15:26:27.120395Z",
   "fileCount": 2050,
   "files": [
     {
@@ -978,13 +978,13 @@
     },
     {
       "path": "lecture/chapter1/chapter1.html",
-      "size": 61047,
-      "sha256": "ffa0ab60b840b40739b7b8be86fca33cbe940e2a59a98c6027ef8f21273af2bf"
+      "size": 59797,
+      "sha256": "28aece9a876f7d5c6b42a5a8ecc2a19e1384a2231c7a5d07550b223282821ba4"
     },
     {
       "path": "lecture/chapter1/chapter1.qmd",
-      "size": 8658,
-      "sha256": "ca5d5fda95e83a9f9125fb7697c518193ae0ad0c19c85e42e50963f5917b6ba8"
+      "size": 8605,
+      "sha256": "0f582a1bc7dc8dd6c94a09773097ebfab4f8fb7d07c4e338c767a76e100d95ee"
     },
     {
       "path": "lecture/chapter2/chapter2a_files/libs/clipboard/clipboard.min.js",
@@ -1593,13 +1593,13 @@
     },
     {
       "path": "lecture/chapter2/chapter2a.html",
-      "size": 59221,
-      "sha256": "592524733ff2a2e4997874b627fc088370432d4a4b74b641fd8697d3656d2d30"
+      "size": 58035,
+      "sha256": "4bd11d234b8f40559985e5295ee0cb6d20d33110d6a76c9fc708f45a7a8a626f"
     },
     {
       "path": "lecture/chapter2/chapter2a.qmd",
-      "size": 8040,
-      "sha256": "fb3007f136216f749947cb30dbd0c8e28858a98eb05883e4da20a25b9984e05a"
+      "size": 8032,
+      "sha256": "4a5953eb5adf00f6eb6994e7d984fad17ee7ea03f2aa90514ee9e865fcafbc22"
     },
     {
       "path": "lecture/chapter2/chapter2b_files/libs/clipboard/clipboard.min.js",
@@ -2208,13 +2208,13 @@
     },
     {
       "path": "lecture/chapter2/chapter2b.html",
-      "size": 63738,
-      "sha256": "bde57a87f23eba8112592c31982ffebfae75c6db025efa2150a01762475fb82c"
+      "size": 62458,
+      "sha256": "ddecd96fb7eaf01e3b5ff173f73207baf2b7cd8917f3d8926b4d96558c964eb2"
     },
     {
       "path": "lecture/chapter2/chapter2b.qmd",
-      "size": 7420,
-      "sha256": "4c59318c4fe5a0a1754ca02f0536260bb637370c2641c6999f24b692bb9abea0"
+      "size": 7411,
+      "sha256": "1a45e6b29b899be8880df5840490a120f4e080fa8edaaadb11c8f99ef7ecd7e1"
     },
     {
       "path": "lecture/chapter2/chapter2c_files/libs/clipboard/clipboard.min.js",
@@ -2823,13 +2823,13 @@
     },
     {
       "path": "lecture/chapter2/chapter2c.html",
-      "size": 72506,
-      "sha256": "00bc605dabd55947f5d521605ec290302b3ce3f5b434f37a413a50acb5182892"
+      "size": 71071,
+      "sha256": "ac7fd1c76492d9a472eb6031d4ef4210792b19a20917ece4ffeef315c4e44a78"
     },
     {
       "path": "lecture/chapter2/chapter2c.qmd",
-      "size": 11633,
-      "sha256": "03362f021aff5b6cb63b7c45952125d65e8b0810b6132a85b8516fa5e7be8bd4"
+      "size": 11626,
+      "sha256": "b8cb6ed73814a2d607989caf5ffe3a0861ea35191aaf48c61071a1d9ba05fbd7"
     },
     {
       "path": "lecture/chapter2/chapter2d_files/libs/clipboard/clipboard.min.js",
@@ -3438,13 +3438,13 @@
     },
     {
       "path": "lecture/chapter2/chapter2d.html",
-      "size": 68014,
-      "sha256": "f9146c600743b0544ad560941e4d05d29607e4df0d50a4d4569771341e7b037d"
+      "size": 66702,
+      "sha256": "3b45028cd22076d80b076a73d354682e433a09e92dddd227fd46235d7eafcfa9"
     },
     {
       "path": "lecture/chapter2/chapter2d.qmd",
-      "size": 9206,
-      "sha256": "08a2e6a8245fdc340ed42860a4239f9ab5a7b4fb91b546df105f84f609b69eed"
+      "size": 9197,
+      "sha256": "738cfe22e53540890bf6030fa8699bf26b33acc9c988f58152e508bf41dada26"
     },
     {
       "path": "lecture/chapter3/chapter3a_files/libs/clipboard/clipboard.min.js",
@@ -4053,13 +4053,13 @@
     },
     {
       "path": "lecture/chapter3/chapter3a.html",
-      "size": 70293,
-      "sha256": "1e887f7028c3caedf8c677d2beb8276bd53e212d8d69dde3746bf5746fecece3"
+      "size": 68907,
+      "sha256": "7370a80d9e3dd56651f475289b71aa4ecbb25a29b7f06e8556e55dcf01bb372f"
     },
     {
       "path": "lecture/chapter3/chapter3a.qmd",
-      "size": 12744,
-      "sha256": "23ef5f25531fe40d1b2c66ade785c7aed38fef0d3b551a8b725735f7f0f96bb4"
+      "size": 12684,
+      "sha256": "0409680df7b1de9c79c46c9a58064fe6508bbe1de7846f9ae315ee318a92d492"
     },
     {
       "path": "lecture/chapter3/chapter3b_files/libs/clipboard/clipboard.min.js",
@@ -4668,13 +4668,13 @@
     },
     {
       "path": "lecture/chapter3/chapter3b.html",
-      "size": 66742,
-      "sha256": "75fee5ce2045e9a0280daeaa5255415ecc53b925041fddd52b8f55047760717a"
+      "size": 65446,
+      "sha256": "fac4b4420aaee94786b76351bbce69c6bbb934bdb7b3ba1d8f925fb57bc84dd8"
     },
     {
       "path": "lecture/chapter3/chapter3b.qmd",
-      "size": 11406,
-      "sha256": "cc49bf6663d307ea101bb6b171db49ecec1b2adb5b763e8a0b4785ace1c9f110"
+      "size": 10985,
+      "sha256": "1cccfe95a5dde8b1f221673037c4fd57bc6e0d4f5013fa52eb84318f7034ce75"
     },
     {
       "path": "lecture/chapter3/chapter3c_files/libs/clipboard/clipboard.min.js",
@@ -5283,13 +5283,13 @@
     },
     {
       "path": "lecture/chapter3/chapter3c.html",
-      "size": 74098,
-      "sha256": "b5dac3d5a9ebbd800199446e97304bea394bb09d7a4db903e07886c800557834"
+      "size": 72655,
+      "sha256": "1ecac8ed2d26c6b55cce3387afb48e7b6af309788747c76ba3f3420e4df2bfca"
     },
     {
       "path": "lecture/chapter3/chapter3c.qmd",
-      "size": 12955,
-      "sha256": "be9db3898180250e1067631a1a2b58e2e26e0c3a17c8e1f117c27bc1a8ead4a2"
+      "size": 12538,
+      "sha256": "e582b6117d43827cc89cf6c6f938ab91f0ee846ba6154b3a1f38f576c69d1e96"
     },
     {
       "path": "lecture/chapter4/chapter4a_files/libs/clipboard/clipboard.min.js",
@@ -5898,13 +5898,13 @@
     },
     {
       "path": "lecture/chapter4/chapter4a.html",
-      "size": 67429,
-      "sha256": "1fbab370424dabb7469b868bcb637ce45c902eaf0c9bc9bc8bd1a5dee9e27520"
+      "size": 66105,
+      "sha256": "4e65dbff951a114407e720183bdc1dec3a0362655d9bd9788c833502618e299f"
     },
     {
       "path": "lecture/chapter4/chapter4a.qmd",
-      "size": 11065,
-      "sha256": "6b633bea55a43eb76f8d50b9cc89ba7b19d8e2479db549d07703e8130c398752"
+      "size": 11051,
+      "sha256": "f80dce035b2d0ad4d95969ddc23bfe1b59063481ead3b6c24ea3c260dac64065"
     },
     {
       "path": "lecture/chapter4/chapter4b_files/libs/clipboard/clipboard.min.js",
@@ -6513,13 +6513,13 @@
     },
     {
       "path": "lecture/chapter4/chapter4b.html",
-      "size": 79345,
-      "sha256": "fe3099ac5ef1ff5552ce30b509f6a2910ba173f30cb6e8a142375d8445722baa"
+      "size": 77865,
+      "sha256": "a8fb83d7a6c24fe84bce8eabc2f5c40123c48dca5de1b4aba0163c156b9944e2"
     },
     {
       "path": "lecture/chapter4/chapter4b.qmd",
-      "size": 15019,
-      "sha256": "16053c0b62a891e4af16ad48a4f19bd3b5afd974770384c503740726d3611272"
+      "size": 14983,
+      "sha256": "ce4159ae93590035151a7e3f905bac944bae25b39b085b9dec3f6065a68e54eb"
     },
     {
       "path": "lecture/chapter4/chapter4c_files/libs/clipboard/clipboard.min.js",
@@ -7128,13 +7128,13 @@
     },
     {
       "path": "lecture/chapter4/chapter4c.html",
-      "size": 70504,
-      "sha256": "4c4faf432a6f06b020bae6187aa806431676ce1030746606da6b051f0e546c0b"
+      "size": 69178,
+      "sha256": "1abd335a49bb8b3ae1c71c8539ef5857bb5a630e6451878536490e17bc2e197e"
     },
     {
       "path": "lecture/chapter4/chapter4c.qmd",
-      "size": 11785,
-      "sha256": "b28840850d2c03bbc38d527f90ed66c8ee122a0d666b64a8d2895f3f31972325"
+      "size": 11773,
+      "sha256": "de1afc7eeb79b18e54960712a00f24da093e969719fdfeb5d018b88c44c96133"
     },
     {
       "path": "lecture/chapter4/chapter4d_files/libs/clipboard/clipboard.min.js",
@@ -7743,13 +7743,13 @@
     },
     {
       "path": "lecture/chapter4/chapter4d.html",
-      "size": 70632,
-      "sha256": "bd13361ddb6b15dd15f5aae3a93151c0e9ee8730e605803497b5b9cd18adf7be"
+      "size": 69374,
+      "sha256": "3590654557e5d1e82dadeea848dc0f9459e31d00eb2e4561a1860a4a59a7152b"
     },
     {
       "path": "lecture/chapter4/chapter4d.qmd",
-      "size": 13372,
-      "sha256": "6c0d3df6d1090cfd514a3807324c79a3be30eae4ff0180eb50dd9153b86c4e74"
+      "size": 13352,
+      "sha256": "c35b2351f5a05e686e5aff7e0d09e5bcf7a324b7ae9ad33ea935d8fae714da07"
     },
     {
       "path": "lecture/chapter4/data/learning_records.csv",
@@ -8383,13 +8383,13 @@
     },
     {
       "path": "lecture/chapter5/chapter5a.html",
-      "size": 81143,
-      "sha256": "3cfb5e3d3aa0c9a96f59b0dc17b38eedd33379e525333f0a807282a5ff243485"
+      "size": 79749,
+      "sha256": "a4576d5fa40470fec4a8defc2ad040c6ffcd2ec34b02ef917256f83bf6737738"
     },
     {
       "path": "lecture/chapter5/chapter5a.qmd",
-      "size": 19015,
-      "sha256": "7ade8f2b427b8ece1913c1f3afb30034e197044cf6890b3c0c12724d126b3a42"
+      "size": 19005,
+      "sha256": "65231f70a9c870baa10caf743416f7b7c3fdeb0680aea82bf4819e687a4e89fc"
     },
     {
       "path": "lecture/chapter5/chapter5b_files/libs/clipboard/clipboard.min.js",
@@ -8998,13 +8998,13 @@
     },
     {
       "path": "lecture/chapter5/chapter5b.html",
-      "size": 65017,
-      "sha256": "37bf74fd63960a1cdc03c31df7d4c48cb32bbca228ffc5298d5871d705fd88fc"
+      "size": 63931,
+      "sha256": "eeaebab7227083a703fa9da69094beb48e9a6b72f046e7c2e9542c960018394e"
     },
     {
       "path": "lecture/chapter5/chapter5b.qmd",
-      "size": 14127,
-      "sha256": "b74783c9865c3bdb9b55ed900618bdc569d7c1eaa32c5ab41c159a0fda7401ba"
+      "size": 14114,
+      "sha256": "81398e99ec8ba32c2130d55666fc2248cf037616c9dc02f04c6b74fc65a8353e"
     },
     {
       "path": "lecture/chapter5/data/learning_wave.csv",
@@ -9623,13 +9623,13 @@
     },
     {
       "path": "lecture/chapter6/chapter6a.html",
-      "size": 61067,
-      "sha256": "79d42ea3bcf482263e033e4c51a4d0ed41002559a14be042d5d03ef14412a7f0"
+      "size": 59942,
+      "sha256": "1a7b6744fa8c093daa30b21a61bd936693cf0385f7eb8d42030c73916ca070d7"
     },
     {
       "path": "lecture/chapter6/chapter6a.qmd",
-      "size": 12514,
-      "sha256": "7d3982a2b0a778da200e77d2a549f0ec3e8be9a2e144844fc641682b5bb8b583"
+      "size": 12508,
+      "sha256": "5b98861aa71fbcdd9d3f9a5f22cdecb1a173a1a53be375e904727faad1dbaea5"
     },
     {
       "path": "lecture/chapter6/chapter6b_files/libs/clipboard/clipboard.min.js",
@@ -10238,13 +10238,13 @@
     },
     {
       "path": "lecture/chapter6/chapter6b.html",
-      "size": 64333,
-      "sha256": "ff32275111dbd0c8cfe96b2fc92303ceb6c215d894f00fe06c1797b01f0fbfd3"
+      "size": 63156,
+      "sha256": "a0f982f457200099c74cba6208a7e7e18e7d74caf21e06dbf42aab928c457063"
     },
     {
       "path": "lecture/chapter6/chapter6b.qmd",
       "size": 12261,
-      "sha256": "10e7daf4bacb84beb9595ef44bebf485a7d8afd7da054d0ef7b635d2a5cad338"
+      "sha256": "764704c7d2d0f76ad46d88d280352f10f484c7cbc2cdd2571acfe2f4773fc578"
     },
     {
       "path": "lecture/chapter6/data/student_analysis.csv",

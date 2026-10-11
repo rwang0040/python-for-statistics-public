@@ -51,7 +51,7 @@ format:
 * `rng.random()` 可以生成在 `[0, 1)` 上均匀分布的随机数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import numpy as np
 rng = np.random.default_rng(202604)
 
@@ -66,7 +66,7 @@ print(f"单个随机数：{random_value}")
 * 固定种子不是取消随机性，而是让演示和分析可以复现。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 first = np.random.default_rng(202604).random(3)
 second = np.random.default_rng(202604).random(3)
 
@@ -81,7 +81,7 @@ print("两次结果是否相同：", np.allclose(first, second))
 * 这与前两节把数据放进数组统一处理的思路是一致的。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 random_values = rng.random(size=10)
 print(f"一组随机数：{random_values}")
 ```
@@ -91,7 +91,7 @@ print(f"一组随机数：{random_values}")
 * `rng.integers(low, high, size)` 可以生成位于 `[low, high)` 区间的一组随机整数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 random_ints = rng.integers(0, 10, size=10)
 print(f"随机整数：{random_ints}")
 ```
@@ -103,7 +103,7 @@ print(f"随机整数：{random_ints}")
 * 例如，`rng.uniform(1, 2, size=10)` 会生成位于 `[1, 2)` 区间的一组随机小数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 uniform_values = rng.uniform(1, 2, size=10)
 print(f"[1, 2) 上的随机小数：{uniform_values}")
 ```
@@ -115,7 +115,7 @@ print(f"[1, 2) 上的随机小数：{uniform_values}")
 * `rng.binomial(n, p)` 中，`n` 表示一次实验里重复试验的次数，`p` 表示单次成功的概率。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_result = rng.binomial(n=10, p=0.5)
 print(f"抛 10 次硬币，出现正面的次数：{coin_result}")
 ```
@@ -124,7 +124,7 @@ print(f"抛 10 次硬币，出现正面的次数：{coin_result}")
 * 这时 `size` 表示“把同一种实验重复多少次”。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_results = rng.binomial(n=10, p=0.5, size=5)
 print(f"将抛 10 次硬币的实验重复 5 次：{coin_results}")
 ```
@@ -135,7 +135,7 @@ print(f"将抛 10 次硬币的实验重复 5 次：{coin_results}")
 * 这里先建立“可以直接生成一组样本”的直觉。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 normal_sample = rng.normal(loc=70, scale=10, size=10)
 print(f"正态样本：{normal_sample}")
 ```
@@ -145,7 +145,7 @@ print(f"正态样本：{normal_sample}")
 使用 `rng.normal()` 生成 100 个均值为 0、标准差为 1 的正态随机数，计算这组样本的均值和标准差。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 normal_sample = # 在这里补全
 
 # print(f"样本的均值为：{...:.2f}")
@@ -159,7 +159,7 @@ normal_sample = # 在这里补全
 * 先看一次完整实验：连续抛 `20` 次硬币，记录出现正面的次数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_result = rng.binomial(n=20, p=0.5)
 print(f"抛 20 次硬币，出现正面的次数：{coin_result}")
 ```
@@ -169,7 +169,7 @@ print(f"抛 20 次硬币，出现正面的次数：{coin_result}")
 * 既然一次实验里抛了 `20` 次硬币，那么“出现正面的次数除以 20”就是这次实验的正面比例。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_result = rng.binomial(n=20, p=0.5)
 print(f"抛 20 次硬币，出现正面的比例：{coin_result / 20:.2f}")
 ```
@@ -180,7 +180,7 @@ print(f"抛 20 次硬币，出现正面的比例：{coin_result / 20:.2f}")
 * 数组中的每个元素表示一次完整实验里的正面个数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_results = rng.binomial(n=20, p=0.5, size=10)
 print(f"10 次实验的正面个数：{coin_results}")
 ```
@@ -190,7 +190,7 @@ print(f"10 次实验的正面个数：{coin_results}")
 * 当每次实验里抛硬币的次数增多时，平均正面比例通常会更稳定。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 for n in [10, 100, 1000]:
     coin_results = rng.binomial(n=n, p=0.5, size=10)
     print(f"将抛 {n} 次硬币的实验重复 10 次，正面比例的平均值：{(coin_results / n).mean():.2f}")
@@ -202,7 +202,7 @@ for n in [10, 100, 1000]:
 模拟把“抛 30 次硬币”的实验重复 20 次，补全下面的代码：输出这些实验中正面比例的平均值和标准差。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 coin_results = # 在这里补全
 
 # print(f"平均正面比例：{...:.2f}")
@@ -222,7 +222,7 @@ coin_results = # 在这里补全
 * 这表示一次生成一个 `10 × 50` 的二维数组：可以把它理解为 **重复 10 次实验，每次实验生成 50 个随机数**。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 samples = rng.normal(loc=70, scale=10, size=(10, 50))
 sample_means = samples.mean(axis=1)
 
@@ -234,7 +234,7 @@ print(f"10 次实验各自的样本均值：{sample_means}")
 * 如果每次实验中的样本量增大，样本均值通常会更稳定。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 for n in [10, 100, 1000]:
     samples = rng.normal(loc=70, scale=10, size=(10, n))
     sample_means = samples.mean(axis=1)
@@ -253,7 +253,7 @@ for n in [10, 100, 1000]:
 分别以 `10`、`100`、`1000` 为样本量，各进行 `10` 次独立实验。每次从 `[0,1)` 的均匀分布中生成指定数量的随机数，并计算样本均值。最后，对每个样本量下得到的 `10` 个样本均值，计算它们的均值和标准差。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 for n in [10, 100, 1000]:
     samples = # 在这里补全
     sample_means = # 在这里补全
@@ -279,7 +279,7 @@ for n in [10, 100, 1000]:
 ## 先生成一批点
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 x = rng.random(10)
 y = rng.random(10)
 
@@ -292,7 +292,7 @@ print(f"y 坐标：{y}")
 * 对于点 `(x, y)`，如果满足 `x**2 + y**2 <= 1`，就说明它落在四分之一圆内。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 x = rng.random(10)
 y = rng.random(10)
 
@@ -307,7 +307,7 @@ print(f"是否在圆内：{inside}")
 * 因为这个比例接近 `pi / 4`，所以可以用 `4 * inside.mean()` 来估计 `pi`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 x = rng.random(10)
 y = rng.random(10)
 
@@ -322,7 +322,7 @@ print(f"pi 的估计值：{pi_est}")
 给定已经生成的随机点，补全下面的代码：判断哪些点落在四分之一圆内，并估计 `pi`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 x = rng.random(10000)
 y = rng.random(10000)
 
@@ -338,7 +338,7 @@ pi_est = # 在这里补全
 * 随机点数量增大后，估计结果通常会更稳定。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 for size in [100, 10000, 1000000]:
     x = rng.random(size)
     y = rng.random(size)
@@ -361,7 +361,7 @@ for size in [100, 10000, 1000000]:
 使用 `rng.integers()` 模拟 20 次掷六面骰，补全下面的代码：输出掷骰结果、平均点数和掷出 `6` 的次数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 dice = # 在这里补全
 
 # print(f"掷骰结果：{...}")
@@ -374,7 +374,7 @@ dice = # 在这里补全
 某游戏要求同时掷 `4` 个二十面骰子，点数总和大于 `62` 才能成功完成任务。请模拟 `10000` 次投掷，估算任务成功的概率。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 4 个二十面骰子，重复 10000 次
 rolls = # 在这里补全
 total_scores = # 在这里补全
@@ -389,7 +389,7 @@ success = # 在这里补全
 方法：在 $[0,1] \times [0,1]$ 正方形内均匀撒点，统计满足 $y \le x^2$ 的点的比例，该比例乘以 `1`（正方形面积）就是积分近似值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 for size in [1000, 1000000]:
     x = rng.random(size)
     y = rng.random(size)

@@ -124,7 +124,7 @@ analysis_df.to_csv("./data/student_analysis.csv", index=False)
 ## 作图和建模之前仍要检查数据
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(analysis_df[["study_hours", "final_score"]].isna().sum())
 print(analysis_df[["study_hours", "final_score"]].describe())
 ```
@@ -139,7 +139,7 @@ print(analysis_df[["study_hours", "final_score"]].describe())
 ## 先画散点图
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.scatterplot(
@@ -191,7 +191,7 @@ plt.show()
 ## 使用 Statsmodels 公式接口
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 model = smf.ols(
     "final_score ~ study_hours",
     data=analysis_df,
@@ -209,7 +209,7 @@ model.params
 ## 读取截距和斜率
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 intercept = model.params["Intercept"]
 slope = model.params["study_hours"]
 
@@ -240,7 +240,7 @@ print(f"学习时长系数：{slope:.3f}")
 ## 把拟合直线画回散点图
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 plot_df = analysis_df.copy()
 plot_df["fitted_score"] = model.fittedvalues
 
@@ -276,7 +276,7 @@ plt.show()
 ## 残差是模型没有解释的部分
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 analysis_with_model = analysis_df.assign(
     fitted_score=model.fittedvalues,
     residual=model.resid,
@@ -300,7 +300,7 @@ analysis_with_model[
 ## 用残差图检查拟合
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.scatterplot(
@@ -330,7 +330,7 @@ plt.show()
 ## \(R^2\) 描述样本中的拟合程度
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(f"R²：{model.rsquared:.3f}")
 ```
 
@@ -363,7 +363,7 @@ print(f"R²：{model.rsquared:.3f}")
 ## 模型之外还有什么
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print("模型中的项：", model.model.exog_names)
 print("数据中的列：", analysis_df.columns.tolist())
 ```
@@ -397,7 +397,7 @@ print("数据中的列：", analysis_df.columns.tolist())
 ## 整理核心结果
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 model_result = pd.DataFrame(
     {
         "项目": [
@@ -435,7 +435,7 @@ model_result.round(3)
 5. 用 100 字以内写出样本发现和解释边界。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # attendance_model = smf.ols(
 #     "... ~ ...",
 #     data=analysis_df,

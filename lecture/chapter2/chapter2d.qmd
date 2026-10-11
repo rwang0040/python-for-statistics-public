@@ -62,7 +62,7 @@ with open("./data/data.txt", "r", encoding="utf-8") as f:
 * 也就是说，文件能读进来，不等于数据已经能直接分析。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 with open("./data/data.txt", "r", encoding="utf-8") as f:
     text = f.read()
 
@@ -76,7 +76,7 @@ print(type(text))
 * 列表中的每个元素，本质上仍然是字符串。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 with open("./data/data.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
@@ -93,7 +93,7 @@ print(type(lines))
 * 真正的数据分析工作，往往就从“把这行文本变干净”开始。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(lines[1])
 ```
 
@@ -111,7 +111,7 @@ print(lines[1])
 * `strip()` 可以先把最外层多余空白去掉。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 line = " Alice , FEMALE , ¥1200 \n"
 print(line.strip())
 ```
@@ -122,7 +122,7 @@ print(line.strip())
 * `split(",")` 会把一行文本拆成若干部分。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 line = "Alice , FEMALE ,¥1200"
 parts = line.split(",")
 print(parts)
@@ -137,7 +137,7 @@ print(parts[2])
 * 例如货币符号和千分位逗号，往往需要先去掉。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 text = "¥1,200"
 text = text.replace("¥", "")
 text = text.replace(",", "")
@@ -151,7 +151,7 @@ print(text)
 * 如果不先统一，程序会把同一类数据误当成不同类别。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 gender = " FEMALE "
 gender = gender.strip().lower()
 print(gender)
@@ -163,7 +163,7 @@ print(gender)
 * 要参与计算，必须先转成真正的数值类型。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 income_text = "1200"
 income = int(income_text)
 print(income)
@@ -175,7 +175,7 @@ print(type(income))
 给定一行问卷文本，补全下面的代码：去掉首尾空白、拆成三个字段，并输出清理后的姓名、统一成小写的性别，以及去掉货币符号后的收入文本。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 line = " Alice , Female , ¥1200 \n"
 clean_line = # 在这里补全
 parts = # 在这里补全
@@ -193,7 +193,7 @@ print(parts[2].strip().replace("¥", ""))
 * 清洗规则应统一、明确，并在重复使用时封装成函数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 raw_genders = ["Male", " male ", "FEMALE", " female "]
 clean_genders = [gender.strip().lower() for gender in raw_genders]
 print(clean_genders)
@@ -202,7 +202,7 @@ print(clean_genders)
 ## 清洗收入文本
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def clean_income(text):
     text = text.strip()
     text = text.replace("¥", "")
@@ -227,7 +227,7 @@ print(clean_income("N/A"))
 补全`clean_percent(text)`：把百分号文本转成数值，转换失败时返回`None`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 def clean_percent(text):
     text = text.strip().replace("%", "")
     try:
@@ -246,7 +246,7 @@ print(clean_percent("N/A"))
 ## 读取文件
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 with open("./data/data.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
@@ -260,7 +260,7 @@ print(lines)
 * 每条清洗结果使用字典表示，便于看清字段含义。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 clean_records = []
 
 for line in lines[1:]:
@@ -281,7 +281,7 @@ print(clean_records)
 * 清洗后应检查记录数、字段含义和无效值。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print("记录数:", len(clean_records))
 
 for record in clean_records:
@@ -308,7 +308,7 @@ for record in clean_records:
 给定字符串 `" Bob , Male , ¥980 \n"`，补全代码：清理后拆成三个字段，并输出姓名、统一成小写的性别，以及去掉货币符号后的收入文本。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 line = " Bob , Male , ¥980 \n"
 # 提示：可以先去首尾空白、拆分字段，再分别清理性别和收入文本
 ```
@@ -318,7 +318,7 @@ line = " Bob , Male , ¥980 \n"
 给定列表 `["Male", " male ", "FEMALE ", " female"]`，先统一格式，再统计其中 `female` 的个数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 raw_genders = ["Male", " male ", "FEMALE ", " female"]
 # 提示：可以先得到 clean_genders，再统计其中有多少个 "female"
 ```
@@ -328,7 +328,7 @@ raw_genders = ["Male", " male ", "FEMALE ", " female"]
 给定收入文本列表`["1200", "N/A", "980", " 1500 "]`，调用清洗函数，输出每个文本对应的清洗结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 raw_incomes = ["1200", "N/A", "980", " 1500 "]
 # 提示：逐个调用 clean_income(text)，把结果保存到新列表
 ```

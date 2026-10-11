@@ -133,7 +133,7 @@ wave_df.to_csv("./data/learning_wave.csv", index=False)
 * 关注整体趋势、离散程度、可能的非线性和异常点。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 sns.scatterplot(
@@ -159,7 +159,7 @@ plt.show()
 * 类别太多时，颜色会难以区分，应先考虑是否真的需要全部展示。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.scatterplot(
@@ -186,7 +186,7 @@ plt.show()
 绘制 `attendance_rate` 与 `python_score` 的散点图，并按 `gender` 着色。写出一个图形支持的观察，以及一个图形不能直接回答的问题。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # fig, ax = plt.subplots(figsize=(7, 4))
 # sns.scatterplot(
 #     data=student_df,
@@ -210,7 +210,7 @@ plt.show()
 * 趋势线不自动证明因果关系，也不替代回归诊断和统计推断。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(6, 4))
 
 sns.regplot(
@@ -247,7 +247,7 @@ plt.show()
 * 本节先使用第四章的 `groupby()` 生成按轮次、按专业的平均成绩。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 wave_summary = (
     wave_df
     .groupby(["wave", "major"], observed=True)
@@ -268,7 +268,7 @@ print(wave_summary.head(9))
 * 这里的每个点都是一个专业在某一轮的平均成绩，而不是单个学生。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.lineplot(
@@ -298,7 +298,7 @@ plt.show()
 这里只需要根据横轴是否具有自然顺序选择图形。还要记住：无论使用柱形图、折线图还是散点图，图形中的组间差异和共同变化都不能单独证明因果关系。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 major_score_summary = (
     student_df
     .groupby("major", observed=True)
@@ -341,7 +341,7 @@ plt.show()
 按 `wave` 汇总总体平均学习时长，并绘制折线图。说明横轴为什么适合使用折线图。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # hour_summary = (
 #     wave_df
 #     .groupby(...)
@@ -366,7 +366,7 @@ plt.show()
 * 相关矩阵只针对数值变量；分类变量不应直接放入其中。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 numeric_cols = [
     "study_hours",
     "attendance_rate",
@@ -385,7 +385,7 @@ print(corr.round(2))
 * 相关热力图的颜色深浅不代表因果强度。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 5))
 
 sns.heatmap(
@@ -409,7 +409,7 @@ plt.show()
 对 `student_df` 中的数值列计算相关矩阵，并绘制热力图。选择其中一对变量，写出相关方向和一个合理的解释边界。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # selected_cols = [...]
 # corr = student_df[selected_cols].corr()
 #
@@ -453,7 +453,7 @@ plt.show()
 问题：模拟样本中，学习投入、出勤与 Python 成绩之间有哪些值得进一步分析的结构？
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 fig, ax = plt.subplots(figsize=(7, 4))
 
 sns.scatterplot(
@@ -492,7 +492,7 @@ plt.show()
 4. 用 100 字以内写出：一个图形事实、一个解释边界、一个可进一步检验的问题。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 图 1：分布或分组差异
 
 # 图 2：变量关系

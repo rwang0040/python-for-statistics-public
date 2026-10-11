@@ -86,7 +86,7 @@ Jupyter 代码块左侧的序号 `[1]`, `[2]` 代表**执行顺序**。未定义
 * 在这个例子中，使用 `print()` 开始 Python 之旅。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print("Hello, Statistics!")
 print("欢迎来到 Python 的数据世界。")
 ```
@@ -104,7 +104,7 @@ print("欢迎来到 Python 的数据世界。")
 ## 实机演示
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 sample_size = 500          # 整数（int）
 print("sample_size 的值:", sample_size)
 print("sample_size 的类型:", type(sample_size))
@@ -151,7 +151,7 @@ print("research_topic 的类型:", type(research_topic))
 ## 错误命名可能导致 Bug
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 my_str = "123"
 print(my_str)
 
@@ -162,7 +162,7 @@ print(my_str)
 ## 修复方法
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import builtins
 print = builtins.print # 恢复被错误覆盖的 print 函数
 
@@ -198,7 +198,7 @@ print(my_str)
 ## 新手的第一个“坑”：浮点数精度
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print("0.1 + 0.2 等于 0.3 吗？", 0.1 + 0.2 == 0.3)
 print("实际计算结果:", 0.1 + 0.2)
 ```
@@ -206,7 +206,7 @@ print("实际计算结果:", 0.1 + 0.2)
 ## 正确的判断方式
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print("0.1 + 0.2 等于 0.3 吗？", abs(0.1 + 0.2 - 0.3) <= 1e-10)
 ```
 
@@ -215,7 +215,7 @@ print("0.1 + 0.2 等于 0.3 吗？", abs(0.1 + 0.2 - 0.3) <= 1e-10)
 ### 格式化输出：**f-string**
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 avg_score = 88.54321
 print(f"该班级的平均分为：{avg_score:.2f}") 
 ```
@@ -236,7 +236,7 @@ print(f"该班级的平均分为：{avg_score:.2f}")
 ### 链式转换演示
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 age_str = "3.14"
 age_int = int(float(age_str))
 print(f"转换后整数: {age_int}")
@@ -252,7 +252,7 @@ print(f"转换后整数: {age_int}")
 * **文本不能直接与数字相加！**
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 mean_score = "85.5"  
 adjustment = 2.5
 corrected_score = mean_score + adjustment
@@ -279,7 +279,7 @@ print(f"调整后的分数为: {corrected_score}")
 例如，判断一位受访者的年龄是否处于 `18` 到 `60` 之间：
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 age = 25
 is_working_age = (age >= 18) and (age < 60)
 print(f"是否处于指定年龄范围：{is_working_age}")
@@ -326,7 +326,7 @@ $\bar{x} = \frac{\sum x_i}{n}$
 ## 找茬游戏：为什么这段代码会报错？
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 Response_Rate = 0.85
 print("问卷回收率为：", response_rate)
 ```
@@ -352,7 +352,7 @@ print("问卷回收率为：", response_rate)
 $$BMI = \frac{体重}{身高^2}$$
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 # 1. 定义受试者的基本生理指标（注意命名规范）
 patient_height = 1.75  # 单位：米
 patient_weight = 68.5  # 单位：千克

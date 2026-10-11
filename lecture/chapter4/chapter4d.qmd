@@ -134,7 +134,7 @@ with open("./data/project_records.csv", "w", encoding="utf-8") as f:
 * 这里的多轮学习记录只覆盖部分受访者，因此它是一个学习记录子样本，不等于全部问卷样本。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import pandas as pd
 import numpy as np
 
@@ -161,7 +161,7 @@ print(project.head())
 * 例如：两个班级、两个批次、两个月份的数据。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 part1 = basic.iloc[:5][["name", "gender", "age"]]
 part2 = basic.iloc[5:10][["name", "gender", "age"]]
 
@@ -175,7 +175,7 @@ print(combined)
 * `ignore_index=True` 可以重新生成连续索引。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 combined = pd.concat([part1, part2], ignore_index=True)
 print(combined)
 ```
@@ -185,7 +185,7 @@ print(combined)
 把 `basic` 的前 3 行和第 4 到第 6 行纵向合并，并重新生成索引。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic = pd.read_csv("./data/survey_extended.csv")
 
 # top = # 在这里补全
@@ -202,7 +202,7 @@ basic = pd.read_csv("./data/survey_extended.csv")
 * 如果两张表都有 `name`，可以按 `name` 合并。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic_small = basic[["name", "gender", "age", "major"]]
 wave1_learning = learning.loc[learning["wave"] == 1, ["name", "study_hours", "quiz_score"]]
 
@@ -219,7 +219,7 @@ print(merged.head())
 * `tail()` 和 `head()` 相对，用于查看后几行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 inner_merged = pd.merge(basic_small, wave1_learning, on="name", how="inner")
 left_merged = pd.merge(basic_small, wave1_learning, on="name", how="left")
 
@@ -233,7 +233,7 @@ print(left_merged.tail())
 按 `name` 合并基本信息表和第一轮学习记录，保留基本信息表中的所有人。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic = pd.read_csv("./data/survey_extended.csv")
 learning = pd.read_csv("./data/learning_records.csv")
 
@@ -251,7 +251,7 @@ learning = pd.read_csv("./data/learning_records.csv")
 * 此时应使用 `name + wave` 共同确定一条记录。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(learning.head(6))
 print(project.head(6))
 ```
@@ -262,7 +262,7 @@ print(project.head(6))
 * 只有多个键都匹配，记录才会合并到同一行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 learning_project = pd.merge(
     learning,
     project,
@@ -279,7 +279,7 @@ print(learning_project.head(10))
 * 也要检查关键变量是否出现大量缺失。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(learning_project.shape)
 print(learning_project.isna().sum())
 ```
@@ -289,7 +289,7 @@ print(learning_project.isna().sum())
 按 `name + wave` 合并学习记录表和项目记录表，输出前 8 行。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 learning = pd.read_csv("./data/learning_records.csv")
 project = pd.read_csv("./data/project_records.csv")
 
@@ -305,7 +305,7 @@ project = pd.read_csv("./data/project_records.csv")
 * 基本信息表中每个人只有一行，因此可按 `name` 合并。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic_clean = (
     basic
     .assign(
@@ -331,7 +331,7 @@ print(full_data.head())
 * 例如把测验、作业、项目成绩合成一个简单总评。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 full_data["quiz_score"] = pd.to_numeric(full_data["quiz_score"], errors="coerce")
 full_data["assignment_score"] = pd.to_numeric(full_data["assignment_score"], errors="coerce")
 full_data["project_score"] = pd.to_numeric(full_data["project_score"], errors="coerce")
@@ -351,7 +351,7 @@ print(full_data[["name", "wave", "quiz_score", "assignment_score", "project_scor
 * 例如比较不同性别、不同轮次的平均总评。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 summary = full_data.groupby(["gender_clean", "wave"]).agg(
     n_rows=("name", "count"),
     n_valid_total=("total_score", "count"),
@@ -370,7 +370,7 @@ print(summary)
 * `index=False` 表示不把行索引写入文件。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 summary.to_csv("./data/chapter4_summary.csv", index=False)
 
 check = pd.read_csv("./data/chapter4_summary.csv")
@@ -405,7 +405,7 @@ print(check)
 这里的汇总结果只代表有学习记录和项目记录的子样本，解释时不能直接当作全部受访者的结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic = pd.read_csv("./data/survey_extended.csv")
 learning = pd.read_csv("./data/learning_records.csv")
 project = pd.read_csv("./data/project_records.csv")
@@ -450,7 +450,7 @@ summary.to_csv("./data/major_wave_summary.csv", index=False)
 把基本信息表的前 4 行和第 10 到第 13 行纵向合并，并重新生成索引。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic = pd.read_csv("./data/survey_extended.csv")
 
 # 在这里补全
@@ -461,7 +461,7 @@ basic = pd.read_csv("./data/survey_extended.csv")
 筛选第二轮学习记录，并按 `name` 与基本信息表合并。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 basic = pd.read_csv("./data/survey_extended.csv")
 learning = pd.read_csv("./data/learning_records.csv")
 
@@ -473,7 +473,7 @@ learning = pd.read_csv("./data/learning_records.csv")
 按 `name + wave` 合并学习记录和项目记录，生成总评成绩，并按 `project_group` 汇总平均总评。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 learning = pd.read_csv("./data/learning_records.csv")
 project = pd.read_csv("./data/project_records.csv")
 

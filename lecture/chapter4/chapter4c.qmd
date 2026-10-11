@@ -82,7 +82,7 @@ with open("./data/survey_extended.csv", "w", encoding="utf-8") as f:
 :::
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 import pandas as pd
 import numpy as np
 
@@ -115,7 +115,7 @@ print(df[["name", "gender_clean", "age_group", "python_score"]].head())
 * 后面接聚合函数，得到每组的统计结果。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 gender_mean = df.groupby("gender_clean")["python_score"].mean()
 print(gender_mean)
 ```
@@ -134,7 +134,7 @@ print(gender_mean)
 :::
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 gender_summary = df.groupby("gender_clean")["python_score"].agg(["count", "mean", "median", "std"])
 print(gender_summary)
 ```
@@ -145,7 +145,7 @@ print(gender_summary)
 * 例如同时按性别和年龄组分组。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 group_summary = df.groupby(["gender_clean", "age_group"], observed=True)["python_score"].mean()
 print(group_summary)
 ```
@@ -155,7 +155,7 @@ print(group_summary)
 按 `major` 分组，计算每个专业的平均学习时长和平均 Python 成绩。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 practice_df = pd.read_csv("./data/survey_extended.csv")
 practice_df["study_hours"] = pd.to_numeric(practice_df["study_hours"], errors="coerce")
 practice_df["python_score"] = pd.to_numeric(practice_df["python_score"], errors="coerce")
@@ -172,7 +172,7 @@ practice_df["python_score"] = pd.to_numeric(practice_df["python_score"], errors=
 * 它适合把分组结果整理成一张比较完整的汇总表。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 summary = df.groupby("gender_clean").agg(
     n_rows=("name", "count"),
     n_valid_score=("python_score", "count"),
@@ -190,7 +190,7 @@ print(summary)
 * `reset_index()` 可以把索引转回普通列。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 summary = summary.reset_index()
 print(summary)
 ```
@@ -203,7 +203,7 @@ print(summary)
 * 它非常适合做分类变量的初步检查。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 print(df["gender_clean"].value_counts())
 print(df["age_group"].value_counts(dropna=False))
 ```
@@ -214,7 +214,7 @@ print(df["age_group"].value_counts(dropna=False))
 * 例如：不同性别在不同年龄组中的人数。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 age_gender_table = pd.crosstab(df["age_group"], df["gender_clean"])
 print(age_gender_table)
 ```
@@ -224,7 +224,7 @@ print(age_gender_table)
 生成 `major` 与 `gender_clean` 的交叉表。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 practice_df = pd.read_csv("./data/survey_extended.csv")
 practice_df["gender_clean"] = practice_df["gender"].str.strip().str.lower()
 
@@ -241,7 +241,7 @@ practice_df["gender_clean"] = practice_df["gender"].str.strip().str.lower()
 * 单元格里放聚合后的统计量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 pivot_score = pd.pivot_table(
     df,
     values="python_score",
@@ -260,7 +260,7 @@ print(pivot_score)
 * 例如统计每个组合里的样本量。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 pivot_count = pd.pivot_table(
     df,
     values="name",
@@ -278,7 +278,7 @@ print(pivot_count)
 用透视表查看不同 `major` 和 `gender_clean` 组合下的平均 `study_hours`。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 practice_df = pd.read_csv("./data/survey_extended.csv")
 practice_df["gender_clean"] = practice_df["gender"].str.strip().str.lower()
 practice_df["study_hours"] = pd.to_numeric(practice_df["study_hours"], errors="coerce")
@@ -296,7 +296,7 @@ practice_df["study_hours"] = pd.to_numeric(practice_df["study_hours"], errors="c
 * 统计建模和可视化中，长表经常更方便。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 score_df = df[["name", "gender_clean", "python_score", "study_hours"]].head(6)
 print(score_df)
 ```
@@ -307,7 +307,7 @@ print(score_df)
 * 这就是常说的 unpivot。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 long_df = score_df.melt(
     id_vars=["name", "gender_clean"],
     value_vars=["python_score", "study_hours"],
@@ -329,7 +329,7 @@ print(long_df)
 把 `name`、`major`、`python_score`、`study_hours` 整理成长表。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 practice_df = pd.read_csv("./data/survey_extended.csv")
 
 # wide = # 在这里补全
@@ -350,7 +350,7 @@ practice_df = pd.read_csv("./data/survey_extended.csv")
 * 把部分结果整理成长表
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 df["gender_clean"] = df["gender"].str.strip().str.lower()
@@ -401,7 +401,7 @@ print(long_summary.head())
 按 `major` 和 `gender_clean` 分组，计算行数、有效成绩样本量、平均学习时长和平均成绩。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # 在这里完成清洗和分组汇总
@@ -415,7 +415,7 @@ df = pd.read_csv("./data/survey_extended.csv")
 * `city` 与 `major` 组合下的平均 Python 成绩透视表
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # 在这里补全
@@ -426,7 +426,7 @@ df = pd.read_csv("./data/survey_extended.csv")
 选择 `name`、`python_score`、`study_hours` 三列，把后两列整理成长表。
 
 ```{pyodide}
-#| echo: true
+#| edit: true
 df = pd.read_csv("./data/survey_extended.csv")
 
 # 在这里补全
