@@ -1,11 +1,36 @@
 {
   "schemaVersion": 1,
   "releaseId": "applied-stat-64",
-  "sourceCommit": "43bfedae9d2c1e657603b46a1258f1510bed9c31",
-  "sourceDirty": false,
-  "generatedAt": "2026-10-11T15:26:27.120395Z",
-  "fileCount": 2050,
+  "sourceCommit": "809cae90aa5ece96b245937997106c34b183e686",
+  "sourceDirty": true,
+  "generatedAt": "2026-10-11T16:04:33.571806Z",
+  "fileCount": 2070,
   "files": [
+    {
+      "path": ".gitattributes",
+      "size": 309,
+      "sha256": "542a4be9ae37df95683b2ed2e2c70e96b1e70f60578184b05138ca93945ceb87"
+    },
+    {
+      "path": ".gitignore",
+      "size": 140,
+      "sha256": "bceee09b09c2d8c3605830e6112bf542bf6fbaf9ad1cf72059205caaec31eb34"
+    },
+    {
+      "path": ".nojekyll",
+      "size": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "README.html",
+      "size": 4624,
+      "sha256": "05471fd89e975a540b6d4b13a1c9a91709c97b57358a582c15fbd83c49535f8c"
+    },
+    {
+      "path": "README.md",
+      "size": 2336,
+      "sha256": "c43021400a39cfef0a1d050b39c8769395adde5a1570764e72a0d3ec4b0f5073"
+    },
     {
       "path": "_extensions/r-wasm/live/_extension.yml",
       "size": 268,
@@ -102,19 +127,9 @@
       "sha256": "52b0b222ca297c24f10eca817ab457c97bc6239cd3d0874e773def7eef7521be"
     },
     {
-      "path": ".gitattributes",
-      "size": 309,
-      "sha256": "542a4be9ae37df95683b2ed2e2c70e96b1e70f60578184b05138ca93945ceb87"
-    },
-    {
-      "path": ".gitignore",
-      "size": 140,
-      "sha256": "bceee09b09c2d8c3605830e6112bf542bf6fbaf9ad1cf72059205caaec31eb34"
-    },
-    {
-      "path": ".nojekyll",
-      "size": 2,
-      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+      "path": "assets/readings.css",
+      "size": 3239,
+      "sha256": "b49185a5f6b918ea0e7b590051665668742446bfc461f4379c57814d6e9b46a0"
     },
     {
       "path": "environment.yml",
@@ -123,8 +138,8 @@
     },
     {
       "path": "index.html",
-      "size": 19317,
-      "sha256": "7f456ac95119170bde92c521ed124fdb049d34a4a5fffcfd2e40cdf67bdd0330"
+      "size": 19076,
+      "sha256": "9bce0cf4364b21eaa7dbd0abfcddb61806bd05d9a740906f414e1d1f3c199fd2"
     },
     {
       "path": "lab/applied-stat-64/chapter1/e01_inclass.ipynb",
@@ -132,14 +147,24 @@
       "sha256": "29fd2b9a1aa1013ccde88d904f11e9d57a7bd7664c90caf9b6edb6e4e8be8fc2"
     },
     {
+      "path": "lab/applied-stat-64/chapter1/e01_prelab_card.html",
+      "size": 3400,
+      "sha256": "bc162ebfb70d828c44999e5cd2e682e74ca215b66a5e441ffd605616055f97f9"
+    },
+    {
       "path": "lab/applied-stat-64/chapter1/e01_prelab_card.md",
-      "size": 2037,
-      "sha256": "1dc31d6d5cd3b4b705683b833a89b5ede987c31a706985be08f1f458cfa94498"
+      "size": 2054,
+      "sha256": "2e989a4283aff51e10e2a7845afa4281ae4135f3728e09582e9bb58dcbdcc452"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e02_inclass.ipynb",
       "size": 11161,
       "sha256": "080dcb61fdde45dda67ab3250d5f506e223a22e314e09a58dee03d17813d73be"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter2/e02_prelab_card.html",
+      "size": 2895,
+      "sha256": "abef3c524f4f7c4866c6ba2dd2b33fd521d0e4988d775f2cd8d442f07fd62351"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e02_prelab_card.md",
@@ -152,6 +177,11 @@
       "sha256": "a39c21c368e9e5767f7550a72a8fa61bdcbb29d6c174e095a42e2354cbde9d9f"
     },
     {
+      "path": "lab/applied-stat-64/chapter2/e03_prelab_card.html",
+      "size": 2725,
+      "sha256": "1b6ccee4e55feeab538abbb722e1a9b0b15f7b91320759392d85ae895dcf1e71"
+    },
+    {
       "path": "lab/applied-stat-64/chapter2/e03_prelab_card.md",
       "size": 1450,
       "sha256": "c41b1c8706c6e91fccfd6ed2247dd63e7655864f96538ef65ed6d9f726d8d964"
@@ -160,6 +190,11 @@
       "path": "lab/applied-stat-64/chapter2/e04_inclass.ipynb",
       "size": 11446,
       "sha256": "0bda43760a76712f591a94b46d520bde1d7cb4b336e9a2f94fe6b9e7ed43d3f6"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter2/e04_prelab_card.html",
+      "size": 2808,
+      "sha256": "5f7736d5f1ce120ca8f41a68bbe7edea2c3d7dc41c0e215772feaa636ec666c0"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e04_prelab_card.md",
@@ -172,6 +207,11 @@
       "sha256": "136cfd270e0a4022c0b0500e790ac041f8bcd4b14450a8fd8ae4e06f53d84b9b"
     },
     {
+      "path": "lab/applied-stat-64/chapter2/e05_prelab_card.html",
+      "size": 2901,
+      "sha256": "1172e1866835f8fe63d521a8768e082d1aed464d67f997294a65cf49e285776b"
+    },
+    {
       "path": "lab/applied-stat-64/chapter2/e05_prelab_card.md",
       "size": 1576,
       "sha256": "a1db3b64ac04c3d066f9fe24da968cbfb7eb33a3274bb1bacb1112c177f934b2"
@@ -180,6 +220,11 @@
       "path": "lab/applied-stat-64/chapter3/e06_inclass.ipynb",
       "size": 12541,
       "sha256": "0dc4bf36b886a32584f6f4d3efd8b9c7426a2dd4dc413bdf6674cb618421ee72"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter3/e06_prelab_card.html",
+      "size": 2733,
+      "sha256": "319034c1954064fc6909553f7741ec0375347979481db8e90d0bc0057786b888"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e06_prelab_card.md",
@@ -192,6 +237,11 @@
       "sha256": "bb2dc9324f96cd061543545fc2f7c2b4f3cdd31f4266f036f41cd1f02d656043"
     },
     {
+      "path": "lab/applied-stat-64/chapter3/e07_prelab_card.html",
+      "size": 2517,
+      "sha256": "14d9a92263769ab26fc1bd486fd7df6475cdd8380bf36303faec6432b0b6e3fc"
+    },
+    {
       "path": "lab/applied-stat-64/chapter3/e07_prelab_card.md",
       "size": 1257,
       "sha256": "8d8d6a006bd7a704b2dd040a29b682adfa6c9ec133a56c2b704b3c50559fd637"
@@ -200,6 +250,11 @@
       "path": "lab/applied-stat-64/chapter3/e08_inclass.ipynb",
       "size": 12931,
       "sha256": "28c262c64b35fb66857824fde8765e3981d8dc0cea3d016143fb38099b54e197"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter3/e08_prelab_card.html",
+      "size": 2862,
+      "sha256": "0ac62a54e47bccc04e28c6b2e63716ec50d5249f2b980d9b310c413d1c49096e"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e08_prelab_card.md",
@@ -212,6 +267,11 @@
       "sha256": "ad1f9677b141d05842583d88672519bfefb0df239ebe5700987021939db7c393"
     },
     {
+      "path": "lab/applied-stat-64/chapter4/e09_prelab_card.html",
+      "size": 2362,
+      "sha256": "e8848dde0de50658ac1a7de54c1ec3eb151824afc8da29a75d3319d79d89d2e3"
+    },
+    {
       "path": "lab/applied-stat-64/chapter4/e09_prelab_card.md",
       "size": 1145,
       "sha256": "98e4b07899d0807d6b26f1f5a6ed466f51d315510c3321f18913dcbd99073321"
@@ -220,6 +280,11 @@
       "path": "lab/applied-stat-64/chapter4/e10_inclass.ipynb",
       "size": 9833,
       "sha256": "d71540734a9ffe93750a11ba7217877b5df717383b1efe74bdcda2d51fd6d46d"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter4/e10_prelab_card.html",
+      "size": 2465,
+      "sha256": "6bb178672ece92495039b97a55430ea05e520d8746eb44d1a48b2f6eb04541df"
     },
     {
       "path": "lab/applied-stat-64/chapter4/e10_prelab_card.md",
@@ -232,6 +297,11 @@
       "sha256": "02fb389ad07ad451e5f80a5eabec9c52e130debdb607b71392ad34424b504cac"
     },
     {
+      "path": "lab/applied-stat-64/chapter4/e11_prelab_card.html",
+      "size": 2378,
+      "sha256": "96b8365c634265b3abaf8b45ab3a9eb0d12c42f0eb7b91a2e6bbfc22b83888f2"
+    },
+    {
       "path": "lab/applied-stat-64/chapter4/e11_prelab_card.md",
       "size": 1117,
       "sha256": "f7322cd76d494b26dbfb1637693600428487d224730bc3895a58861c87b20296"
@@ -240,6 +310,11 @@
       "path": "lab/applied-stat-64/chapter4/e12_inclass.ipynb",
       "size": 20200,
       "sha256": "b40295cf962561d76c2c2f0d6fe601042ed3aec0deebe41ddea9ce459ddd394a"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter4/e12_prelab_card.html",
+      "size": 2573,
+      "sha256": "4b58b8924062a5ab08caaab674870f4f5d7aa177f50f10fcfd859901f9dd3e9e"
     },
     {
       "path": "lab/applied-stat-64/chapter4/e12_prelab_card.md",
@@ -252,6 +327,11 @@
       "sha256": "d10201838561fca4a4714e1ae5bc2c84164d7fe2bd37e2643b277c9e8da83f4d"
     },
     {
+      "path": "lab/applied-stat-64/chapter5/e13_prelab_card.html",
+      "size": 2543,
+      "sha256": "f14e914f5e6cdba2387854c4845d49cc6394c805a22c80ec838c2bddb378b53e"
+    },
+    {
       "path": "lab/applied-stat-64/chapter5/e13_prelab_card.md",
       "size": 1293,
       "sha256": "b8a11bf3f937bb89d96448a4ddb29720c36b6a78bb10b671fbd9d250286cdfd5"
@@ -260,6 +340,11 @@
       "path": "lab/applied-stat-64/chapter5/e14_inclass.ipynb",
       "size": 15657,
       "sha256": "2d0d59ec4b404722528aa7468d76c10f7a73301ad748c601474732780b7c47d1"
+    },
+    {
+      "path": "lab/applied-stat-64/chapter5/e14_prelab_card.html",
+      "size": 2477,
+      "sha256": "43b5d49e644f424537b6b9e417ac8230079026f8024309753f07d1ba18c00704"
     },
     {
       "path": "lab/applied-stat-64/chapter5/e14_prelab_card.md",
@@ -272,6 +357,11 @@
       "sha256": "5b5f99f3dd98faa476a387f94fd8604498df938410170c407690f201f3451773"
     },
     {
+      "path": "lab/applied-stat-64/chapter6/e15_prelab_card.html",
+      "size": 2488,
+      "sha256": "6019e805e9d1ea990a7170fb784b55a21b56cc7c02b434c55168bfb2b118c909"
+    },
+    {
       "path": "lab/applied-stat-64/chapter6/e15_prelab_card.md",
       "size": 1293,
       "sha256": "2db0bd0b89b9d5d9c37e44b3c31eb728c3e7d256146049f83d4aae13673cf3de"
@@ -282,9 +372,24 @@
       "sha256": "c3a9c59737a6ce372bdea7150d25d5a1cc9c0461f68301f304deec69fa6c8c41"
     },
     {
+      "path": "lab/applied-stat-64/chapter6/e16_prelab_card.html",
+      "size": 2422,
+      "sha256": "60ad0013f2baaff0c2f001e377929bd3c72af40884509e6ac1cb051ff5105fa6"
+    },
+    {
       "path": "lab/applied-stat-64/chapter6/e16_prelab_card.md",
       "size": 1255,
       "sha256": "a813d6bedcf5834bd39b0a261f3df44018257e92b9503aafe3ab9475cdad01a6"
+    },
+    {
+      "path": "lab/shared/README.html",
+      "size": 6787,
+      "sha256": "c9cfac9e1146b4b64ae111c645521045b25312424433a0ee1d7ffcb06e9bd55c"
+    },
+    {
+      "path": "lab/shared/README.md",
+      "size": 5155,
+      "sha256": "8c0c462c1767246e42517ef76778bb777e7c5909d36eff240d82c9bc994187c7"
     },
     {
       "path": "lab/shared/analysis/e15_group_comparison.csv",
@@ -337,6 +442,11 @@
       "sha256": "23d55613f658e7231b2c2963ae480eb36d599d6b57408b214230fbfac7500a88"
     },
     {
+      "path": "lab/shared/data_dictionary.html",
+      "size": 11444,
+      "sha256": "17a3202a69960292e302f570b95f363a518233cad405ffbb8bb4e35b278dc3b3"
+    },
+    {
       "path": "lab/shared/data_dictionary.md",
       "size": 6950,
       "sha256": "2f1529b2131b19d1d26108fe61cf5c97f5883a2e842af0d4a371616c09b49f7e"
@@ -362,14 +472,19 @@
       "sha256": "d6bae59322b121abf3b81d19a28513ea2fed0a419f633cdd5bbdf4d03ee3c1df"
     },
     {
-      "path": "lab/shared/README.md",
-      "size": 5155,
-      "sha256": "8c0c462c1767246e42517ef76778bb777e7c5909d36eff240d82c9bc994187c7"
-    },
-    {
       "path": "lab/shared/samples/chapter2_records.json",
       "size": 1992,
       "sha256": "2c08f0a8294fa97b31270504f7b007acac6a7ada8aaf05be547b19f6c13966fe"
+    },
+    {
+      "path": "lecture/chapter1/chapter1.html",
+      "size": 59797,
+      "sha256": "28aece9a876f7d5c6b42a5a8ecc2a19e1384a2231c7a5d07550b223282821ba4"
+    },
+    {
+      "path": "lecture/chapter1/chapter1.qmd",
+      "size": 8605,
+      "sha256": "0f582a1bc7dc8dd6c94a09773097ebfab4f8fb7d07c4e338c767a76e100d95ee"
     },
     {
       "path": "lecture/chapter1/chapter1_files/libs/clipboard/clipboard.min.js",
@@ -462,6 +577,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter1/chapter1_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -480,11 +600,6 @@
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter1/chapter1_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -692,6 +807,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -730,11 +855,6 @@
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -907,11 +1027,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter1/chapter1_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -977,14 +1092,14 @@
       "sha256": "450c5313f8711c4c0b0e7838b33c7628e06acfc9e0588919daafe5856872f180"
     },
     {
-      "path": "lecture/chapter1/chapter1.html",
-      "size": 59797,
-      "sha256": "28aece9a876f7d5c6b42a5a8ecc2a19e1384a2231c7a5d07550b223282821ba4"
+      "path": "lecture/chapter2/chapter2a.html",
+      "size": 58035,
+      "sha256": "4bd11d234b8f40559985e5295ee0cb6d20d33110d6a76c9fc708f45a7a8a626f"
     },
     {
-      "path": "lecture/chapter1/chapter1.qmd",
-      "size": 8605,
-      "sha256": "0f582a1bc7dc8dd6c94a09773097ebfab4f8fb7d07c4e338c767a76e100d95ee"
+      "path": "lecture/chapter2/chapter2a.qmd",
+      "size": 8032,
+      "sha256": "4a5953eb5adf00f6eb6994e7d984fad17ee7ea03f2aa90514ee9e865fcafbc22"
     },
     {
       "path": "lecture/chapter2/chapter2a_files/libs/clipboard/clipboard.min.js",
@@ -1077,6 +1192,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -1095,11 +1215,6 @@
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -1307,6 +1422,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -1345,11 +1470,6 @@
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -1522,11 +1642,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter2/chapter2a_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -1592,14 +1707,14 @@
       "sha256": "8a5e7c71ee87ba4e137f91d890eb8490d0238001ee7f4243029e07048617be52"
     },
     {
-      "path": "lecture/chapter2/chapter2a.html",
-      "size": 58035,
-      "sha256": "4bd11d234b8f40559985e5295ee0cb6d20d33110d6a76c9fc708f45a7a8a626f"
+      "path": "lecture/chapter2/chapter2b.html",
+      "size": 62458,
+      "sha256": "ddecd96fb7eaf01e3b5ff173f73207baf2b7cd8917f3d8926b4d96558c964eb2"
     },
     {
-      "path": "lecture/chapter2/chapter2a.qmd",
-      "size": 8032,
-      "sha256": "4a5953eb5adf00f6eb6994e7d984fad17ee7ea03f2aa90514ee9e865fcafbc22"
+      "path": "lecture/chapter2/chapter2b.qmd",
+      "size": 7411,
+      "sha256": "1a45e6b29b899be8880df5840490a120f4e080fa8edaaadb11c8f99ef7ecd7e1"
     },
     {
       "path": "lecture/chapter2/chapter2b_files/libs/clipboard/clipboard.min.js",
@@ -1692,6 +1807,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -1710,11 +1830,6 @@
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -1922,6 +2037,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -1960,11 +2085,6 @@
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -2137,11 +2257,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter2/chapter2b_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -2207,14 +2322,14 @@
       "sha256": "0e61d7acc485483e5ebcb1a2d1494ca978dc6b281355d5bdf987ae5c7330e55f"
     },
     {
-      "path": "lecture/chapter2/chapter2b.html",
-      "size": 62458,
-      "sha256": "ddecd96fb7eaf01e3b5ff173f73207baf2b7cd8917f3d8926b4d96558c964eb2"
+      "path": "lecture/chapter2/chapter2c.html",
+      "size": 71071,
+      "sha256": "ac7fd1c76492d9a472eb6031d4ef4210792b19a20917ece4ffeef315c4e44a78"
     },
     {
-      "path": "lecture/chapter2/chapter2b.qmd",
-      "size": 7411,
-      "sha256": "1a45e6b29b899be8880df5840490a120f4e080fa8edaaadb11c8f99ef7ecd7e1"
+      "path": "lecture/chapter2/chapter2c.qmd",
+      "size": 11626,
+      "sha256": "b8cb6ed73814a2d607989caf5ffe3a0861ea35191aaf48c61071a1d9ba05fbd7"
     },
     {
       "path": "lecture/chapter2/chapter2c_files/libs/clipboard/clipboard.min.js",
@@ -2307,6 +2422,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -2325,11 +2445,6 @@
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -2537,6 +2652,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -2575,11 +2700,6 @@
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -2752,11 +2872,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter2/chapter2c_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -2822,14 +2937,14 @@
       "sha256": "d7ad0d67f4c56e4380c75cd2c613c1cb64323638b60eb64cdf92ab4749c74c73"
     },
     {
-      "path": "lecture/chapter2/chapter2c.html",
-      "size": 71071,
-      "sha256": "ac7fd1c76492d9a472eb6031d4ef4210792b19a20917ece4ffeef315c4e44a78"
+      "path": "lecture/chapter2/chapter2d.html",
+      "size": 66702,
+      "sha256": "3b45028cd22076d80b076a73d354682e433a09e92dddd227fd46235d7eafcfa9"
     },
     {
-      "path": "lecture/chapter2/chapter2c.qmd",
-      "size": 11626,
-      "sha256": "b8cb6ed73814a2d607989caf5ffe3a0861ea35191aaf48c61071a1d9ba05fbd7"
+      "path": "lecture/chapter2/chapter2d.qmd",
+      "size": 9197,
+      "sha256": "738cfe22e53540890bf6030fa8699bf26b33acc9c988f58152e508bf41dada26"
     },
     {
       "path": "lecture/chapter2/chapter2d_files/libs/clipboard/clipboard.min.js",
@@ -2922,6 +3037,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -2940,11 +3060,6 @@
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -3152,6 +3267,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -3190,11 +3315,6 @@
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -3367,11 +3487,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter2/chapter2d_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -3437,14 +3552,14 @@
       "sha256": "32a5c97ca31a78a263a70b533183ec1de889c3d8676857dd077ed260769bc5aa"
     },
     {
-      "path": "lecture/chapter2/chapter2d.html",
-      "size": 66702,
-      "sha256": "3b45028cd22076d80b076a73d354682e433a09e92dddd227fd46235d7eafcfa9"
+      "path": "lecture/chapter3/chapter3a.html",
+      "size": 68907,
+      "sha256": "7370a80d9e3dd56651f475289b71aa4ecbb25a29b7f06e8556e55dcf01bb372f"
     },
     {
-      "path": "lecture/chapter2/chapter2d.qmd",
-      "size": 9197,
-      "sha256": "738cfe22e53540890bf6030fa8699bf26b33acc9c988f58152e508bf41dada26"
+      "path": "lecture/chapter3/chapter3a.qmd",
+      "size": 12684,
+      "sha256": "0409680df7b1de9c79c46c9a58064fe6508bbe1de7846f9ae315ee318a92d492"
     },
     {
       "path": "lecture/chapter3/chapter3a_files/libs/clipboard/clipboard.min.js",
@@ -3537,6 +3652,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -3555,11 +3675,6 @@
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -3767,6 +3882,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -3805,11 +3930,6 @@
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -3982,11 +4102,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter3/chapter3a_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -4052,14 +4167,14 @@
       "sha256": "56c7cc610c9fc929f4774e15e0682dfbe5d1d8fdb6cb60c5216f86cb811987b0"
     },
     {
-      "path": "lecture/chapter3/chapter3a.html",
-      "size": 68907,
-      "sha256": "7370a80d9e3dd56651f475289b71aa4ecbb25a29b7f06e8556e55dcf01bb372f"
+      "path": "lecture/chapter3/chapter3b.html",
+      "size": 65446,
+      "sha256": "fac4b4420aaee94786b76351bbce69c6bbb934bdb7b3ba1d8f925fb57bc84dd8"
     },
     {
-      "path": "lecture/chapter3/chapter3a.qmd",
-      "size": 12684,
-      "sha256": "0409680df7b1de9c79c46c9a58064fe6508bbe1de7846f9ae315ee318a92d492"
+      "path": "lecture/chapter3/chapter3b.qmd",
+      "size": 10985,
+      "sha256": "1cccfe95a5dde8b1f221673037c4fd57bc6e0d4f5013fa52eb84318f7034ce75"
     },
     {
       "path": "lecture/chapter3/chapter3b_files/libs/clipboard/clipboard.min.js",
@@ -4152,6 +4267,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -4170,11 +4290,6 @@
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -4382,6 +4497,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -4420,11 +4545,6 @@
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -4597,11 +4717,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter3/chapter3b_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -4667,14 +4782,14 @@
       "sha256": "e6eec52de4c070c6ccf282696e39b8c46759adcfe77193826f41a34c4e5d161f"
     },
     {
-      "path": "lecture/chapter3/chapter3b.html",
-      "size": 65446,
-      "sha256": "fac4b4420aaee94786b76351bbce69c6bbb934bdb7b3ba1d8f925fb57bc84dd8"
+      "path": "lecture/chapter3/chapter3c.html",
+      "size": 72655,
+      "sha256": "1ecac8ed2d26c6b55cce3387afb48e7b6af309788747c76ba3f3420e4df2bfca"
     },
     {
-      "path": "lecture/chapter3/chapter3b.qmd",
-      "size": 10985,
-      "sha256": "1cccfe95a5dde8b1f221673037c4fd57bc6e0d4f5013fa52eb84318f7034ce75"
+      "path": "lecture/chapter3/chapter3c.qmd",
+      "size": 12538,
+      "sha256": "e582b6117d43827cc89cf6c6f938ab91f0ee846ba6154b3a1f38f576c69d1e96"
     },
     {
       "path": "lecture/chapter3/chapter3c_files/libs/clipboard/clipboard.min.js",
@@ -4767,6 +4882,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -4785,11 +4905,6 @@
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -4997,6 +5112,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -5035,11 +5160,6 @@
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -5212,11 +5332,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter3/chapter3c_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -5282,14 +5397,14 @@
       "sha256": "0d3d6aaae951c95071915ad48bbd5d35a49455a2844fb44d01eea94efd36cb2b"
     },
     {
-      "path": "lecture/chapter3/chapter3c.html",
-      "size": 72655,
-      "sha256": "1ecac8ed2d26c6b55cce3387afb48e7b6af309788747c76ba3f3420e4df2bfca"
+      "path": "lecture/chapter4/chapter4a.html",
+      "size": 66105,
+      "sha256": "4e65dbff951a114407e720183bdc1dec3a0362655d9bd9788c833502618e299f"
     },
     {
-      "path": "lecture/chapter3/chapter3c.qmd",
-      "size": 12538,
-      "sha256": "e582b6117d43827cc89cf6c6f938ab91f0ee846ba6154b3a1f38f576c69d1e96"
+      "path": "lecture/chapter4/chapter4a.qmd",
+      "size": 11051,
+      "sha256": "f80dce035b2d0ad4d95969ddc23bfe1b59063481ead3b6c24ea3c260dac64065"
     },
     {
       "path": "lecture/chapter4/chapter4a_files/libs/clipboard/clipboard.min.js",
@@ -5382,6 +5497,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -5400,11 +5520,6 @@
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -5612,6 +5727,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -5650,11 +5775,6 @@
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -5827,11 +5947,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter4/chapter4a_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -5897,14 +6012,14 @@
       "sha256": "c4a990dc8a1de967db87f9b2a217278569ec24199abff5d7c12f2f55514d9ded"
     },
     {
-      "path": "lecture/chapter4/chapter4a.html",
-      "size": 66105,
-      "sha256": "4e65dbff951a114407e720183bdc1dec3a0362655d9bd9788c833502618e299f"
+      "path": "lecture/chapter4/chapter4b.html",
+      "size": 77865,
+      "sha256": "a8fb83d7a6c24fe84bce8eabc2f5c40123c48dca5de1b4aba0163c156b9944e2"
     },
     {
-      "path": "lecture/chapter4/chapter4a.qmd",
-      "size": 11051,
-      "sha256": "f80dce035b2d0ad4d95969ddc23bfe1b59063481ead3b6c24ea3c260dac64065"
+      "path": "lecture/chapter4/chapter4b.qmd",
+      "size": 14983,
+      "sha256": "ce4159ae93590035151a7e3f905bac944bae25b39b085b9dec3f6065a68e54eb"
     },
     {
       "path": "lecture/chapter4/chapter4b_files/libs/clipboard/clipboard.min.js",
@@ -5997,6 +6112,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -6015,11 +6135,6 @@
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -6227,6 +6342,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -6265,11 +6390,6 @@
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -6442,11 +6562,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter4/chapter4b_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -6512,14 +6627,14 @@
       "sha256": "5c066445603cc547d61d564d09894fe4c424d9856f57deabc01aaef7b35b2ff8"
     },
     {
-      "path": "lecture/chapter4/chapter4b.html",
-      "size": 77865,
-      "sha256": "a8fb83d7a6c24fe84bce8eabc2f5c40123c48dca5de1b4aba0163c156b9944e2"
+      "path": "lecture/chapter4/chapter4c.html",
+      "size": 69178,
+      "sha256": "1abd335a49bb8b3ae1c71c8539ef5857bb5a630e6451878536490e17bc2e197e"
     },
     {
-      "path": "lecture/chapter4/chapter4b.qmd",
-      "size": 14983,
-      "sha256": "ce4159ae93590035151a7e3f905bac944bae25b39b085b9dec3f6065a68e54eb"
+      "path": "lecture/chapter4/chapter4c.qmd",
+      "size": 11773,
+      "sha256": "de1afc7eeb79b18e54960712a00f24da093e969719fdfeb5d018b88c44c96133"
     },
     {
       "path": "lecture/chapter4/chapter4c_files/libs/clipboard/clipboard.min.js",
@@ -6612,6 +6727,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -6630,11 +6750,6 @@
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -6842,6 +6957,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -6880,11 +7005,6 @@
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -7057,11 +7177,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter4/chapter4c_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -7127,14 +7242,14 @@
       "sha256": "f6d2a31e57b574dbf310e63e3c6b253e9dc1681723bceaf15506ab2385b43841"
     },
     {
-      "path": "lecture/chapter4/chapter4c.html",
-      "size": 69178,
-      "sha256": "1abd335a49bb8b3ae1c71c8539ef5857bb5a630e6451878536490e17bc2e197e"
+      "path": "lecture/chapter4/chapter4d.html",
+      "size": 69374,
+      "sha256": "3590654557e5d1e82dadeea848dc0f9459e31d00eb2e4561a1860a4a59a7152b"
     },
     {
-      "path": "lecture/chapter4/chapter4c.qmd",
-      "size": 11773,
-      "sha256": "de1afc7eeb79b18e54960712a00f24da093e969719fdfeb5d018b88c44c96133"
+      "path": "lecture/chapter4/chapter4d.qmd",
+      "size": 13352,
+      "sha256": "c35b2351f5a05e686e5aff7e0d09e5bcf7a324b7ae9ad33ea935d8fae714da07"
     },
     {
       "path": "lecture/chapter4/chapter4d_files/libs/clipboard/clipboard.min.js",
@@ -7227,6 +7342,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -7245,11 +7365,6 @@
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -7457,6 +7572,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -7495,11 +7620,6 @@
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -7672,11 +7792,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter4/chapter4d_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -7742,16 +7857,6 @@
       "sha256": "c45d883d1cc011ec22ce9600193efa18da269fc5791262de471689b7861ccb99"
     },
     {
-      "path": "lecture/chapter4/chapter4d.html",
-      "size": 69374,
-      "sha256": "3590654557e5d1e82dadeea848dc0f9459e31d00eb2e4561a1860a4a59a7152b"
-    },
-    {
-      "path": "lecture/chapter4/chapter4d.qmd",
-      "size": 13352,
-      "sha256": "c35b2351f5a05e686e5aff7e0d09e5bcf7a324b7ae9ad33ea935d8fae714da07"
-    },
-    {
       "path": "lecture/chapter4/data/learning_records.csv",
       "size": 435,
       "sha256": "0b970467ebdbe66f79a84d2331da30729bc58769d0d9862736540c3623f7323f"
@@ -7775,6 +7880,16 @@
       "path": "lecture/chapter5/assets/NotoSansCJKsc-Regular.otf",
       "size": 16437364,
       "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+    },
+    {
+      "path": "lecture/chapter5/chapter5a.html",
+      "size": 79749,
+      "sha256": "a4576d5fa40470fec4a8defc2ad040c6ffcd2ec34b02ef917256f83bf6737738"
+    },
+    {
+      "path": "lecture/chapter5/chapter5a.qmd",
+      "size": 19005,
+      "sha256": "65231f70a9c870baa10caf743416f7b7c3fdeb0680aea82bf4819e687a4e89fc"
     },
     {
       "path": "lecture/chapter5/chapter5a_files/libs/clipboard/clipboard.min.js",
@@ -7867,6 +7982,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -7885,11 +8005,6 @@
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -8097,6 +8212,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -8135,11 +8260,6 @@
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -8312,11 +8432,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter5/chapter5a_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -8382,14 +8497,14 @@
       "sha256": "00aa3be09b8b808b45e8e0ec795cdc9afb91071b9dad0e37e493acb1efe3758e"
     },
     {
-      "path": "lecture/chapter5/chapter5a.html",
-      "size": 79749,
-      "sha256": "a4576d5fa40470fec4a8defc2ad040c6ffcd2ec34b02ef917256f83bf6737738"
+      "path": "lecture/chapter5/chapter5b.html",
+      "size": 63931,
+      "sha256": "eeaebab7227083a703fa9da69094beb48e9a6b72f046e7c2e9542c960018394e"
     },
     {
-      "path": "lecture/chapter5/chapter5a.qmd",
-      "size": 19005,
-      "sha256": "65231f70a9c870baa10caf743416f7b7c3fdeb0680aea82bf4819e687a4e89fc"
+      "path": "lecture/chapter5/chapter5b.qmd",
+      "size": 14114,
+      "sha256": "81398e99ec8ba32c2130d55666fc2248cf037616c9dc02f04c6b74fc65a8353e"
     },
     {
       "path": "lecture/chapter5/chapter5b_files/libs/clipboard/clipboard.min.js",
@@ -8482,6 +8597,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -8500,11 +8620,6 @@
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -8712,6 +8827,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -8750,11 +8875,6 @@
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -8927,11 +9047,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter5/chapter5b_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -8997,16 +9112,6 @@
       "sha256": "b104d1ba1e6e93632143cb47d324ec272ba7468fcc24c22b3f43221a0e36f628"
     },
     {
-      "path": "lecture/chapter5/chapter5b.html",
-      "size": 63931,
-      "sha256": "eeaebab7227083a703fa9da69094beb48e9a6b72f046e7c2e9542c960018394e"
-    },
-    {
-      "path": "lecture/chapter5/chapter5b.qmd",
-      "size": 14114,
-      "sha256": "81398e99ec8ba32c2130d55666fc2248cf037616c9dc02f04c6b74fc65a8353e"
-    },
-    {
       "path": "lecture/chapter5/data/learning_wave.csv",
       "size": 18969,
       "sha256": "352cbeead6a9995b5ebf5299419812c5da0a7b964c755c3ee9bb2197782348ea"
@@ -9015,6 +9120,16 @@
       "path": "lecture/chapter5/data/student_eda.csv",
       "size": 6727,
       "sha256": "14d69cb8757f2168dba71d36fbb42d3d0b5a285360f90bbe457f6c8d1543d874"
+    },
+    {
+      "path": "lecture/chapter6/chapter6a.html",
+      "size": 59942,
+      "sha256": "1a7b6744fa8c093daa30b21a61bd936693cf0385f7eb8d42030c73916ca070d7"
+    },
+    {
+      "path": "lecture/chapter6/chapter6a.qmd",
+      "size": 12508,
+      "sha256": "5b98861aa71fbcdd9d3f9a5f22cdecb1a173a1a53be375e904727faad1dbaea5"
     },
     {
       "path": "lecture/chapter6/chapter6a_files/libs/clipboard/clipboard.min.js",
@@ -9107,6 +9222,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -9125,11 +9245,6 @@
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -9337,6 +9452,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -9375,11 +9500,6 @@
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -9552,11 +9672,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter6/chapter6a_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -9622,14 +9737,14 @@
       "sha256": "5353c8cc25ac19c4c43cfa353e4c1443ed9b3765e3748d8a603490c2001d1fd6"
     },
     {
-      "path": "lecture/chapter6/chapter6a.html",
-      "size": 59942,
-      "sha256": "1a7b6744fa8c093daa30b21a61bd936693cf0385f7eb8d42030c73916ca070d7"
+      "path": "lecture/chapter6/chapter6b.html",
+      "size": 63156,
+      "sha256": "a0f982f457200099c74cba6208a7e7e18e7d74caf21e06dbf42aab928c457063"
     },
     {
-      "path": "lecture/chapter6/chapter6a.qmd",
-      "size": 12508,
-      "sha256": "5b98861aa71fbcdd9d3f9a5f22cdecb1a173a1a53be375e904727faad1dbaea5"
+      "path": "lecture/chapter6/chapter6b.qmd",
+      "size": 12261,
+      "sha256": "764704c7d2d0f76ad46d88d280352f10f484c7cbc2cdd2571acfe2f4773fc578"
     },
     {
       "path": "lecture/chapter6/chapter6b_files/libs/clipboard/clipboard.min.js",
@@ -9722,6 +9837,11 @@
       "sha256": "ba6170f0af229fc9c9ed3606d9ebff11f6dd97e39e7e00607aed9aa0b8ebf237"
     },
     {
+      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
+      "size": 94,
+      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
+    },
+    {
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.css",
       "size": 327,
       "sha256": "6f1d10eab33791c9ec3d07b5791c5fccdb309b41cb819d8e3496129f500d6271"
@@ -9740,11 +9860,6 @@
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/dist/theme/fonts/league-gothic/league-gothic.woff",
       "size": 30764,
       "sha256": "5eef6df86135497f2d0a586c8aa3dc3ace8963234762c16081924714658da2db"
-    },
-    {
-      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/dist/theme/fonts/league-gothic/LICENSE",
-      "size": 94,
-      "sha256": "6522f2d255b1a9f5f57c71856cc0fbfa288cf2d7ebea809e426ac9dfcfa466cc"
     },
     {
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/dist/theme/fonts/source-sans-pro/LICENSE",
@@ -9952,6 +10067,16 @@
       "sha256": "7c05323523f1b2e110d29562040153888a4d0e1ef7d1ade148f51d5c8de1bcdc"
     },
     {
+      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
+      "size": 9132,
+      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
+    },
+    {
+      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
+      "size": 1544,
+      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
+    },
+    {
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css",
       "size": 45691,
       "sha256": "c90e2f498b7a3df49f73762b9f1104022fd4de8d06ec4aa5c240f0d7e37e959b"
@@ -9990,11 +10115,6 @@
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/v4-shims.min.css",
       "size": 26692,
       "sha256": "a9429f972fb0ddbce12a8e3c0d81a74d017c5f8170218ea9b421b5f3b1d33511"
-    },
-    {
-      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/LICENSE.txt",
-      "size": 1544,
-      "sha256": "6de8d0e48e1a0c7ae7584d1b102bf3ead55b45777a8a8042d4c6bc1e27d88e0b"
     },
     {
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/webfonts/fa-brands-400.eot",
@@ -10167,11 +10287,6 @@
       "sha256": "9e0eb703bc6c00bded37087354ddd9ec1fb5f22e28e7fe2d8052da052482d10d"
     },
     {
-      "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/README.md",
-      "size": 9132,
-      "sha256": "11957ab4a28c8f7be2a878815fde3e5d74bc8ffb6a94876366a55a4460a971d4"
-    },
-    {
       "path": "lecture/chapter6/chapter6b_files/libs/revealjs/plugin/reveal-chalkboard/style.css",
       "size": 748,
       "sha256": "b7cc9d25bcd54efeb16c4f3ce86fd7345401b063bbe54d2cbcc66615866a1e91"
@@ -10237,24 +10352,9 @@
       "sha256": "0b227ed4ad53b62030d39011132bf684c678c1e88ea879d2aea8469b1bbbd54f"
     },
     {
-      "path": "lecture/chapter6/chapter6b.html",
-      "size": 63156,
-      "sha256": "a0f982f457200099c74cba6208a7e7e18e7d74caf21e06dbf42aab928c457063"
-    },
-    {
-      "path": "lecture/chapter6/chapter6b.qmd",
-      "size": 12261,
-      "sha256": "764704c7d2d0f76ad46d88d280352f10f484c7cbc2cdd2571acfe2f4773fc578"
-    },
-    {
       "path": "lecture/chapter6/data/student_analysis.csv",
       "size": 4538,
       "sha256": "7041064d7ffd16d464ada17babf615468483a9e7564317fbe5f0fe4f876ac17b"
-    },
-    {
-      "path": "README.md",
-      "size": 2336,
-      "sha256": "c43021400a39cfef0a1d050b39c8769395adde5a1570764e72a0d3ec4b0f5073"
     }
   ]
 }

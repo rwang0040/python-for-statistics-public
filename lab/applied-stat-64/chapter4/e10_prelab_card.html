@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E10 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e10_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e10-实验前准备卡">E10 实验前准备卡</h1>
+<p>适用实验：<code>e10_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>已复习 E09 的数据质量审计结论。</li>
+<li>已复习 <code>loc</code>、<code>iloc</code> 和布尔筛选。</li>
+<li>已复习 Chapter 4B 中的字符串列方法、<code>pd.to_numeric()</code>、<code>np.where()</code> 和 <code>pd.cut()</code>。</li>
+<li>已复习 E03–E04 的学习时长分档：小于 4、小于 8 和其余三档。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>使用标签、位置和条件选择记录。</li>
+<li>统一文本与分类变量。</li>
+<li>转换数值并保留缺失信息。</li>
+<li>按 <code>student_id</code> 处理重复记录。</li>
+<li>生成分析变量并导出规范学生主表。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>先输出 <code>dtypes</code> 和唯一类别，不要一次修改所有字段。</li>
+<li>类别映射后再次检查 <code>unique()</code> 或 <code>value_counts()</code>。</li>
+<li>生成出勤类别时先筛选非缺失记录，缺失值不能直接交给 <code>np.where()</code> 判断。</li>
+<li>正式输出必须写入 <code>chapter4/e10_output</code>，不要覆盖共享数据。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>输出表为 160 行且 <code>student_id</code> 唯一。</li>
+<li>学习时长和出勤率缺失数分别为 8 和 4。</li>
+<li>四个分类变量的取值符合数据字典。</li>
+<li>已完成实验小结并从头运行 Notebook。</li>
+</ol>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

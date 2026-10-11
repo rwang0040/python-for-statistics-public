@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>共享实验数据字典 · Python 程序设计</title>
+<link rel="stylesheet" href="../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../index.html">← 返回课程首页</a>
+<a href="data_dictionary.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="共享实验数据字典">共享实验数据字典</h1>
+<h2 id="数据范围">数据范围</h2>
+<ul>
+<li>观测对象：160 名学习 Python 的模拟大学生。</li>
+<li>学生标识：<code>student_id</code>，格式为 <code>S001</code> 至 <code>S160</code>。</li>
+<li>重复观测：每名学生原则上有 4 轮学习记录。</li>
+<li>数据性质：完全模拟，仅用于教学。</li>
+<li>随机种子：<code>202609</code>。</li>
+<li>字符约定：学生读取的数据文件只包含 ASCII 字符并统一写为 UTF-8；中文变量含义仅用于说明，不作为文件中的分类取值。</li>
+</ul>
+<h2 id="学生调查主表">学生调查主表</h2>
+<p>原始文件为 <code>raw/student_survey_raw.txt</code>，官方清洗结果为 <code>checkpoints/e10_students_clean.csv</code>。</p>
+<p>E02–E04 不直接读取完整原始文件。课程准备代码从 <code>samples/chapter2_records.json</code> 载入同一批模拟学生中的 8 条规范记录；该读取步骤不作为学生学习内容。样本固定覆盖三档学习时长、两种支持方案、三类专业和关注条件，三个实验依次练习数据组织、程序控制、函数和异常处理。E05 在学完字符串与文件读取后，首次正式读取完整原始文本并生成 JSON；E09–E10 再使用 Pandas 处理同一原始文件。</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+<th>清洗说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>字符串</td>
+<td>模拟学生唯一标识</td>
+<td>去除首尾空白；按此字段删除重复记录</td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>字符串</td>
+<td>按 <code>gender</code> 从英文常用名池中固定种子抽取的模拟昵称，如 <code>David</code> 或 <code>Alice</code></td>
+<td>去除首尾空白；全体不重复，但不是记录主键</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>分类</td>
+<td><code>female</code>、<code>male</code></td>
+<td>将 <code>F/M</code> 等别名统一</td>
+</tr>
+<tr>
+<td><code>major</code></td>
+<td>分类</td>
+<td><code>data_science</code>、<code>applied_statistics</code>、<code>statistical_computing</code></td>
+<td>将空格分隔的别名统一为下划线代码</td>
+</tr>
+<tr>
+<td><code>prior_programming</code></td>
+<td>两组分类</td>
+<td>入课前是否有编程经历：<code>yes</code>、<code>no</code></td>
+<td>将 <code>Y/N</code> 等别名统一</td>
+</tr>
+<tr>
+<td><code>support_plan</code></td>
+<td>两组分类</td>
+<td><code>regular</code>（常规练习）、<code>feedback</code>（即时反馈）</td>
+<td>将 <code>standard/instant_feedback</code> 等别名统一</td>
+</tr>
+<tr>
+<td><code>reported_study_hours</code></td>
+<td>数值</td>
+<td>学生自报每周学习时长，单位为小时</td>
+<td><code>NA</code>、<code>unknown</code> 转为缺失值</td>
+</tr>
+<tr>
+<td><code>reported_attendance_rate</code></td>
+<td>数值</td>
+<td>学生自报出勤率，单位为百分比</td>
+<td>去除百分号；<code>-</code> 转为缺失值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="研究设计说明">研究设计说明</h3>
+<p><code>support_plan</code> 来自既有教学安排，并非随机分配。学生分析表中每名学生只出现一次，不涉及同一学生的重复测量；第六章在分析中将不同学生视为相互独立的观测。随机分配和独立性属于研究设计信息，不能只根据数据表中的数值判断。因此，两组比较可以描述组间差异和统计证据，但不能单独证明支持方案造成了成绩差异。</p>
+<h2 id="四轮学习记录">四轮学习记录</h2>
+<p>原始文件为 <code>raw/learning_records_raw.csv</code>，官方清洗结果为 <code>checkpoints/e11_learning_records_clean.csv</code>。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>字符串</td>
+<td>模拟学生唯一标识</td>
+</tr>
+<tr>
+<td><code>wave</code></td>
+<td>整数</td>
+<td>学习记录轮次，取值 1–4</td>
+</tr>
+<tr>
+<td><code>study_hours</code></td>
+<td>数值</td>
+<td>本轮每周平均学习时长，单位为小时</td>
+</tr>
+<tr>
+<td><code>attendance_rate</code></td>
+<td>数值</td>
+<td>本轮出勤率，单位为百分比</td>
+</tr>
+<tr>
+<td><code>quiz_score</code></td>
+<td>数值</td>
+<td>本轮阶段测验成绩，范围 0–100</td>
+</tr>
+<tr>
+<td><code>task_completion_rate</code></td>
+<td>数值</td>
+<td>本轮任务完成率，单位为百分比</td>
+</tr>
+</tbody>
+</table>
+<p>学生与轮次共同构成记录键，即 <code>student_id + wave</code>。原始文件含少量重复键、无效值和缺失值，清洗后每名学生保留 4 轮记录。</p>
+<h2 id="项目成绩表">项目成绩表</h2>
+<p>原始文件为 <code>raw/project_scores_raw.csv</code>，官方清洗结果为 <code>checkpoints/e12_project_scores_clean.csv</code>。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>字符串</td>
+<td>模拟学生唯一标识</td>
+</tr>
+<tr>
+<td><code>wave</code></td>
+<td>整数</td>
+<td>项目所属轮次</td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>分类</td>
+<td><code>notebook_basics</code>、<code>text_cleaning</code>、<code>random_simulation</code>、<code>pandas_integration</code></td>
+</tr>
+<tr>
+<td><code>project_score</code></td>
+<td>数值</td>
+<td>项目成绩，范围 0–100</td>
+</tr>
+</tbody>
+</table>
+<p>项目表故意缺少部分 <code>student_id + wave</code> 组合，且部分已提交项目的成绩为空。合并后应区分“没有匹配的项目记录”和“存在项目记录但成绩缺失”。</p>
+<h2 id="课程结果表">课程结果表</h2>
+<p>文件为 <code>raw/course_outcomes_raw.csv</code>，官方检查点为 <code>checkpoints/e12_course_outcomes_clean.csv</code>。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>字符串</td>
+<td>模拟学生唯一标识</td>
+</tr>
+<tr>
+<td><code>baseline_score</code></td>
+<td>数值</td>
+<td>入课基础测验成绩</td>
+</tr>
+<tr>
+<td><code>final_score</code></td>
+<td>数值</td>
+<td>期末 Python 成绩</td>
+</tr>
+<tr>
+<td><code>data_literacy_score</code></td>
+<td>数值</td>
+<td>课程末数据素养任务成绩</td>
+</tr>
+</tbody>
+</table>
+<h2 id="综合分析表">综合分析表</h2>
+<p><code>checkpoints/e12_analysis_ready.csv</code> 是一人一行的分析就绪表，由学生主表、四轮学习记录汇总、项目成绩汇总和课程结果表合并得到。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>字符串</td>
+<td>模拟学生唯一标识</td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>字符串</td>
+<td>英文模拟昵称</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>分类</td>
+<td><code>female</code>、<code>male</code></td>
+</tr>
+<tr>
+<td><code>major</code></td>
+<td>分类</td>
+<td>三个英文专业代码</td>
+</tr>
+<tr>
+<td><code>prior_programming</code></td>
+<td>两组分类</td>
+<td><code>yes</code>、<code>no</code></td>
+</tr>
+<tr>
+<td><code>support_plan</code></td>
+<td>两组分类</td>
+<td><code>regular</code>、<code>feedback</code></td>
+</tr>
+<tr>
+<td><code>study_hours</code></td>
+<td>数值</td>
+<td>四轮平均每周学习时长</td>
+</tr>
+<tr>
+<td><code>attendance_rate</code></td>
+<td>数值</td>
+<td>四轮平均出勤率</td>
+</tr>
+<tr>
+<td><code>task_completion_rate</code></td>
+<td>数值</td>
+<td>四轮平均任务完成率</td>
+</tr>
+<tr>
+<td><code>first_quiz_score</code></td>
+<td>数值</td>
+<td>第一轮阶段测验成绩；原记录缺失时继续保留缺失</td>
+</tr>
+<tr>
+<td><code>last_quiz_score</code></td>
+<td>数值</td>
+<td>第四轮阶段测验成绩；原记录缺失时继续保留缺失</td>
+</tr>
+<tr>
+<td><code>submitted_projects</code></td>
+<td>整数</td>
+<td>有有效成绩的项目数</td>
+</tr>
+<tr>
+<td><code>mean_project_score</code></td>
+<td>数值</td>
+<td>已评分项目的平均成绩</td>
+</tr>
+<tr>
+<td><code>baseline_score</code></td>
+<td>数值</td>
+<td>入课基础测验成绩</td>
+</tr>
+<tr>
+<td><code>final_score</code></td>
+<td>数值</td>
+<td>期末 Python 成绩</td>
+</tr>
+<tr>
+<td><code>data_literacy_score</code></td>
+<td>数值</td>
+<td>数据素养任务成绩</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第五六章分析视图">第五、六章分析视图</h2>
+<p>分析视图只选择并重命名课程后半段需要的字段，不产生新的学生或新的随机结果。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>文件</th>
+<th>主要字段</th>
+<th>教学用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>analysis/student_eda.csv</code></td>
+<td><code>gender</code>、<code>major</code>、<code>study_hours</code>、<code>attendance_rate</code>、<code>python_score</code>、<code>data_literacy_score</code></td>
+<td>分布、频数、分组比较、散点图和相关热力图</td>
+</tr>
+<tr>
+<td><code>analysis/learning_wave.csv</code></td>
+<td><code>student_id</code>、<code>major</code>、<code>wave</code>、<code>study_hours</code>、<code>python_score</code></td>
+<td>分组汇总和轮次变化折线图</td>
+</tr>
+<tr>
+<td><code>analysis/student_analysis.csv</code></td>
+<td><code>support_plan</code>、<code>baseline_score</code>、<code>study_hours</code>、<code>attendance_rate</code>、<code>final_score</code></td>
+<td>Welch t 检验、简单 OLS、残差和解释边界</td>
+</tr>
+<tr>
+<td><code>analysis/e15_group_comparison.csv</code></td>
+<td>两组名称、样本量、均值、均值差、95% 置信区间、t 统计量和 p 值</td>
+<td>E16 在缺少个人 E15 成果时使用的官方结果检查点；差异方向固定为 <code>feedback - regular</code></td>
+</tr>
+</tbody>
+</table>
+<p>其中 <code>student_eda.csv</code> 中的 <code>python_score</code> 来自综合表的 <code>final_score</code>；<code>learning_wave.csv</code> 中的 <code>python_score</code> 来自各轮 <code>quiz_score</code>。两者名称相同但观测层级不同，使用时必须结合文件和一行所代表的观测单位解释。</p>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

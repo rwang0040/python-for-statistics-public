@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E11 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e11_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e11-实验前准备卡">E11 实验前准备卡</h1>
+<p>适用实验：<code>e11_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>已确认 <code>lab/shared/raw/learning_records_raw.csv</code> 存在。</li>
+<li>已复习 E10 的类型转换、缺失检查和去重流程。</li>
+<li>已复习 Chapter 4C 中的 <code>groupby()</code>、<code>agg()</code>、<code>crosstab()</code>、<code>pivot_table()</code> 和 <code>melt()</code>。</li>
+<li>知道四轮记录的主键是 <code>student_id + wave</code>。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>清理并核验四轮学习记录。</li>
+<li>按轮次完成基础和多指标汇总。</li>
+<li>生成频数表与交叉表。</li>
+<li>完成宽表与长表转换。</li>
+<li>导出 640 行清洗记录供 E12 使用。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>分组前先检查字段类型和复合主键。</li>
+<li>样本量不一致时区分 <code>size()</code> 与 <code>count()</code>。</li>
+<li>透视后先检查 <code>shape</code> 和列名，再执行 <code>melt()</code>。</li>
+<li>不要为了得到完整表格而填补真实缺失值。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>清理后为 160 名学生、640 条唯一学生—轮次记录。</li>
+<li>四个轮次均存在。</li>
+<li>出勤率、测验成绩和任务完成率缺失数分别为 4、11 和 5。</li>
+<li>已导出个人 E11 成果并完成实验小结。</li>
+</ol>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

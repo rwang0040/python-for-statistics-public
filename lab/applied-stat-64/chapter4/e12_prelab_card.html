@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E12 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e12_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e12-实验前准备卡">E12 实验前准备卡</h1>
+<p>适用实验：<code>e12_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>如需继续个人成果，已确认 E10 和 E11 输出文件存在。</li>
+<li>已确认 <code>lab/shared/checkpoints</code> 中的官方兜底文件存在。</li>
+<li>已复习 Chapter 4D 中的主键、<code>concat()</code>、<code>merge()</code>、<code>inner</code> 和 <code>left</code>。</li>
+<li>能说明单键与 <code>student_id + wave</code> 复合主键的区别。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>纵向拼接同结构记录并核验主键。</li>
+<li>整理项目成绩表。</li>
+<li>使用复合主键合并并区分两类缺失。</li>
+<li>构造学生层汇总并完成多表合并。</li>
+<li>导出 Chapter 5–6 使用的分析就绪表。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>先看输入来源和每项核验是否通过。</li>
+<li>合并前分别检查左右表的键是否唯一。</li>
+<li>比较 <code>inner</code> 与 <code>left</code> 的行数，再检查 <code>_merge</code> 和缺失值。</li>
+<li>个人成果核验失败时应先修正；需要继续时可把对应开关改为 <code>False</code>。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>已区分 20 个未匹配项目组合和 13 个已匹配但成绩缺失的组合。</li>
+<li>最终表为 160 行且 <code>student_id</code> 唯一。</li>
+<li>第一轮和第四轮成绩分别保留 5 个和 3 个预期缺失，其余正式字段没有意外缺失。</li>
+<li>已导出 <code>e12_analysis_ready.csv</code> 并完成数据范围说明与实验小结。</li>
+</ol>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

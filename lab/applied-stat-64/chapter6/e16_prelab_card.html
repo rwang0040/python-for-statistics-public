@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E16 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e16_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e16-实验前准备卡">E16 实验前准备卡</h1>
+<p>适用实验：<code>e16_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>已确认 <code>student_analysis.csv</code> 和官方 E15 结果检查点存在。</li>
+<li>如需继续个人成果，已确认 E12、E15 输出文件存在且核验通过。</li>
+<li>已复习 Chapter 6B 中响应变量、解释变量、斜率、拟合值、残差和 (R^2)。</li>
+<li>能说明简单回归中的关联、预测和因果是不同问题。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>绘制学习时长与期末成绩散点图。</li>
+<li>使用 Statsmodels 拟合简单 OLS。</li>
+<li>提取截距、斜率和 (R^2)。</li>
+<li>绘制拟合线和基础残差图。</li>
+<li>复用 E15 结果完成最终可复现分析报告。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>先确认公式左侧是 <code>final_score</code>，右侧是 <code>study_hours</code>。</li>
+<li>结果异常时检查是否颠倒响应变量和解释变量。</li>
+<li>残差图使用模型拟合值和残差，不是原始学习时长和成绩。</li>
+<li>写报告时读取 E15 结构化结果，不重新完成整个两组检验。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>已导出回归结果、拟合图和残差图。</li>
+<li>报告同时包含 E15 两组比较和 E16 简单回归。</li>
+<li>没有把斜率写成每名学生的确定变化。</li>
+<li>没有把 (R^2) 写成预测准确率或因果贡献率。</li>
+</ol>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

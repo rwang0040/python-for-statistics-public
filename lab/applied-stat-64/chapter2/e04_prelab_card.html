@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E04 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e04_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e04-实验前准备卡">E04 实验前准备卡</h1>
+<p>适用实验：<code>e04_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>已确认 <code>lab/shared/samples/chapter2_records.json</code> 文件存在，并运行课程准备单元。</li>
+<li>能区分函数的参数、函数体、返回值和调用结果。</li>
+<li>已复习 E03 中的分类、筛选和累计规则。</li>
+<li>知道 <code>float("6.5")</code> 可以转换，而 <code>float("unknown")</code> 会触发 <code>ValueError</code>。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>把学习时长分类规则写成函数。</li>
+<li>编写平均值函数并说明输入、输出。</li>
+<li>使用 <code>try-except</code> 安全转换字段文本。</li>
+<li>组合函数、循环和判断得到有效值列表。</li>
+<li>编写筛选函数和总控汇总函数。</li>
+<li>使用测试案例核验函数；<code>main()</code> 总控流程为提前完成后的拓展任务。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>先用一个正常值测试函数，再测试边界值和异常值。</li>
+<li>需要后续计算的函数应使用 <code>return</code>，不能只 <code>print()</code>。</li>
+<li><code>except</code> 中要给出明确结果，例如返回 <code>None</code>，不要静默忽略。</li>
+<li>调用函数前确认前面的函数定义单元已经运行。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>每个函数都有明确输入和返回值。</li>
+<li><code>"unknown"</code> 和 <code>"NA"</code> 不会让整个 Notebook 中断。</li>
+<li>无效值没有被加入有效数值列表。</li>
+<li>已说明哪些函数能在 E05 继续使用。</li>
+</ol>
+<h2 id="给学生的提醒">给学生的提醒</h2>
+<p>本实验只处理已经取得的字段值，尚不读取文件。重点是把重复规则写清楚，为下一次综合实验做准备。</p>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

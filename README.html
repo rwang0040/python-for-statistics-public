@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面向统计学的 Python 程序设计（64 学时标准版） · Python 程序设计</title>
+<link rel="stylesheet" href="assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="index.html">← 返回课程首页</a>
+<a href="README.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="面向统计学的-python-程序设计64-学时标准版">面向统计学的 Python 程序设计（64 学时标准版）</h1>
+<p>本仓库是面向应用统计学大一学生的课程发布版，包含 32 学时理论材料和 32 学时实验材料。</p>
+<p>课程以统计数据处理与分析为主线，内容依次覆盖 Python 基础、程序控制与数据结构、NumPy、Pandas、数据可视化与探索性分析，以及两组比较和简单线性回归。</p>
+<p>启用 GitHub Pages 后，仓库根目录的 <code>index.html</code> 提供完整课程导航。网页也可以直接在本地浏览器中打开。</p>
+<h2 id="目录">目录</h2>
+<pre class="text"><code>lecture/      T01–T16 课堂演示、可执行课堂 Notebook 和离线 HTML
+lab/          E01–E16 学生实验 Notebook、预习卡和课程数据
+_extensions/  Quarto 交互式课件扩展</code></pre>
+<p>实验按“章内连续、章末综合、章节间软依赖”组织。学生可以继续使用前一实验生成的成果；缺少个人成果时，可以从 <code>lab/shared/</code> 中的官方检查点重新开始。</p>
+<h2 id="环境安装">环境安装</h2>
+<p>建议安装 Miniforge 或其他提供 Conda/Mamba 的发行版，然后在仓库根目录执行：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mamba env create <span class="op">-</span>f environment<span class="op">.</span><span class="fu">yml</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mamba activate pythonBasic</span></code></pre></div>
+<p>如果没有安装 Mamba，也可以使用：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda env create <span class="op">-</span>f environment<span class="op">.</span><span class="fu">yml</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>conda activate pythonBasic</span></code></pre></div>
+<h2 id="使用材料">使用材料</h2>
+<ul>
+<li>浏览器课堂演示：打开 <code>lecture/chapter*/</code> 中对应的 HTML。</li>
+<li>本地课堂练习：打开 <code>lecture/chapter*/</code> 中以 <code>_inclass.ipynb</code> 结尾的 Notebook。</li>
+<li>实验课：打开 <code>lab/applied-stat-64/chapter*/</code> 中对应的 <code>_inclass.ipynb</code>。</li>
+<li>实验前：阅读同目录下相应的 <code>_prelab_card.md</code>。</li>
+</ul>
+<p>从仓库根目录启动 JupyterLab，可以让实验 Notebook 的路径判断和成果衔接保持一致：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>jupyter lab</span></code></pre></div>
+<h2 id="重新渲染课件">重新渲染课件</h2>
+<p>安装 Quarto 后，可在仓库根目录运行：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto render</span></code></pre></div>
+<p>仓库已经包含预渲染 HTML；不需要重新渲染即可使用课堂演示。</p>
+<h2 id="数据说明">数据说明</h2>
+<p>课程数据完全模拟，仅用于教学，不包含真实学生信息。字段定义、加工阶段和官方检查点见 <code>lab/shared/README.md</code> 与 <code>lab/shared/data_dictionary.md</code>。</p>
+<h2 id="发布来源">发布来源</h2>
+<p>本仓库由课程私有源仓库通过白名单脚本生成。<code>RELEASE-INVENTORY.json</code> 记录导出时的源提交和全部发布文件哈希。</p>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>

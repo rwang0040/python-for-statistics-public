@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E08 实验前准备卡 · Python 程序设计</title>
+<link rel="stylesheet" href="../../../assets/readings.css">
+</head>
+<body>
+<a class="skip-link" href="#reading-content">跳到正文</a>
+<div class="reading-shell">
+<nav class="reading-nav" aria-label="文档导航">
+<a href="../../../index.html">← 返回课程首页</a>
+<a href="e08_prelab_card.md" download>下载 Markdown 原文</a>
+</nav>
+<main id="reading-content" class="reading">
+<p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
+<h1 id="e08-实验前准备卡">E08 实验前准备卡</h1>
+<p>适用实验：<code>e08_inclass.ipynb</code></p>
+<h2 id="开始前先确认">开始前先确认</h2>
+<ol type="1">
+<li>已复习 <code>np.random.default_rng()</code>、<code>random()</code> 和 <code>binomial()</code>。</li>
+<li>能使用二维数组、布尔判断、<code>sum(axis=...)</code> 和 <code>mean(axis=...)</code>。</li>
+<li>已复习 Chapter 2 的函数和循环，能够重复调用同一个模拟函数。</li>
+<li>知道本实验使用假想概率模型，不读取或解释真实学生数据。</li>
+<li>能区分“固定随机种子”和“每次调用都返回相同结果”。</li>
+</ol>
+<h2 id="本次实验要完成什么">本次实验要完成什么</h2>
+<ol type="1">
+<li>检查固定种子的可复现性。</li>
+<li>从基本随机数构造多项任务完成试验。</li>
+<li>独立走完“目标—假设—随机生成—事件判定—比例估计”流程。</li>
+<li>使用循环比较不同模拟次数并重复整组实验。</li>
+<li>运行课程提供的另一种随机生成方式并核验结果。</li>
+<li>提交包含模型限制的 Monte Carlo 实验报告。</li>
+</ol>
+<h2 id="如果卡住了">如果卡住了</h2>
+<ol type="1">
+<li>每一步都先检查数组形状。</li>
+<li>核心任务只使用二维数组；重复整组实验时调用已有函数并收集结果。</li>
+<li>事件掩码应是一维布尔数组，每个位置对应一次模拟。</li>
+<li>估计值异常时先检查事件定义，不要只增加模拟次数。</li>
+</ol>
+<h2 id="提交前检查">提交前检查</h2>
+<ol type="1">
+<li>报告中包含种子、模拟次数、事件定义和估计值。</li>
+<li>至少比较了 100、1,000 和 10,000 次模拟。</li>
+<li>使用重复实验说明了估计稳定性的变化。</li>
+<li>明确说明假想模型不代表真实学生规律。</li>
+</ol>
+<h2 id="提前完成后的拓展">提前完成后的拓展</h2>
+<p>可以尝试使用三维数组一次生成多组重复实验；该任务不计入 90 分钟核心要求。</p>
+
+</main>
+<footer>课程阅读材料 · 原始 Markdown 与课堂 Notebook 均保留</footer>
+</div>
+</body>
+</html>
