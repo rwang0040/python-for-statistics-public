@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "releaseId": "applied-stat-64",
-  "sourceCommit": "7849766ad9811e5eeb4b451129018b90e6993b9c",
+  "sourceCommit": "9b4b1bd50a73a370ab4618c3d76d94cca1936ef5",
   "sourceDirty": true,
-  "generatedAt": "2026-10-12T00:59:58.406103Z",
+  "generatedAt": "2026-10-12T07:40:49.246670Z",
   "fileCount": 2070,
   "files": [
     {
@@ -188,18 +188,18 @@
     },
     {
       "path": "lab/applied-stat-64/chapter2/e04_inclass.ipynb",
-      "size": 11446,
-      "sha256": "0bda43760a76712f591a94b46d520bde1d7cb4b336e9a2f94fe6b9e7ed43d3f6"
+      "size": 13475,
+      "sha256": "0895db8e298a0029a3c3b346f1ac3e3b32112d6e7869a4085b350ac337543c42"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e04_prelab_card.html",
-      "size": 2821,
-      "sha256": "5b77de46c1fc49e99ab2e431abd94e091923d40afcc08d61e57fcc9328858c3c"
+      "size": 3310,
+      "sha256": "074d13568ff36a4250d83f970e5b8d938a1b38908150a15b0aa68cca1b17dad1"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e04_prelab_card.md",
-      "size": 1495,
-      "sha256": "8c2345ba6b63d2849efc2f04a99f8f7188240f23b8ba07602544694923c81f20"
+      "size": 1984,
+      "sha256": "c8ab519e1e49e2927d577b00d19f8c37639e894cc624d79d15eefeccd10bab64"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e05_inclass.ipynb",
