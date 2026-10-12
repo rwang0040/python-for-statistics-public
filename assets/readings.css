@@ -21,7 +21,9 @@ a:focus-visible { outline: 3px solid #b7791f; outline-offset: 4px; }
 .skip-link { position: absolute; left: 1rem; top: -5rem; }
 .skip-link:focus { top: .5rem; background: white; padding: .5rem; }
 .reading-shell { width: min(960px, calc(100% - 2rem)); margin: 2rem auto; }
-.reading-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; margin-bottom: 1rem; }
+.reading-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.5rem; }
+.reading-nav a { font-weight: 700; }
+.back { display: inline-block; }
 .reading { background: white; border: 1px solid var(--line); border-radius: 18px; padding: clamp(1.1rem, 4vw, 3rem); box-shadow: 0 12px 32px rgb(35 55 75 / 8%); }
 .course-label { margin-top: 0; color: var(--muted); font-size: .85rem; }
 h1, h2, h3 { color: var(--blue-dark); line-height: 1.4; scroll-margin-top: 1rem; }

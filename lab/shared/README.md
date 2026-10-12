@@ -37,37 +37,18 @@
 
 ## 数据衔接
 
-```text
-chapter2_records.json（由课程准备代码载入）
-        │
-        └─ E02–E04：列表与字典 → 程序控制 → 函数与异常处理
-                               │
-student_survey_raw.txt         │
-        │                      │
-        ├─ E05：首次读取完整文本，复用前序结构和处理逻辑
-        │          └─ e05_cleaned_records.json
-        │                    └─ E06–E07：优先读取学生 E05 输出，官方检查点兜底
-        │                                  └─ NumPy 数组化、筛选、缺失处理与二维汇总
-        │
-        └─ E09：使用 Pandas 读取、检查、选择变量并形成数据审计
-                    └─ E10：筛选、清洗和生成变量
-                              └─ e10_students_clean.csv ──────────────┐
+| 实验 | 输入 | 产出与去向 |
+| --- | --- | --- |
+| E02–E04：基础处理 | 由课程准备代码载入 `chapter2_records.json` | 依次练习列表与字典、程序控制、函数与异常处理；处理思路在 E05 中复用 |
+| E05：文本清洗 | `student_survey_raw.txt`，首次读取完整文本 | `e05_cleaned_records.json` → E06–E07 |
+| E06–E07：NumPy 分析 | 优先使用学生 E05 输出，缺少时使用官方检查点 | 数组化、筛选、缺失处理与二维汇总；不作为后续 Pandas 实验的文件输入 |
+| E09–E10：Pandas 审计与清洗 | 再次读取 `student_survey_raw.txt` | E09 形成数据审计，E10 产出 `e10_students_clean.csv` → E12 |
+| E11：纵向记录整理 | `learning_records_raw.csv` | 清洗、分组汇总、频数、交叉表与宽长表转换；产出 `e11_learning_records_clean.csv` → E12、E14 |
+| E12：多表汇合 | E10 学生主表、E11 学习记录，以及 `project_scores_raw.csv`、`course_outcomes_raw.csv` | 合并、核验与导出 `e12_analysis_ready.csv`，形成第五、六章的分析入口 |
+| E13–E14：探索性分析 | E12 学生分析表；E14 另读 E11 轮次记录（均提供官方分析视图兜底） | 分布、分组比较、变量关系与轮次变化，为第六章的分析与解释作准备 |
+| E15：两组比较 | 学生分析表；缺少个人成果时使用官方分析视图 | Welch t 检验；产出 `e15_group_comparison.csv` → E16 |
+| E16：回归与最终报告 | 学生分析表，以及 E15 比较结果（均提供官方兜底） | 简单 OLS、拟合与残差图，汇合两组比较结果形成最终报告 |
 
-E08：独立随机模拟支线
-        └─ 固定种子 → 随机试验 → 事件判定 → Monte Carlo 比例估计
-           （不修改共享数据，也不产生下游实验依赖）
-
-learning_records_raw.csv                                             │
-        └─ E11：复用清洗、分组汇总、频数、交叉表和宽长表转换         │
-                  └─ e11_learning_records_clean.csv ─────────────────┤
-                                                                     │
-project_scores_raw.csv + course_outcomes_raw.csv                     │
-        └────────────────────────────── E12：合并、核验与导出 ───────┘
-                                              └─ e12_analysis_ready.csv
-                                                     ├─ E13–E14：EDA
-                                                     └─ E15：Welch t 检验
-                                                            └─ e15_group_comparison.csv
-                                                                   └─ E16：简单 OLS 与最终报告
-```
+**E08 是独立的随机模拟支线**：固定种子 → 随机试验 → 事件判定 → Monte Carlo 比例估计。不修改共享数据，也不产生下游实验依赖。
 
 原始文件、官方检查点和学生输出应分开保存。后续实验材料不得要求学生覆盖本目录中的任何文件。

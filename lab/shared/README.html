@@ -9,11 +9,11 @@
 <body>
 <a class="skip-link" href="#reading-content">跳到正文</a>
 <div class="reading-shell">
+<main id="reading-content" class="reading">
 <nav class="reading-nav" aria-label="文档导航">
-<a href="../../index.html">← 返回课程首页</a>
+<a class="back" href="../../index.html">← 返回课程首页</a>
 <a href="README.md" download>下载 Markdown 原文</a>
 </nav>
-<main id="reading-content" class="reading">
 <p class="course-label">面向统计学的 Python 程序设计 · 64 学时标准版</p>
 <h1 id="共享实验数据">共享实验数据</h1>
 <p>本目录保存标准版与辅修版共同使用的模拟教学数据。数据主题为“大学生 Python 学习与课程适应调查”，所有人物和记录均由固定随机种子生成，不对应真实学生。</p>
@@ -102,36 +102,68 @@
 </table>
 <p>各文件字段见 <code>data_dictionary.md</code>。运行 <code>generate_data.py</code> 会使用固定种子重新生成全部数据文件，并在关键教学统计量超出预设范围时失败。</p>
 <h2 id="数据衔接">数据衔接</h2>
-<pre class="text"><code>chapter2_records.json（由课程准备代码载入）
-        │
-        └─ E02–E04：列表与字典 → 程序控制 → 函数与异常处理
-                               │
-student_survey_raw.txt         │
-        │                      │
-        ├─ E05：首次读取完整文本，复用前序结构和处理逻辑
-        │          └─ e05_cleaned_records.json
-        │                    └─ E06–E07：优先读取学生 E05 输出，官方检查点兜底
-        │                                  └─ NumPy 数组化、筛选、缺失处理与二维汇总
-        │
-        └─ E09：使用 Pandas 读取、检查、选择变量并形成数据审计
-                    └─ E10：筛选、清洗和生成变量
-                              └─ e10_students_clean.csv ──────────────┐
-
-E08：独立随机模拟支线
-        └─ 固定种子 → 随机试验 → 事件判定 → Monte Carlo 比例估计
-           （不修改共享数据，也不产生下游实验依赖）
-
-learning_records_raw.csv                                             │
-        └─ E11：复用清洗、分组汇总、频数、交叉表和宽长表转换         │
-                  └─ e11_learning_records_clean.csv ─────────────────┤
-                                                                     │
-project_scores_raw.csv + course_outcomes_raw.csv                     │
-        └────────────────────────────── E12：合并、核验与导出 ───────┘
-                                              └─ e12_analysis_ready.csv
-                                                     ├─ E13–E14：EDA
-                                                     └─ E15：Welch t 检验
-                                                            └─ e15_group_comparison.csv
-                                                                   └─ E16：简单 OLS 与最终报告</code></pre>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>实验</th>
+<th>输入</th>
+<th>产出与去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E02–E04：基础处理</td>
+<td>由课程准备代码载入 <code>chapter2_records.json</code></td>
+<td>依次练习列表与字典、程序控制、函数与异常处理；处理思路在 E05 中复用</td>
+</tr>
+<tr>
+<td>E05：文本清洗</td>
+<td><code>student_survey_raw.txt</code>，首次读取完整文本</td>
+<td><code>e05_cleaned_records.json</code> → E06–E07</td>
+</tr>
+<tr>
+<td>E06–E07：NumPy 分析</td>
+<td>优先使用学生 E05 输出，缺少时使用官方检查点</td>
+<td>数组化、筛选、缺失处理与二维汇总；不作为后续 Pandas 实验的文件输入</td>
+</tr>
+<tr>
+<td>E09–E10：Pandas 审计与清洗</td>
+<td>再次读取 <code>student_survey_raw.txt</code></td>
+<td>E09 形成数据审计，E10 产出 <code>e10_students_clean.csv</code> → E12</td>
+</tr>
+<tr>
+<td>E11：纵向记录整理</td>
+<td><code>learning_records_raw.csv</code></td>
+<td>清洗、分组汇总、频数、交叉表与宽长表转换；产出 <code>e11_learning_records_clean.csv</code> → E12、E14</td>
+</tr>
+<tr>
+<td>E12：多表汇合</td>
+<td>E10 学生主表、E11 学习记录，以及 <code>project_scores_raw.csv</code>、<code>course_outcomes_raw.csv</code></td>
+<td>合并、核验与导出 <code>e12_analysis_ready.csv</code>，形成第五、六章的分析入口</td>
+</tr>
+<tr>
+<td>E13–E14：探索性分析</td>
+<td>E12 学生分析表；E14 另读 E11 轮次记录（均提供官方分析视图兜底）</td>
+<td>分布、分组比较、变量关系与轮次变化，为第六章的分析与解释作准备</td>
+</tr>
+<tr>
+<td>E15：两组比较</td>
+<td>学生分析表；缺少个人成果时使用官方分析视图</td>
+<td>Welch t 检验；产出 <code>e15_group_comparison.csv</code> → E16</td>
+</tr>
+<tr>
+<td>E16：回归与最终报告</td>
+<td>学生分析表，以及 E15 比较结果（均提供官方兜底）</td>
+<td>简单 OLS、拟合与残差图，汇合两组比较结果形成最终报告</td>
+</tr>
+</tbody>
+</table>
+<p><strong>E08 是独立的随机模拟支线</strong>：固定种子 → 随机试验 → 事件判定 → Monte Carlo 比例估计。不修改共享数据，也不产生下游实验依赖。</p>
 <p>原始文件、官方检查点和学生输出应分开保存。后续实验材料不得要求学生覆盖本目录中的任何文件。</p>
 
 </main>
