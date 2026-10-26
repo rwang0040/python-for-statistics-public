@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "releaseId": "applied-stat-64",
-  "sourceCommit": "9b4b1bd50a73a370ab4618c3d76d94cca1936ef5",
+  "sourceCommit": "0fad8fc3af3b8a5f94cef05ffda29c10a51237ef",
   "sourceDirty": true,
-  "generatedAt": "2026-10-12T07:40:49.246670Z",
+  "generatedAt": "2026-10-26T05:30:25.314446Z",
   "fileCount": 2070,
   "files": [
     {
@@ -203,48 +203,48 @@
     },
     {
       "path": "lab/applied-stat-64/chapter2/e05_inclass.ipynb",
-      "size": 14431,
-      "sha256": "136cfd270e0a4022c0b0500e790ac041f8bcd4b14450a8fd8ae4e06f53d84b9b"
+      "size": 15304,
+      "sha256": "2da6e511246a976c4682c77d021b021a28a617141e5858b75fd271951fe988e4"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e05_prelab_card.html",
-      "size": 2914,
-      "sha256": "00e20cfa862cbb107ff64f3f23636c71166f348765bfb937698e5f9ee0d66077"
+      "size": 3132,
+      "sha256": "282f3caf0fb5585d8e5dbe9bbdc43f35d7857ab1c81f33f38398b605fea46b60"
     },
     {
       "path": "lab/applied-stat-64/chapter2/e05_prelab_card.md",
-      "size": 1576,
-      "sha256": "a1db3b64ac04c3d066f9fe24da968cbfb7eb33a3274bb1bacb1112c177f934b2"
+      "size": 1833,
+      "sha256": "95a1c9373ac30190ee05d1e3601dcec013c3fcc673782e8c093ab048fa20f49f"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e06_inclass.ipynb",
-      "size": 12541,
-      "sha256": "0dc4bf36b886a32584f6f4d3efd8b9c7426a2dd4dc413bdf6674cb618421ee72"
+      "size": 16572,
+      "sha256": "cf60755350fb5f713ebe0f985a1dd5a893a509783deb037bd6ef79db00d02e50"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e06_prelab_card.html",
-      "size": 2746,
-      "sha256": "d53cde85b1a45ac9017f2c9a0f298d815f3da4058206f14ee69da3a5aecbb893"
+      "size": 3241,
+      "sha256": "523e0f0ae82a4acb1118edadb9c64565b951c6b310c02c0bc0e08f2e07e12b61"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e06_prelab_card.md",
-      "size": 1504,
-      "sha256": "34bc0a51c64c0f116afc04113c8b591b151f83cdda0127b9cbae732f35ec4b81"
+      "size": 2022,
+      "sha256": "41e1b957c6543380e369f02a32cce260be18fc365ef3cded95615f8b86a5824a"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e07_inclass.ipynb",
-      "size": 13078,
-      "sha256": "bb2dc9324f96cd061543545fc2f7c2b4f3cdd31f4266f036f41cd1f02d656043"
+      "size": 17110,
+      "sha256": "cc0354a874b3d7d204e5e2aedd597bad6d260b1e5ef62404944f495920ecf49b"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e07_prelab_card.html",
-      "size": 2530,
-      "sha256": "2c7c9905dbd5dbcc422cf3af4b8554ce27588c5f15c518157a97eaad54f973df"
+      "size": 2944,
+      "sha256": "b27fc3528caac9d6b84098361c88809ceaee679ef4e32438e87fa98c316a9452"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e07_prelab_card.md",
-      "size": 1257,
-      "sha256": "8d8d6a006bd7a704b2dd040a29b682adfa6c9ec133a56c2b704b3c50559fd637"
+      "size": 1674,
+      "sha256": "f4c5494d9952d7f2aae88ba8eae5a04dfebfacb8d812101248b92cb9b1479f2c"
     },
     {
       "path": "lab/applied-stat-64/chapter3/e08_inclass.ipynb",

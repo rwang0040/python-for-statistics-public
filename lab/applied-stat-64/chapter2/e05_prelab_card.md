@@ -4,7 +4,7 @@
 
 ## 开始前先确认
 
-1. 仓库中的 `lab/shared/raw/student_survey_raw.txt` 存在。
+1. 已准备仓库中的原始文本和官方检查点，或把同名文件放到当前工作目录；本地缺文件时，准备单元会尝试联网下载。
 2. 已复习 `with open(...)`、`readlines()`、`strip()` 和 `split()`。
 3. 已复习 E04 的函数、`try-except` 和 `None`。
 4. 知道课程数据统一使用 UTF-8，本实验固定写 `encoding="utf-8"`。
@@ -15,7 +15,7 @@
 2. 拆分文本行并统一受控的 ASCII 类别别名。
 3. 安全转换数值和百分数字段。
 4. 批量生成记录、按 `student_id` 去重并检查缺失值。
-5. 把结果固定保存到 `lab/applied-stat-64/chapter2/e05_output` 目录。
+5. 完整课程目录下，结果固定保存到 `lab/applied-stat-64/chapter2/e05_output`；单独使用 Notebook 时保存到当前工作目录的 `e05_output`，以准备单元打印的位置为准。
 6. 只读官方 JSON 检查点并核验结果。
 
 ## 如果卡住了

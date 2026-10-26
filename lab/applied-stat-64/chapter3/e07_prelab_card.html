@@ -19,8 +19,8 @@
 <p>适用实验：<code>e07_inclass.ipynb</code></p>
 <h2 id="开始前先确认">开始前先确认</h2>
 <ol type="1">
-<li>已确认个人 E05 输出或官方 E05 检查点至少有一个可用。</li>
-<li>知道通过 <code>USE_STUDENT_E05_OUTPUT</code> 选择个人成果或官方检查点。</li>
+<li>输入与 E06 相同：个人 E05 标准输出 → 当前目录的 <code>e05_cleaned_records.json</code> → 仓库官方检查点 → 当前目录的 <code>e05_cleaned_records_official.json</code> → 联网获取并缓存官方副本。</li>
+<li>知道 <code>USE_STUDENT_E05_OUTPUT = False</code> 会跳过前两个个人输入位置；本地无官方文件时，需要联网或手动下载官方副本。</li>
 <li>已复习布尔比较、<code>&amp;</code>、<code>~</code> 和布尔筛选。</li>
 <li>已复习 Chapter 3B 中的聚合、<code>np.nan</code>、<code>np.isnan()</code>、<code>axis</code> 和广播。</li>
 <li>能解释 E06 中为什么数组形状和记录对齐需要核验。</li>
@@ -39,6 +39,7 @@
 <li>多个条件组合时，每个条件都加括号。</li>
 <li>统计前先检查用于计算的布尔掩码。</li>
 <li><code>axis=0</code> 和 <code>axis=1</code> 不确定时，先结合数组形状画出行列。</li>
+<li>输入异常时查看打印的来源、路径和当前工作目录；已有文件损坏或核验失败不会静默兜底，应修正文件或主动切换官方输入。</li>
 </ol>
 <h2 id="提交前检查">提交前检查</h2>
 <ol type="1">
