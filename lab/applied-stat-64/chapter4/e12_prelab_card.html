@@ -20,7 +20,7 @@
 <h2 id="开始前先确认">开始前先确认</h2>
 <ol type="1">
 <li>如需继续个人成果，已确认 E10 和 E11 输出文件存在。</li>
-<li>已确认 <code>lab/shared/checkpoints</code> 中的官方兜底文件存在。</li>
+<li>知道官方输入的查找顺序是仓库检查点 → 当前工作目录的 <code>_official.csv</code> 副本 → 联网下载。项目成绩和课程结果表也可在本地缺失时下载。</li>
 <li>已复习 Chapter 4D 中的主键、<code>concat()</code>、<code>merge()</code>、<code>inner</code> 和 <code>left</code>。</li>
 <li>能说明单键与 <code>student_id + wave</code> 复合主键的区别。</li>
 </ol>
@@ -34,7 +34,7 @@
 </ol>
 <h2 id="如果卡住了">如果卡住了</h2>
 <ol type="1">
-<li>先看输入来源和每项核验是否通过。</li>
+<li>先看输入来源和每项核验是否通过。网络失败时按报错给出的地址和文件名手动保存到当前工作目录。</li>
 <li>合并前分别检查左右表的键是否唯一。</li>
 <li>比较 <code>inner</code> 与 <code>left</code> 的行数，再检查 <code>_merge</code> 和缺失值。</li>
 <li>个人成果核验失败时应先修正；需要继续时可把对应开关改为 <code>False</code>。</li>

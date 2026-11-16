@@ -19,7 +19,7 @@
 <p>适用实验：<code>e11_inclass.ipynb</code></p>
 <h2 id="开始前先确认">开始前先确认</h2>
 <ol type="1">
-<li>已确认 <code>lab/shared/raw/learning_records_raw.csv</code> 存在。</li>
+<li>知道本实验读取 <code>learning_records_raw.csv</code>。准备单元会优先读取仓库共享目录或当前工作目录中的同名文件，两处均缺失时自动下载。</li>
 <li>已复习 E10 的类型转换、缺失检查和去重流程。</li>
 <li>已复习 Chapter 4C 中的 <code>groupby()</code>、<code>agg()</code>、<code>crosstab()</code>、<code>pivot_table()</code> 和 <code>melt()</code>。</li>
 <li>知道四轮记录的主键是 <code>student_id + wave</code>。</li>
@@ -34,7 +34,7 @@
 </ol>
 <h2 id="如果卡住了">如果卡住了</h2>
 <ol type="1">
-<li>分组前先检查字段类型和复合主键。</li>
+<li>输入读取失败时先检查准备单元打印的路径。分组前核对字段类型和复合主键。</li>
 <li>样本量不一致时区分 <code>size()</code> 与 <code>count()</code>。</li>
 <li>透视后先检查 <code>shape</code> 和列名，再执行 <code>melt()</code>。</li>
 <li>不要为了得到完整表格而填补真实缺失值。</li>
