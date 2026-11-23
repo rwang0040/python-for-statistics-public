@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "releaseId": "applied-stat-64",
-  "sourceCommit": "f3aa50a17da6944a677ee86ffe4b0b3850556232",
+  "sourceCommit": "d9d5f2fb2614f1cbb081244742d5a3580c841681",
   "sourceDirty": false,
-  "generatedAt": "2026-11-16T05:36:37.245550Z",
+  "generatedAt": "2026-11-23T01:35:08.688616Z",
   "fileCount": 2070,
   "files": [
     {
@@ -6008,8 +6008,8 @@
     },
     {
       "path": "lecture/chapter4/chapter4a_inclass.ipynb",
-      "size": 15468,
-      "sha256": "c4a990dc8a1de967db87f9b2a217278569ec24199abff5d7c12f2f55514d9ded"
+      "size": 16521,
+      "sha256": "f499613ab293e2ff369028de6a17b9d04cfdc4f8ae6700711bebc9516ed23928"
     },
     {
       "path": "lecture/chapter4/chapter4b.html",
@@ -6623,8 +6623,8 @@
     },
     {
       "path": "lecture/chapter4/chapter4b_inclass.ipynb",
-      "size": 20707,
-      "sha256": "5c066445603cc547d61d564d09894fe4c424d9856f57deabc01aaef7b35b2ff8"
+      "size": 21688,
+      "sha256": "47aa679407645da1e1787edbfded988649e52be7bf73c4aafced3a0e85df5c0f"
     },
     {
       "path": "lecture/chapter4/chapter4c.html",
@@ -7238,8 +7238,8 @@
     },
     {
       "path": "lecture/chapter4/chapter4c_inclass.ipynb",
-      "size": 16410,
-      "sha256": "f6d2a31e57b574dbf310e63e3c6b253e9dc1681723bceaf15506ab2385b43841"
+      "size": 17459,
+      "sha256": "4e915845cd2ea0538f0f8db363a11bfd6b80b4acc5dc26176a8bf772bab7a0eb"
     },
     {
       "path": "lecture/chapter4/chapter4d.html",
@@ -7853,8 +7853,8 @@
     },
     {
       "path": "lecture/chapter4/chapter4d_inclass.ipynb",
-      "size": 16945,
-      "sha256": "c45d883d1cc011ec22ce9600193efa18da269fc5791262de471689b7861ccb99"
+      "size": 18859,
+      "sha256": "851ccd9108d01e016e0373abc65dd52068b75dea88a09a1ec74658f6bc7b2d35"
     },
     {
       "path": "lecture/chapter4/data/learning_records.csv",
